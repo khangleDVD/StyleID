@@ -4,10 +4,21 @@ from dotenv import load_dotenv
 _env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
 load_dotenv(_env_path, override=True)
 
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+_ON_VERCEL = bool(os.getenv('VERCEL') or os.getenv('VERCEL_ENV'))
+
+
+def _vercel_tmp_path(name: str) -> str:
+    return os.path.join('/tmp', name)
+
 
 class Config:
     SECRET_KEY = os.getenv('FLASK_SECRET_KEY', 'dev-secret-key-change-in-production')
-    UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
+    UPLOAD_FOLDER = (
+        _vercel_tmp_path('uploads')
+        if _ON_VERCEL
+        else os.path.join(_BASE_DIR, 'uploads')
+    )
     MAX_CONTENT_LENGTH = 20 * 1024 * 1024  # 20MB tổng request
     MAX_ANALYZE_IMAGES = int(os.getenv('MAX_ANALYZE_IMAGES', '5'))  # Tối đa ảnh mỗi lần phân tích
     MAX_ITEMS_PER_IMAGE = int(os.getenv('MAX_ITEMS_PER_IMAGE', '10'))  # Tối đa món / ảnh (khớp GT benchmark)
@@ -28,8 +39,11 @@ class Config:
     OPENROUTER_VISION_MODEL_WEIGHTS = os.getenv('OPENROUTER_VISION_MODEL_WEIGHTS', '')
     #  bước hợp nhất món hiện thực hiện hoàn toàn bằng code (xem ai_service._code_merge_detection_outputs).
     # Database: mysql (production) | sqlite (local, không cần XAMPP)
-    DB_ENGINE = (os.getenv('DB_ENGINE') or 'mysql').strip().lower()
-    SQLITE_PATH = (os.getenv('SQLITE_PATH') or 'data/styleid.db').strip()
+    DB_ENGINE = (os.getenv('DB_ENGINE') or ('sqlite' if _ON_VERCEL else 'mysql')).strip().lower()
+    SQLITE_PATH = (
+        (os.getenv('SQLITE_PATH') or '').strip()
+        or (_vercel_tmp_path('styleid.db') if _ON_VERCEL else 'data/styleid.db')
+    )
     # MySQL (lumistyle_db) — khi DB_ENGINE=mysql
     MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
     MYSQL_USER = os.getenv('MYSQL_USER', 'root')

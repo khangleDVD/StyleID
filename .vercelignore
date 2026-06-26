@@ -1,0 +1,25 @@
+# Flutter mobile app — ~1GB, không cần cho Flask backend
+app_web_view/
+moble/
+
+# Python local
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Local data / uploads
+uploads/
+artifacts/
+eval_results/
+*.db
+*.sqlite3
+
+# Dev / IDE
+.git/
+.idea/
+.vscode/
+docs/
+Benchmark Anh AI.xlsx

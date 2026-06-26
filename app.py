@@ -61,9 +61,19 @@ oauth.register(
     client_kwargs={'scope': 'openid profile email'},
 )
 
-os.makedirs(Config.UPLOAD_FOLDER, exist_ok=True)
-os.makedirs(os.path.join(app.static_folder, 'img'), exist_ok=True)
-os.makedirs(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data'), exist_ok=True)
+def _ensure_runtime_dirs():
+    for path in (
+        Config.UPLOAD_FOLDER,
+        os.path.join(app.static_folder, 'img'),
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data'),
+    ):
+        try:
+            os.makedirs(path, exist_ok=True)
+        except OSError as e:
+            print(f'[Startup] skip mkdir {path}: {e}')
+
+
+_ensure_runtime_dirs()
 
 try:
     init_database()

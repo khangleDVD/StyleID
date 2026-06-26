@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "env": {
+    "PYTHONPATH": "."
+  },
+  "functions": {
+    "app.py": {
+      "maxDuration": 60,
+      "excludeFiles": "{app_web_view/**,moble/**,venv/**,.venv/**,uploads/**,artifacts/**,eval_results/**,**/__pycache__/**,*.db,*.sqlite3,.git/**,docs/**,Benchmark Anh AI.xlsx}"
+    }
+  }
+}
