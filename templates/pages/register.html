@@ -1,0 +1,149 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Đăng ký | StyleID - AI Fashion Intelligence{% endblock %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/register-v2.css">
+<script>
+  (function () {
+    var t = document.querySelector('title');
+    if (t) t.setAttribute('data-i18n', 'meta.titleRegister');
+    document.documentElement.classList.remove('theme-light');
+  })();
+</script>
+{% endblock %}
+
+{% block body %}
+  <main class="register-v2-page" data-i18n-aria="authPage.registerTitle" aria-label="Đăng ký">
+    <div class="register-v2-split">
+      <aside class="register-v2-hero" aria-hidden="true">
+        <div class="register-v2-hero-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0cEfqtInC4XN6m9ByS35JAF3F3Y1R9O5fK8GxpV6BByDXfBueegK9D25llZAg8PbR6pkgmEWD9RNmkBkVT5p-douYTfWLXjHtmzS8RB1A-L0ecFLJCJnpO5QDu0hw8WC_ziAbXxcJKNdYmfIdLFLoAKbHOcrc85t66dZUjk1PE8Uk_1Erh7OtKD78ZDG3ZUG1I26CwImZPXn3SFqe3Xwi4aXlkWYlGUpvvXHVF59B6lauEhEF7dhSEEk0K2IKGgoq8w0k0Yvul7s');"></div>
+        <div class="register-v2-hero-overlay" aria-hidden="true"></div>
+        <div class="register-v2-hero-gradient" aria-hidden="true"></div>
+
+          <div class="register-v2-hero-header">
+          <div class="register-v2-hero-brand">
+            <h1>StyleID</h1>
+            <p data-i18n="authPage.registerHeroTagline">AI Fashion Intelligence</p>
+          </div>
+          <div class="register-v2-lang-wrap">{% include 'partials/lang_switcher.html' %}</div>
+        </div>
+
+        <div class="register-v2-hero-card">
+          <div class="register-v2-hero-card-head">
+            <span class="material-symbols-outlined" aria-hidden="true">analytics</span>
+            <span data-i18n="authPage.registerHeroBadge">Phân tích đang hoạt động</span>
+          </div>
+          <p data-i18n="authPage.registerHeroDesc">Hệ thống đang tối ưu hóa phong cách dựa trên dữ liệu thời trang toàn cầu thời gian thực.</p>
+        </div>
+
+        <span class="register-v2-pulse register-v2-pulse--lg"></span>
+        <span class="register-v2-pulse register-v2-pulse--sm"></span>
+      </aside>
+
+      <section class="register-v2-panel" aria-label="Form đăng ký">
+        <div class="register-v2-inner">
+          <header class="register-v2-header">
+            <h2 data-i18n="authPage.registerJoinTitle">Tham gia StyleID</h2>
+            <p data-i18n="authPage.registerJoinSub">Khởi tạo tài khoản để trải nghiệm AI Fashion cá nhân hóa.</p>
+          </header>
+
+          <div id="registerStepForm" class="register-v2-step">
+            <form id="formRegister" class="register-v2-form" novalidate>
+              <div class="register-v2-field">
+                <label for="reg_full_name" data-i18n="auth.fullName">Họ tên</label>
+                <input class="register-v2-input" id="reg_full_name" type="text" name="full_name" required autocomplete="name" data-i18n-placeholder="auth.fullNamePh" placeholder="Nguyễn Văn A">
+              </div>
+
+              <div class="register-v2-field">
+                <label for="reg_username" data-i18n="auth.username">Tên đăng nhập</label>
+                <input class="register-v2-input" id="reg_username" type="text" name="username" required autocomplete="username" autofocus data-i18n-placeholder="auth.usernamePh" placeholder="username123">
+              </div>
+
+              <div class="register-v2-field">
+                <label for="reg_email" data-i18n="auth.emailGmail">Gmail</label>
+                <input class="register-v2-input" id="reg_email" type="email" name="email" required autocomplete="email" inputmode="email" data-i18n-placeholder="auth.emailPh" placeholder="email@gmail.com">
+              </div>
+
+              <div class="register-v2-field">
+                <label for="reg_password" data-i18n="auth.password">Mật khẩu</label>
+                <div class="register-v2-input-wrap">
+                  <input class="register-v2-input" id="reg_password" type="password" name="password" required autocomplete="new-password" minlength="6" placeholder="••••••••">
+                  <button type="button" class="register-v2-pwd-toggle auth-pwd-toggle" data-i18n-aria="auth.showPassword" aria-label="Hiện mật khẩu" aria-pressed="false">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-eye"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="register-v2-field">
+                <label for="reg_password_confirm" data-i18n="auth.confirmPassword">Xác nhận mật khẩu</label>
+                <div class="register-v2-input-wrap">
+                  <input class="register-v2-input" id="reg_password_confirm" type="password" name="password_confirm" required autocomplete="new-password" minlength="6" placeholder="••••••••">
+                  <button type="button" class="register-v2-pwd-toggle auth-pwd-toggle" data-i18n-aria="auth.showPassword" aria-label="Hiện mật khẩu" aria-pressed="false">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-eye"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="register-v2-terms">
+                <input id="reg_terms" type="checkbox" name="terms_accepted" required aria-describedby="reg_terms_label">
+                <label id="reg_terms_label" for="reg_terms">
+                  <span data-i18n="auth.agreeTermsPrefix">Tôi đồng ý với các</span>
+                  <a href="/terms" target="_blank" rel="noopener" data-i18n="auth.termsServiceLink">Điều khoản dịch vụ</a>
+                  <span data-i18n="auth.and">và</span>
+                  <a href="/privacy" target="_blank" rel="noopener" data-i18n="auth.privacyLink">Chính sách bảo mật</a>
+                  <span data-i18n="auth.agreeTermsSuffix">của StyleID.</span>
+                </label>
+              </div>
+
+              <p id="registerError" class="register-v2-error hidden" role="alert"></p>
+
+              <div class="register-v2-submit-wrap">
+                <button type="submit" id="registerSubmitBtn" class="register-v2-submit" data-i18n="auth.registerNow">Đăng ký ngay</button>
+              </div>
+
+              <p class="register-v2-footer-link">
+                <span data-i18n="authPage.hasAccount">Đã có tài khoản?</span>
+                <a href="/login" data-i18n="auth.login">Đăng nhập</a>
+              </p>
+            </form>
+          </div>
+
+          <div id="registerStepOtp" class="register-v2-step hidden">
+            <p class="register-v2-otp-hint" id="registerOtpHint" data-i18n="auth.otpRegisterHint">Nhập mã OTP 6 số đã gửi đến Gmail của bạn.</p>
+            <form id="formRegisterOtp" class="register-v2-form" novalidate>
+              <input type="hidden" id="registerSessionToken" name="session_token" value="">
+              <div class="register-v2-field">
+                <label for="reg_otp" data-i18n="auth.otpCode">Mã OTP</label>
+                <input class="register-v2-input" id="reg_otp" type="text" name="otp" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required autocomplete="one-time-code" placeholder="000000">
+              </div>
+              <p id="registerOtpError" class="register-v2-error hidden" role="alert"></p>
+              <div class="register-v2-otp-actions">
+                <button type="submit" class="register-v2-submit" data-i18n="auth.verifyOtp">Xác minh OTP</button>
+                <button type="button" id="btnRegisterResendOtp" class="register-v2-btn-ghost" data-i18n="auth.resendOtp">Gửi lại mã OTP</button>
+                <button type="button" id="btnRegisterBack" class="register-v2-btn-ghost" data-i18n="auth.backToForm">Quay lại form đăng ký</button>
+              </div>
+            </form>
+          </div>
+
+          <a href="/" class="register-v2-back-home" data-i18n="authPage.backHome">← Về trang chủ</a>
+
+          <footer class="register-v2-bottom" role="contentinfo">
+            <span>© {{ site.year }} {{ site.app_name }}</span>
+            <div class="register-v2-bottom-links">
+              <a href="/support" data-i18n-aria="nav.support" aria-label="Hỗ trợ">
+                <span class="material-symbols-outlined" aria-hidden="true">help</span>
+              </a>
+            </div>
+          </footer>
+        </div>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/legal-page.js"></script>
+  <script src="/static/js/auth.js"></script>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% set title_i18n_key = 'meta.titleDataDeletion' %}
+{% extends 'layouts/legal_page.html' %}
+
+{% block legal_content %}
+  <div class="legal-lang legal-lang--vi">
+    <h1 id="legal-page-title">Chính sách xóa dữ liệu</h1>
+    <p class="legal-updated">Cập nhật lần cuối: 14/06/2026</p>
+
+    <section>
+      <h2>1. Phạm vi</h2>
+      <p>Chính sách này giải thích cách bạn có thể yêu cầu xóa dữ liệu cá nhân liên quan tới tài khoản <strong>{{ site.app_name }}</strong>, bao gồm khi bạn đăng nhập bằng Google.</p>
+      <p>Chúng tôi tuân thủ yêu cầu của Google Play và App Store về quyền người dùng xóa dữ liệu.</p>
+    </section>
+
+    <section>
+      <h2>2. Xóa trong ứng dụng (từng phần)</h2>
+      <p>Sau khi đăng nhập, bạn có thể:</p>
+      <ul>
+        <li><strong>Xóa từng bản ghi lịch sử phân tích</strong> — mục «Lịch sử» → nút «Xóa» trên từng mục. Ảnh và kết quả JSON liên quan sẽ bị xóa khỏi hệ thống (trừ bản sao lưu tạm thời nếu có).</li>
+        <li><strong>Đăng xuất</strong> — xóa token phiên trên thiết bị (không xóa tài khoản trên máy chủ).</li>
+      </ul>
+      <p><em>Lưu ý:</em> Phiên bản hiện tại chưa có nút «Xóa tài khoản» tự động trong app. Để xóa toàn bộ tài khoản, dùng phương thức email bên dưới.</p>
+    </section>
+
+    <section>
+      <h2>3. Yêu cầu xóa toàn bộ tài khoản qua email</h2>
+      <p>Gửi email tới <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> với tiêu đề <strong>[{{ site.app_name }}] Yêu cầu xóa dữ liệu</strong> và nội dung:</p>
+      <ul>
+        <li>Username hoặc email đăng ký (nếu dùng Google: email Google).</li>
+        <li>Xác nhận bạn là chủ tài khoản.</li>
+        <li>Phạm vi xóa mong muốn (toàn bộ tài khoản và lịch sử).</li>
+      </ul>
+      <p>Chúng tôi có thể yêu cầu xác minh bổ sung trước khi xử lý.</p>
+    </section>
+
+    <section>
+      <h2>4. Thời gian xử lý</h2>
+      <p>Sau khi xác minh yêu cầu hợp lệ, <strong>toàn bộ dữ liệu tài khoản sẽ được xóa trong vòng 30 ngày</strong> (thường sớm hơn). Bạn sẽ nhận email xác nhận khi hoàn tất.</p>
+      <p>Xóa từng bản ghi lịch sử trong app có hiệu lực ngay sau khi thao tác thành công.</p>
+    </section>
+
+    <section>
+      <h2>5. Dữ liệu bị xóa</h2>
+      <p>Khi xóa tài khoản, chúng tôi xóa hoặc ẩn danh hóa (nếu pháp luật yêu cầu giữ một phần):</p>
+      <ul>
+        <li>Hồ sơ người dùng (username, email Google, họ tên, mật khẩu băm).</li>
+        <li>Toàn bộ lịch sử phân tích và file ảnh đã tải lên.</li>
+        <li>Hóa đơn nạp gói liên quan (có thể giữ bản ghi thanh toán tối thiểu theo quy định kế toán).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Ngoại lệ</h2>
+      <p>Một số dữ liệu có thể được giữ lại khi pháp luật, tranh chấp thanh toán, hoặc bảo mật hệ thống yêu cầu, trong thời gian tối thiểu cần thiết.</p>
+    </section>
+
+    <section>
+      <h2>7. Liên hệ</h2>
+      <p>{{ site.company_name_vi }}<br>
+      Email: <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a><br>
+      Điện thoại: {{ site.support_phone }}</p>
+    </section>
+  </div>
+
+  <div class="legal-lang legal-lang--en hidden">
+    <h1 id="legal-page-title-en">Data Deletion Policy</h1>
+    <p class="legal-updated">Last updated: June 14, 2026</p>
+
+    <section>
+      <h2>1. Scope</h2>
+      <p>This policy explains how to request deletion of personal data related to your <strong>{{ site.app_name }}</strong> account, including Google Sign-In users, in line with Google Play and App Store requirements.</p>
+    </section>
+
+    <section>
+      <h2>2. In-app deletion (partial)</h2>
+      <ul>
+        <li><strong>Delete individual analysis records</strong> — History → Delete on each entry. Related images and JSON results are removed from the system.</li>
+        <li><strong>Sign out</strong> — clears the session token on your device (does not delete the server account).</li>
+      </ul>
+      <p><em>Note:</em> There is no self-service “Delete account” button yet. For full account deletion, use email below.</p>
+    </section>
+
+    <section>
+      <h2>3. Full account deletion by email</h2>
+      <p>Email <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> with subject <strong>[{{ site.app_name }}] Data deletion request</strong> including:</p>
+      <ul>
+        <li>Your username or registered email (Google email if applicable).</li>
+        <li>Confirmation that you own the account.</li>
+        <li>Scope: full account and all history.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Processing time</h2>
+      <p>After verification, <strong>all account data will be deleted within 30 days</strong> (often sooner). You will receive a confirmation email when complete.</p>
+      <p>Per-record history deletion in the app takes effect immediately after a successful delete action.</p>
+    </section>
+
+    <section>
+      <h2>5. What is deleted</h2>
+      <ul>
+        <li>User profile (username, Google email, name, hashed password).</li>
+        <li>All analysis history and uploaded images.</li>
+        <li>Related payment records (minimal records may be kept for accounting if required by law).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Exceptions</h2>
+      <p>Some data may be retained where required by law, payment disputes, or system security for the minimum necessary period.</p>
+    </section>
+
+    <section>
+      <h2>7. Contact</h2>
+      <p>{{ site.company_name_en }}<br>
+      Email: <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a><br>
+      Phone: {{ site.support_phone }}</p>
+    </section>
+  </div>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% set title_i18n_key = 'meta.titleTerms' %}
+{% extends 'layouts/legal_page.html' %}
+
+{% block legal_content %}  <div class="legal-lang legal-lang--vi">
+    <h1 id="legal-page-title">Điều khoản sử dụng</h1>
+            <p class="legal-updated">Cập nhật lần cuối: 14/06/2026</p>
+
+            <section>
+              <h2>1. Chấp nhận điều khoản</h2>
+              <p>Khi truy cập hoặc sử dụng <strong>{{ site.app_name }}</strong>, bạn đồng ý tuân thủ Điều khoản sử dụng và <a href="/privacy">Chính sách quyền riêng tư</a>. Nếu không đồng ý, vui lòng không sử dụng dịch vụ.</p>
+            </section>
+
+            <section>
+              <h2>2. Mô tả dịch vụ</h2>
+              <p>{{ site.app_name }} cung cấp công cụ phân tích ảnh trang phục bằng AI: nhận diện món đồ, phong cách, gợi ý dịp phù hợp, lịch sử và thống kê. Kết quả mang tính tham khảo, không thay thế tư vấn chuyên môn thời trang.</p>
+            </section>
+
+            <section>
+              <h2>3. Tài khoản</h2>
+              <ul>
+                <li>Bạn có thể đăng ký bằng username/mật khẩu hoặc đăng nhập Google (nếu được bật).</li>
+                <li>Bạn chịu trách nhiệm bảo mật thông tin đăng nhập và mọi hoạt động dưới tài khoản của mình.</li>
+                <li>Tài khoản mới có thể được cấp một số lượt phân tích miễn phí theo cấu hình hệ thống.</li>
+                <li>Chúng tôi có quyền từ chối, tạm khóa hoặc chấm dứt tài khoản vi phạm điều khoản.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>4. Quyền và trách nhiệm người dùng</h2>
+              <p>Bạn cam kết:</p>
+              <ul>
+                <li>Chỉ tải ảnh bạn có quyền sử dụng (ảnh của bạn hoặc được phép).</li>
+                <li>Không lạm dụng API, spam phân tích, hoặc cố gắng truy cập trái phép hệ thống.</li>
+                <li>Không sử dụng dịch vụ cho mục đích bất hợp pháp.</li>
+                <li>Cung cấp thông tin đăng ký trung thực trong phạm vi yêu cầu.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>5. Nội dung bị cấm</h2>
+              <ul>
+                <li>Ảnh khiêu dâm, bạo lực, phân biệt đối xử hoặc vi phạm pháp luật Việt Nam.</li>
+                <li>Nội dung xâm phạm quyền riêng tư, bản quyền hoặc nhãn hiệu của bên thứ ba.</li>
+                <li>Hành vi tấn công, reverse engineering, hoặc phá hoại dịch vụ.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>6. Sở hữu trí tuệ</h2>
+              <p>Giao diện, mã nguồn, nhãn hiệu {{ site.app_name }} và tài liệu liên quan thuộc quyền của {{ site.company_name_vi }} hoặc bên cấp phép. Bạn giữ quyền đối với ảnh bạn tải lên; bạn cấp cho chúng tôi quyền lưu trữ và xử lý ảnh đó để cung cấp dịch vụ.</p>
+            </section>
+
+            <section>
+              <h2>7. Giới hạn trách nhiệm</h2>
+              <p>Dịch vụ được cung cấp “nguyên trạng”. Chúng tôi không đảm bảo kết quả AI luôn chính xác 100%. Trong phạm vi pháp luật cho phép, {{ site.company_name_vi }} không chịu trách nhiệm cho thiệt hại gián tiếp, mất lợi nhuận, hoặc quyết định thời trang dựa trên gợi ý của ứng dụng.</p>
+            </section>
+
+            <section>
+              <h2>8. Gói cước và thanh toán</h2>
+              <p>Một số tính năng tiêu tốn “lượt phân tích”. Bạn có thể mua thêm lượt qua chuyển khoản ngân hàng (VietQR). Giá và số lượt hiển thị trên trang Gói cước. Thanh toán thành công được đối soát tự động; tranh chấp liên hệ <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a>.</p>
+            </section>
+
+            <section>
+              <h2>9. Chấm dứt</h2>
+              <p>Bạn có thể ngừng sử dụng bất cứ lúc nào. Chúng tôi có thể đình chỉ hoặc xóa tài khoản vi phạm. Sau chấm dứt, dữ liệu có thể bị xóa theo <a href="/data-deletion">Chính sách xóa dữ liệu</a>.</p>
+            </section>
+
+            <section>
+              <h2>10. Luật áp dụng</h2>
+              <p>Điều khoản chịu sự điều chỉnh của pháp luật Việt Nam. Tranh chấp ưu tiên giải quyết thương lượng; không thỏa thuận được sẽ đưa ra cơ quan có thẩm quyền tại Việt Nam.</p>
+            </section>
+
+            <section>
+              <h2>11. Liên hệ</h2>
+              <p>Email: <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> · Điện thoại: {{ site.support_phone }}</p>
+            </section>
+  </div>
+
+  <div class="legal-lang legal-lang--en hidden">
+    <h1 id="legal-page-title-en">Terms of Use</h1>
+            <p class="legal-updated">Last updated: 14/06/2026</p>
+
+        <section>
+              <h2>1. Acceptance of Terms</h2>
+              <p>By accessing or using <strong>{{ site.app_name }}</strong>, you agree to comply with the Terms of Service and <a href="/privacy">Privacy Policy</a>. If you do not agree, please do not use the service.</p>
+            </section>
+
+        <section>
+              <h2>2. Service Description</h2>
+              <p>{{ site.app_name }} provides an AI-powered clothing image analysis tool: item recognition, style identification, suitable occasion suggestions, history, and statistics. The results are for reference only and do not replace professional fashion advice.</p>
+            </section>
+
+        <section>
+              <h2>3. Account</h2>
+              <ul>
+                <li>You can register using a username/password or log in with Google (if enabled).</li>
+                <li>You are responsible for maintaining the confidentiality of your login information and any activities under your account.</li>
+                <li>New accounts may be granted a number of free analytical visits according to the system configuration.</li>
+                <li>We reserve the right to refuse, temporarily suspend, or terminate accounts that violate the terms.</li>
+              </ul>
+            </section>
+
+        <section>
+              <h2>4. User Rights and Responsibilities</h2>
+              <p>You agree to:</p>
+              <ul>
+                <li>Only upload images you have the right to use (your own images or those you are permitted to use).</li>
+                <li>Not misuse the API, spam analytics, or attempt unauthorized access to the system.</li>
+                <li>Not use the service for illegal purposes.</li>
+                <li>Provide truthful registration information within the scope of the requirements.</li>
+              </ul>
+            </section>
+
+        <section>
+              <h2>5. Prohibited Content</h2>
+              <ul>
+                <li>Pornographic, violent, discriminatory content or violations of Vietnamese law.</li>
+                <li>Content that infringes on the privacy, copyright, or trademarks of third parties.</li>
+                <li>Acts of attack, reverse engineering, or service disruption.</li>
+              </ul>
+            </section>
+
+        <section>
+              <h2>6. Intellectual Property</h2>
+              <p>The interface, source code, trademarks {{ site.app_name }} and related documentation are the property of {{ site.company_name_en }} or the licensor. You retain rights to the images you upload; you grant us the right to store and process those images to provide the services.</p>
+            </section>
+
+        <section>
+              <h2>7. Limitation of Liability</h2>
+              <p>The services are provided "as is". We do not guarantee that the AI results will always be 100% accurate. To the fullest extent permitted by law, {{ site.company_name_en }} shall not be liable for any indirect damages, loss of profits, or fashion decisions made based on the application's suggestions.</p>
+            </section>
+
+        <section>
+              <h2>8. Subscription and Payment</h2>
+              <p>Some features consume "analysis points." You can purchase additional points via bank transfer (VietQR). Prices and the number of points are displayed on the Subscription page. Successful payments are automatically reconciled; for disputes, contact <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a>.</p>
+            </section>
+
+        <section>
+              <h2>9. Termination</h2>
+              <p>You may cease the use of the service at any time. We may suspend or delete accounts that are in violation. Upon termination, data may be deleted in accordance with our <a href="/data-deletion">Data Deletion Policy</a>.</p>
+            </section>
+
+        <section>
+              <h2>10. Governing Law</h2>
+              <p>The terms shall be governed by the laws of Vietnam. Disputes shall be prioritized for negotiation; if no agreement is reached, they will be submitted to a competent authority in Vietnam.</p>
+            </section>
+
+        <section>
+              <h2>11. Contact</h2>
+              <p>Email: <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> · Phone: {{ site.support_phone }}</p>
+            </section>
+  </div>
+{% endblock %}

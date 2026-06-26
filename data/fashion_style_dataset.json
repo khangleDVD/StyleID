@@ -1,0 +1,5679 @@
+{
+  "version": "2.4",
+  "description": "Dataset v2.4 – Items trọng tâm Việt Nam cho phong cách cultural (áo dài, bà ba, nón lá…) và uniform (đồng phục học sinh, y tế…)",
+  "language": [
+    "vi",
+    "en"
+  ],
+  "categories": [
+    "Headwear",
+    "Topwear_Inner",
+    "Topwear_Outer",
+    "Jackets_Coats",
+    "Bottomwear",
+    "Skirts",
+    "Dresses",
+    "Footwear_Shoes",
+    "Footwear_Sandals",
+    "Accessories_Soft",
+    "Accessories_Hard",
+    "Jewelry"
+  ],
+  "items": {
+    "Headwear": [
+      "Ascot Cap",
+      "Balaclava",
+      "Baseball Cap",
+      "Beanie",
+      "Beret",
+      "Boater Hat",
+      "Bolero Hat",
+      "Bonnet",
+      "Bowler Hat",
+      "Bucket Hat",
+      "Cappello Romano",
+      "Capotain",
+      "Cartwheel Hat",
+      "Cavalier Hat",
+      "Chef's Hat",
+      "Cloche Hat",
+      "Cocktail Hat",
+      "Conical Hat",
+      "Cowboy Hat",
+      "Dad Cap",
+      "Deerstalker",
+      "Dunce Cap",
+      "Fascinator",
+      "Fedora",
+      "Fez",
+      "Flat Cap",
+      "Gandhi Cap",
+      "Garrison Cap",
+      "Glengarry",
+      "Halo Hat",
+      "Hardee Hat",
+      "Hennin",
+      "Homburg",
+      "Ivy Cap",
+      "Jaapi",
+      "Karakul",
+      "Keffiyeh",
+      "Kepi",
+      "Kippah",
+      "Kofia",
+      "Kufi",
+      "Labbadeh",
+      "Mitre",
+      "Mobcap",
+      "Montera",
+      "Newsboy Cap",
+      "Panama Hat",
+      "Pakul",
+      "Papakha",
+      "Party Hat",
+      "Peaked Cap",
+      "Pillbox Hat",
+      "Pork Pie Hat",
+      "Sailor Cap",
+      "Safari Hat",
+      "Salakot",
+      "Santa Hat",
+      "Shearling Hat",
+      "Snapback",
+      "Smoking Cap",
+      "Sombrero",
+      "Songkok",
+      "Sou'wester",
+      "Stocking Cap",
+      "Straw Hat",
+      "Sun Hat",
+      "Tam O' Shanter",
+      "Taqiyah",
+      "Top Hat",
+      "Toque",
+      "Trapper Hat",
+      "Trilby",
+      "Trucker Cap",
+      "Tubeteika",
+      "Tuque",
+      "Turban",
+      "Tyrolean Hat",
+      "Umbrella Hat",
+      "Upe",
+      "Ushanka",
+      "Visor",
+      "Wide-Brim Hat",
+      "Wide-Brim Dress Hat",
+      "Whoopee Cap",
+      "Beret Cap",
+      "Headband",
+      "Hair Scarf",
+      "Hood",
+      "Five-Panel Cap",
+      "Running Cap",
+      "Golf Cap",
+      "Military Cap",
+      "Patrol Cap",
+      "Tiara",
+      "Cat-Ear Headband",
+      "Knit Headband",
+      "Ear Warmer",
+      "Ski Mask",
+      "Rain Hat",
+      "Faux Fur Hat",
+      "Sherpa Hat",
+      "Pilot Hat",
+      "Graduation Cap",
+      "Veil",
+      "Durag",
+      "Flower Crown",
+      "Boonie Hat",
+      "Fisherman Beanie",
+      "Non La",
+      "Khan Dong",
+      "Eyeglasses",
+      "Police Cap – cotton, regular, solid",
+      "None – solid"
+    ],
+    "Topwear_Inner": [
+      "Tank Top",
+      "Basic Tank",
+      "Ribbed Tank",
+      "Muscle Tank",
+      "Athletic Tank",
+      "Compression Tank",
+      "Performance Tank",
+      "Workout Tank",
+      "Yoga Tank",
+      "Racerback Tank",
+      "Sleeveless Top",
+      "Sleeveless Undershirt",
+      "Camisole",
+      "Basic Camisole",
+      "Lace Camisole",
+      "Silk Camisole",
+      "Satin Camisole",
+      "Cotton Camisole",
+      "Seamless Camisole",
+      "Shelf-Bra Camisole",
+      "Built-In Bra Camisole",
+      "Padded Camisole",
+      "Spaghetti Strap Top",
+      "Strappy Cami",
+      "Cami Top",
+      "Layering Cami",
+      "Tube Top",
+      "Bandeau Top",
+      "Bra Top",
+      "Sports Bra Top",
+      "Longline Bra Top",
+      "Bralette",
+      "Lace Bralette",
+      "Longline Bralette",
+      "Sports Bra",
+      "Racerback Sports Bra",
+      "Longline Sports Bra",
+      "Crop Top",
+      "Basic Crop Top",
+      "Cropped Tank",
+      "Cropped Camisole",
+      "Cropped Cami",
+      "Cropped Tee",
+      "Baby Tee",
+      "Fitted Tee",
+      "T-Shirt",
+      "Basic Tee",
+      "Crew-Neck Tee",
+      "V-Neck Tee",
+      "Scoop-Neck Tee",
+      "Layering Tee",
+      "Undershirt Tee",
+      "Long-Sleeve T-Shirt",
+      "Short-Sleeve Tee",
+      "Cap-Sleeve Tee",
+      "Thermal Top",
+      "Thermal Undershirt",
+      "Thermal Base Layer",
+      "Long-Sleeve Thermal Top",
+      "Short-Sleeve Thermal Top",
+      "Waffle-Knit Thermal Top",
+      "Compression Top",
+      "Performance Top",
+      "Base Layer Top",
+      "Inner Shirt",
+      "Undershirt",
+      "Body-Hugging Top",
+      "Fitted Inner Top",
+      "Seamless Top",
+      "Mock Neck Top",
+      "Mock-Neck Base Layer",
+      "Turtleneck",
+      "Turtleneck Top",
+      "Turtleneck Base Layer",
+      "Roll-Neck Top",
+      "High-Neck Top",
+      "Henley Top",
+      "Henley Undershirt",
+      "Bodysuit",
+      "Tank Bodysuit",
+      "Cami Bodysuit",
+      "Sleeveless Bodysuit",
+      "Short-Sleeve Bodysuit",
+      "Long-Sleeve Bodysuit",
+      "Thong Bodysuit",
+      "Seamless Bodysuit",
+      "Mock Neck Bodysuit",
+      "Turtleneck Bodysuit",
+      "Mesh Bodysuit",
+      "Sheer Bodysuit",
+      "Mesh Top",
+      "Sheer Top",
+      "Transparent Top",
+      "Fishnet Top",
+      "Lace Top",
+      "Inner Lace Top",
+      "Inner Mesh Top",
+      "Shell Top",
+      "Layering Top",
+      "Slip Top",
+      "Lingerie Top",
+      "Corset Top",
+      "Bustier Top",
+      "Bustier Camisole",
+      "Corset Camisole",
+      "Halter Top",
+      "Halter Bralette",
+      "Wrap Top",
+      "Wrap Crop Top",
+      "Ruched Cami",
+      "Ruched Crop Top",
+      "Scoop-Neck Inner Top",
+      "V-Neck Inner Top",
+      "Square-Neck Cami",
+      "Square-Neck Inner Top",
+      "Sweetheart-Neck Top",
+      "Asymmetric Off-Shoulder Long-Sleeve Top",
+      "Yoga Top",
+      "Button-Up Shirt",
+      "Ao Dai Tunic",
+      "Dress Shirt",
+      "Polo Shirt",
+      "Blouse",
+      "Plaid Shirt – cotton, regular, plaid",
+      "Topwear_Inner – cotton, slim, solid",
+      "Long-Sleeve Shirt – linen, relaxed, solid"
+    ],
+    "Topwear_Outer": [
+      "T-Shirt",
+      "Oversized T-Shirt",
+      "Graphic T-Shirt",
+      "Longline T-Shirt",
+      "Football Jersey",
+      "Button-Up Shirt",
+      "Oxford Shirt",
+      "Dress Shirt",
+      "Flannel Shirt",
+      "Polo Shirt",
+      "Henley Shirt",
+      "Mock Neck Top",
+      "Turtleneck",
+      "Mesh Top",
+      "Sheer Top",
+      "Long-Sleeve T-Shirt",
+      "Rugby Shirt",
+      "Bowling Shirt",
+      "Cuban Collar Shirt",
+      "Camp Shirt",
+      "Western Shirt",
+      "Peasant Blouse",
+      "Off-Shoulder Top",
+      "One-Shoulder Top",
+      "Wrap Top",
+      "Peplum Top",
+      "Smock Top",
+      "Blouse",
+      "Silk Blouse",
+      "Chiffon Top",
+      "Lace Top",
+      "Sequin Top",
+      "Velvet Top",
+      "Grandad Collar Shirt",
+      "Band Collar Shirt",
+      "Mandarin Collar Shirt",
+      "Puff-Sleeve Top",
+      "Bell-Sleeve Top",
+      "Band T-Shirt",
+      "Scrubs Top",
+      "Ba Ba Shirt",
+      "Ao Dai Tunic",
+      "Ao Dai Shirt (Men)",
+      "School Uniform Shirt",
+      "Yem Bodice",
+      "Hoodie",
+      "Zip Hoodie",
+      "Pullover Hoodie",
+      "Sweatshirt",
+      "Crewneck Sweatshirt",
+      "Cardigan",
+      "Long Cardigan",
+      "Sweater Vest",
+      "Vest",
+      "Peter Pan Collar Blouse",
+      "Sailor Collar Top",
+      "Crop Top",
+      "Halter Top",
+      "Áo Thun Dài Tay Lệch Vai",
+      "Cropped Hoodie",
+      "Kimono Cardigan",
+      "Military Jacket",
+      "Blazer",
+      "Leather Jacket",
+      "Denim Jacket",
+      "Bomber Jacket",
+      "Windbreaker",
+      "Baseball Jacket – wool, oversize, solid",
+      "Basketball Jersey – mesh, oversize, graphic"
+    ],
+    "Jackets_Coats": [
+      "Blazer",
+      "Double-Breasted Blazer",
+      "Suit Jacket",
+      "Denim Jacket",
+      "Leather Jacket",
+      "Bomber Jacket",
+      "Varsity Jacket",
+      "Windbreaker",
+      "Shell Jacket",
+      "Puffer Jacket",
+      "Down Jacket",
+      "Trench Coat",
+      "Overcoat",
+      "Peacoat",
+      "Cape",
+      "Poncho",
+      "Kimono-Style Jacket",
+      "Shacket",
+      "Anorak",
+      "Parka",
+      "Rain Jacket",
+      "Softshell Jacket",
+      "Track Jacket",
+      "Coach Jacket",
+      "Trucker Jacket",
+      "Suede Jacket",
+      "Shearling Jacket",
+      "Faux Fur Coat",
+      "Duffle Coat",
+      "Military Jacket",
+      "Safari Jacket",
+      "Smoking Jacket",
+      "Bolero Jacket",
+      "Shrunken Blazer",
+      "Cropped Jacket",
+      "Cape Blazer",
+      "Gilet",
+      "Padded Vest",
+      "Denim Vest",
+      "Utility Jacket",
+      "Field Jacket",
+      "Flight Jacket",
+      "Harrington Jacket",
+      "Cropped Hoodie",
+      "Teddy Jacket",
+      "Noragi Jacket",
+      "Tech Fleece Jacket",
+      "Kimono Cardigan",
+      "Lab Coat",
+      "Long Coat",
+      "Short Coat",
+      "Single-Breasted Coat",
+      "Double-Breasted Coat",
+      "Wool Coat",
+      "Wrap Coat",
+      "Belted Coat",
+      "Car Coat",
+      "Chesterfield Coat",
+      "Crombie Coat",
+      "Mackintosh Coat",
+      "Quilted Jacket",
+      "Padded Jacket",
+      "Insulated Jacket",
+      "Ski Jacket",
+      "Snow Jacket",
+      "Parka Coat",
+      "Raincoat",
+      "Storm Jacket",
+      "Cagoule",
+      "Fleece Jacket",
+      "Zip-Up Fleece",
+      "Sherpa Jacket",
+      "Pile Jacket",
+      "Moto Jacket",
+      "Biker Jacket",
+      "Cropped Blazer",
+      "Jersey Blazer",
+      "Tuxedo Jacket",
+      "Dinner Jacket",
+      "Work Jacket",
+      "Chore Jacket",
+      "Barn Jacket",
+      "Canvas Jacket",
+      "Overshirt Jacket",
+      "Hooded Jacket",
+      "Hooded Coat",
+      "Chef Jacket – cotton, slim, solid"
+    ],
+    "Bottomwear": [
+      "Jeans",
+      "Skinny Jeans",
+      "Slim Jeans",
+      "Straight-Leg Jeans",
+      "Relaxed Jeans",
+      "Loose-Fit Jeans",
+      "Wide-Leg Jeans",
+      "Baggy Jeans",
+      "Bootcut Jeans",
+      "Flared Jeans",
+      "Bell-Bottom Jeans",
+      "Barrel-Leg Jeans",
+      "Mom Jeans",
+      "Boyfriend Jeans",
+      "Girlfriend Jeans",
+      "Dad Jeans",
+      "Balloon Jeans",
+      "Tapered Jeans",
+      "Cropped Jeans",
+      "Ankle Jeans",
+      "Low-Rise Jeans",
+      "Mid-Rise Jeans",
+      "High-Rise Jeans",
+      "Distressed Jeans",
+      "Ripped Jeans",
+      "Raw-Hem Jeans",
+      "Patchwork Jeans",
+      "Carpenter Jeans",
+      "Cargo Jeans",
+      "Jeggings",
+      "Trousers",
+      "Dress Pants",
+      "Formal Trousers",
+      "Tailored Trousers",
+      "Pleated Trousers",
+      "Smart Trousers",
+      "Tuxedo Trousers",
+      "High-Waist Trousers",
+      "Wide-Leg Trousers",
+      "Slacks",
+      "Casual Pants",
+      "Chinos",
+      "Khaki Pants",
+      "Straight-Leg Pants",
+      "Wide-Leg Pants",
+      "Slim-Fit Pants",
+      "Skinny Pants",
+      "Tapered Pants",
+      "Bootcut Pants",
+      "Flared Pants",
+      "Bell-Bottom Pants",
+      "Barrel-Leg Pants",
+      "Cigarette Pants",
+      "Ankle Pants",
+      "Cropped Pants",
+      "Capri Pants",
+      "Culottes",
+      "Palazzo Pants",
+      "Harem Pants",
+      "Sarong Pants",
+      "Dhoti Pants",
+      "Patiala Pants",
+      "Parachute Pants",
+      "Cargo Pants",
+      "Tactical Cargo Pants",
+      "Utility Pants",
+      "Combat Pants",
+      "Carpenter Pants",
+      "Painter Pants",
+      "Work Pants",
+      "Chore Pants",
+      "Track Pants",
+      "Side-Stripe Track Pants",
+      "Joggers",
+      "Sweatpants",
+      "Tech Pants",
+      "Softshell Pants",
+      "Wind Pants",
+      "Snow Pants",
+      "Ski Pants",
+      "Rain Pants",
+      "Shell Pants",
+      "Padded Pants",
+      "Insulated Pants",
+      "Fleece Pants",
+      "Knit Pants",
+      "Jersey Pants",
+      "Lounge Pants",
+      "Pajama Pants",
+      "Drawstring Pants",
+      "Paperbag Pants",
+      "Flat-Front Pants",
+      "Leather Pants",
+      "Faux Leather Pants",
+      "Vinyl Pants",
+      "Corduroy Pants",
+      "Velvet Pants",
+      "Linen Pants",
+      "Cotton Pants",
+      "Denim Pants",
+      "Sailor Pants",
+      "Riding Pants",
+      "Jodhpur Pants",
+      "Breeches",
+      "Stirrup Pants",
+      "Leggings",
+      "Compression Leggings",
+      "Running Leggings",
+      "Training Leggings",
+      "Gym Leggings",
+      "Yoga Leggings",
+      "Flared Leggings",
+      "Bootcut Leggings",
+      "Thermal Leggings",
+      "Fleece-Lined Leggings",
+      "Treggings",
+      "Skeggings",
+      "Biker Shorts",
+      "Cycling Shorts",
+      "Shorts",
+      "Tailored Shorts",
+      "Dress Shorts",
+      "Bermuda Shorts",
+      "Mini Shorts",
+      "Hot Pants",
+      "Denim Shorts",
+      "Cutoff Shorts",
+      "Cargo Shorts",
+      "Utility Shorts",
+      "Combat Shorts",
+      "Chino Shorts",
+      "Khaki Shorts",
+      "Pleated Shorts",
+      "Board Shorts",
+      "Swim Shorts",
+      "Running Shorts",
+      "Training Shorts",
+      "Gym Shorts",
+      "Pe Gym Shorts",
+      "Tennis Shorts",
+      "Basketball Shorts",
+      "Football Shorts",
+      "Rugby Shorts",
+      "Compression Shorts",
+      "Boxer Shorts",
+      "Sleep Shorts",
+      "Lounge Shorts",
+      "Paperbag Shorts",
+      "High-Waisted Shorts",
+      "Low-Rise Shorts",
+      "Mid-Rise Shorts",
+      "Cuffed Shorts",
+      "Rolled-Hem Shorts",
+      "Linen Shorts",
+      "Cotton Shorts",
+      "Leather Shorts",
+      "Faux Leather Shorts",
+      "Corduroy Shorts",
+      "Velvet Shorts",
+      "Culotte Shorts",
+      "Tap Pants",
+      "Skort",
+      "Wrap Skort",
+      "Pleated Skort",
+      "Athletic Skort",
+      "Ao Dai Trousers",
+      "School Uniform Trousers",
+      "Scrubs Pants",
+      "Loose-Fit Pants – linen, relaxed, solid"
+    ],
+    "Skirts": [
+      "Skirt",
+      "Mini Skirt",
+      "Micro Skirt",
+      "Midi Skirt",
+      "Maxi Skirt",
+      "Knee-Length Skirt",
+      "A-Line Skirt",
+      "Pencil Skirt",
+      "Pleated Skirt",
+      "Plissé Skirt",
+      "Wrap Skirt",
+      "Asymmetric Skirt",
+      "Layered Skirt",
+      "Denim Skirt",
+      "Slit Skirt",
+      "Bubble Skirt",
+      "Tulle Skirt",
+      "Skater Skirt",
+      "Trumpet Skirt",
+      "Mermaid Skirt",
+      "High-Low Skirt",
+      "Cargo Skirt",
+      "Leather Skirt",
+      "Pleated Tennis Skirt",
+      "Kilt",
+      "Sarong Skirt",
+      "Broomstick Skirt",
+      "Gored Skirt",
+      "Hobble Skirt",
+      "Peplum Skirt",
+      "Jacquard Skirt",
+      "Sequin Skirt",
+      "Corduroy Skirt",
+      "Knit Skirt",
+      "Satin Skirt",
+      "Tiered Ruffle Skirt",
+      "Denim Maxi Skirt",
+      "Slip Skirt",
+      "School Uniform Skirt",
+      "Balloon Skirt",
+      "Circle Skirt",
+      "Godet Skirt",
+      "Tiered Skirt",
+      "Ruffle Skirt",
+      "Tulip Skirt",
+      "Flared Skirt",
+      "High-Waist Skirt",
+      "Low-Rise Skirt",
+      "Faux Leather Skirt",
+      "Silk Skirt",
+      "Linen Skirt",
+      "Cotton Skirt",
+      "Velvet Skirt",
+      "Mesh Skirt",
+      "Sheer Skirt",
+      "Chiffon Skirt",
+      "Wool Skirt",
+      "Jersey Skirt",
+      "Bodycon Skirt",
+      "Column Skirt",
+      "Bias-Cut Skirt",
+      "Draped Skirt",
+      "Cowl Skirt",
+      "Gathered Skirt",
+      "Smocked Skirt",
+      "Ruched Skirt",
+      "Front-Slit Skirt",
+      "Side-Slit Skirt",
+      "Button-Front Skirt",
+      "Zip-Front Skirt",
+      "Paperbag-Waist Skirt",
+      "Yoke Skirt",
+      "Panel Skirt",
+      "Handkerchief-Hem Skirt",
+      "Peasant Skirt",
+      "Prairie Skirt",
+      "Dirndl Skirt",
+      "Pareo Skirt",
+      "Tennis Skirt",
+      "Scooter Skirt",
+      "Tube Skirt",
+      "Pegged Skirt",
+      "Wrap-Over Skirt",
+      "Apron Skirt",
+      "Quilted Skirt",
+      "Puffer Skirt",
+      "Utility Skirt",
+      "Workwear Skirt",
+      "Cargo Mini Skirt",
+      "Cargo Midi Skirt",
+      "Cargo Maxi Skirt",
+      "Pleated Mini Skirt",
+      "Pleated Midi Skirt",
+      "Pleated Maxi Skirt",
+      "Wrap Mini Skirt",
+      "Wrap Midi Skirt",
+      "Wrap Maxi Skirt",
+      "Denim Mini Skirt",
+      "Denim Midi Skirt",
+      "Pencil Midi Skirt",
+      "A-Line Mini Skirt",
+      "A-Line Midi Skirt",
+      "A-Line Maxi Skirt",
+      "Tiered Mini Skirt",
+      "Tiered Midi Skirt",
+      "Tiered Maxi Skirt",
+      "Ruffle Mini Skirt",
+      "Ruffle Midi Skirt",
+      "Ruffle Maxi Skirt",
+      "Asymmetric Mini Skirt",
+      "Asymmetric Midi Skirt",
+      "Asymmetric Maxi Skirt",
+      "Tutu Skirt"
+    ],
+    "Dresses": [
+      "Dress",
+      "Mini Dress",
+      "Micro Dress",
+      "Midi Dress",
+      "Maxi Dress",
+      "Knee-Length Dress",
+      "Floor-Length Dress",
+      "A-Line Dress",
+      "Fit-And-Flare Dress",
+      "Skater Dress",
+      "Sheath Dress",
+      "Shift Dress",
+      "Bodycon Dress",
+      "Wrap Dress",
+      "Shirt Dress",
+      "T-Shirt Dress",
+      "Sweater Dress",
+      "Slip Dress",
+      "Camisole Dress",
+      "Spaghetti Strap Dress",
+      "Tank Dress",
+      "Halter Dress",
+      "One-Shoulder Dress",
+      "Off-Shoulder Dress",
+      "Cold-Shoulder Dress",
+      "Strapless Dress",
+      "Tube Dress",
+      "Bandeau Dress",
+      "Corset Dress",
+      "Bustier Dress",
+      "Empire Waist Dress",
+      "Drop-Waist Dress",
+      "High-Waist Dress",
+      "Smock Dress",
+      "Peasant Dress",
+      "Prairie Dress",
+      "Tiered Dress",
+      "Ruffle Dress",
+      "Pleated Dress",
+      "Plissé Dress",
+      "Tulip Dress",
+      "Balloon Dress",
+      "Bubble Dress",
+      "Asymmetric Dress",
+      "High-Low Dress",
+      "Handkerchief-Hem Dress",
+      "Mermaid Dress",
+      "Trumpet Dress",
+      "Column Dress",
+      "Pencil Dress",
+      "Body-Skimming Dress",
+      "Draped Dress",
+      "Ruched Dress",
+      "Gathered Dress",
+      "Bias-Cut Dress",
+      "Cowl-Neck Dress",
+      "Square-Neck Dress",
+      "Sweetheart-Neck Dress",
+      "V-Neck Dress",
+      "Scoop-Neck Dress",
+      "Boat-Neck Dress",
+      "Mock-Neck Dress",
+      "Turtleneck Dress",
+      "Keyhole Dress",
+      "Henley Dress",
+      "Polo Dress",
+      "Button-Front Dress",
+      "Zip-Front Dress",
+      "Long-Sleeve Dress",
+      "Short-Sleeve Dress",
+      "Sleeveless Dress",
+      "Cap-Sleeve Dress",
+      "Puff-Sleeve Dress",
+      "Bell-Sleeve Dress",
+      "Bishop-Sleeve Dress",
+      "Balloon-Sleeve Dress",
+      "Raglan-Sleeve Dress",
+      "Dolman-Sleeve Dress",
+      "Lantern-Sleeve Dress",
+      "Denim Dress",
+      "Chambray Dress",
+      "Leather Dress",
+      "Faux Leather Dress",
+      "Linen Dress",
+      "Cotton Dress",
+      "Silk Dress",
+      "Satin Dress",
+      "Velvet Dress",
+      "Corduroy Dress",
+      "Wool Dress",
+      "Knit Dress",
+      "Jersey Dress",
+      "Chiffon Dress",
+      "Mesh Dress",
+      "Mesh Overlay Dress",
+      "Sheer Dress",
+      "Lace Dress",
+      "Sequin Dress",
+      "Tulle Dress",
+      "Tweed Dress",
+      "Jacquard Dress",
+      "Floral Dress",
+      "Printed Dress",
+      "Polka-Dot Dress",
+      "Plaid Dress",
+      "Check Dress",
+      "Striped Dress",
+      "Embroidered Dress",
+      "Cutout Dress",
+      "Backless Dress",
+      "Slit Dress",
+      "Front-Slit Dress",
+      "Side-Slit Dress",
+      "Back-Slit Dress",
+      "Cape Dress",
+      "Hooded Dress",
+      "Kaftan Dress",
+      "Caftan Dress",
+      "Kimono Dress",
+      "Tunic Dress",
+      "Babydoll Dress",
+      "Apron Dress",
+      "Pinafore Dress",
+      "Overall Dress",
+      "Dungaree Dress",
+      "Tent Dress",
+      "Sack Dress",
+      "Princess-Seam Dress",
+      "Basque-Waist Dress",
+      "Godet Dress",
+      "Panel Dress",
+      "Yoke Dress",
+      "Drop-Shoulder Dress",
+      "Peplum Dress",
+      "Sarong Dress",
+      "Wrap-Front Dress",
+      "Tulip-Hem Dress",
+      "Bubble-Hem Dress",
+      "Tiered Maxi Dress",
+      "Tiered Midi Dress",
+      "Tiered Mini Dress",
+      "Ruffle Maxi Dress",
+      "Ruffle Midi Dress",
+      "Ruffle Mini Dress",
+      "Pleated Maxi Dress",
+      "Pleated Midi Dress",
+      "Pleated Mini Dress",
+      "Denim Mini Dress",
+      "Denim Midi Dress",
+      "Denim Maxi Dress",
+      "Bodycon Mini Dress",
+      "Bodycon Midi Dress",
+      "Bodycon Maxi Dress",
+      "Slip Mini Dress",
+      "Slip Midi Dress",
+      "Slip Maxi Dress",
+      "Shirt Mini Dress",
+      "Shirt Midi Dress",
+      "Shirt Maxi Dress",
+      "Wrap Mini Dress",
+      "Wrap Midi Dress",
+      "Wrap Maxi Dress",
+      "A-Line Mini Dress",
+      "A-Line Midi Dress",
+      "A-Line Maxi Dress",
+      "Cocktail Dress",
+      "Evening Dress",
+      "Evening Gown",
+      "Gown",
+      "Ball Gown",
+      "Formal Dress",
+      "Prom Dress",
+      "Bridesmaid Dress",
+      "Wedding Dress",
+      "Reception Dress",
+      "Homecoming Dress",
+      "Party Dress",
+      "Little Black Dress",
+      "Lbd",
+      "Sundress",
+      "Beach Dress",
+      "Resort Dress",
+      "Boho Dress",
+      "Tea Dress",
+      "Sailor Dress",
+      "Traditional Dress",
+      "Ao Dai",
+      "Ao Dai School Uniform",
+      "Ao Tu Than Dress",
+      "Cheongsam Dress",
+      "Qipao Dress",
+      "Jumpsuit",
+      "Culotte Jumpsuit",
+      "Wide-Leg Jumpsuit",
+      "Strapless Jumpsuit",
+      "Romper",
+      "Playsuit"
+    ],
+    "Footwear_Shoes": [
+      "Dress Shoes",
+      "Formal Shoes",
+      "Sneakers",
+      "Running Shoes",
+      "Walking Shoes",
+      "Training Shoes",
+      "Cross-Training Shoes",
+      "Gym Shoes",
+      "Tennis Shoes",
+      "Basketball Shoes",
+      "Football Boots",
+      "Soccer Cleats",
+      "Baseball Cleats",
+      "Golf Shoes",
+      "Skate Shoes",
+      "Hiking Shoes",
+      "Trail Running Shoes",
+      "Court Shoes",
+      "Canvas Shoes",
+      "White Canvas School Shoes",
+      "Slip-On Sneakers",
+      "High-Top Sneakers",
+      "Low-Top Sneakers",
+      "Platform Sneakers",
+      "Chunky Sneakers",
+      "Dad Sneakers",
+      "Fashion Sneakers",
+      "Minimalist Sneakers",
+      "Platform Shoes",
+      "Oxford Shoes",
+      "Derby Shoes",
+      "Brogues",
+      "Wingtip Shoes",
+      "Cap-Toe Shoes",
+      "Plain-Toe Shoes",
+      "Wholecut Shoes",
+      "Saddle Shoes",
+      "Spectator Shoes",
+      "Monk Strap Shoes",
+      "Double Monk Strap Shoes",
+      "T-Bar Shoes",
+      "Loafers",
+      "Penny Loafers",
+      "Tassel Loafers",
+      "Horsebit Loafers",
+      "Driving Shoes",
+      "Moccasins",
+      "Boat Shoes",
+      "Slip-On Shoes",
+      "Ballet Flats",
+      "Slingback Flats",
+      "Flats",
+      "Mary Jane Shoes",
+      "Pointed Flats",
+      "D'Orsay Flats",
+      "Round-Toe Flats",
+      "Square-Toe Flats",
+      "Espadrilles",
+      "Espadrille Flats",
+      "Espadrille Wedges",
+      "Mules",
+      "Flat Mules",
+      "Heeled Mules",
+      "Clogs",
+      "Platform Clogs",
+      "Wooden Clogs",
+      "Slippers",
+      "Babouche Slippers",
+      "Heels",
+      "Pumps",
+      "Stiletto Heels",
+      "Kitten Heels",
+      "Block Heels",
+      "Cone Heels",
+      "Wedge Heels",
+      "Platform Heels",
+      "Peep-Toe Heels",
+      "Slingback Heels",
+      "Ankle-Strap Heels",
+      "Mary Jane Heels",
+      "Mary Jane Platforms",
+      "D'Orsay Heels",
+      "T-Strap Heels",
+      "Wedding Heels",
+      "Evening Heels",
+      "Ankle Boots",
+      "Chelsea Boots",
+      "Chukka Boots",
+      "Desert Boots",
+      "Combat Boots",
+      "Lace-Up Boots",
+      "Work Boots",
+      "Cowboy Boots",
+      "Riding Boots",
+      "Knee-High Boots",
+      "Over-The-Knee Boots",
+      "Thigh-High Boots",
+      "Rain Boots",
+      "Wellington Boots",
+      "Snow Boots",
+      "Moon Boots",
+      "Duck Boots",
+      "Motorcycle Boots",
+      "Biker Boots",
+      "Platform Boots",
+      "Sock Boots",
+      "Peep-Toe Boots",
+      "Fur-Lined Boots",
+      "Shearling Boots",
+      "Ugg-Style Boots",
+      "Furry Boots",
+      "Derby Boots",
+      "Oxford Boots",
+      "Military Boots",
+      "Safari Boots",
+      "Tabi Boots",
+      "Rubber Shoes",
+      "Jelly Shoes",
+      "School Shoes",
+      "Lab Shoes",
+      "Nurse Shoes",
+      "Chef Shoes",
+      "Dance Shoes",
+      "Ballet Shoes",
+      "Tap Shoes",
+      "Jazz Shoes",
+      "Character Shoes",
+      "Latin Dance Shoes",
+      "Ballroom Shoes",
+      "Toe Shoes",
+      "Cycling Shoes",
+      "Water Shoes",
+      "Barefoot Shoes",
+      "Orthopedic Shoes",
+      "Comfort Shoes",
+      "Diabetic Shoes",
+      "Oxfords – leather, regular, solid",
+      "Work Shoes – leather, regular, solid",
+      "Flat Shoes – leather, regular, solid"
+    ],
+    "Footwear_Sandals": [
+      "Sandals",
+      "Flat Sandals",
+      "Heeled Sandals",
+      "Platform Sandals",
+      "Wedge Sandals",
+      "Gladiator Sandals",
+      "Thong Sandals",
+      "T-Bar Sandals",
+      "Strappy Sandals",
+      "Sport Sandals",
+      "Slide Sandals",
+      "Fisherman Sandals",
+      "Slingback Sandals",
+      "Ankle-Strap Sandals",
+      "Toe-Post Sandals",
+      "Toe-Loop Sandals",
+      "Huarache Sandals",
+      "Cage Sandals",
+      "Barely-There Sandals",
+      "Dress Sandals",
+      "Open-Toe Mules",
+      "Mules",
+      "Flat Mules",
+      "Heeled Mules",
+      "Platform Mules",
+      "Espadrilles",
+      "Espadrille Sandals",
+      "Espadrille Wedges",
+      "Jelly Sandals",
+      "Footbed Sandals",
+      "Double-Strap Sandals",
+      "Two-Strap Sandals",
+      "Multi-Strap Sandals",
+      "Cross-Strap Sandals",
+      "Lace-Up Sandals",
+      "Lug-Sole Sandals",
+      "Velcro Sandals",
+      "Outdoor Sandals",
+      "Walking Sandals",
+      "Hiking Sandals",
+      "Trekking Sandals",
+      "Water Sandals",
+      "Beach Sandals",
+      "Pool Slides",
+      "Flip-Flops",
+      "Clogs",
+      "Barefoot Sandals",
+      "Rhinestone Sandals",
+      "Bridal Sandals",
+      "Orthopedic Sandals",
+      "Sheepskin Slippers",
+      "Moccasin Slippers",
+      "Chunky Sandals",
+      "Dad Sandals",
+      "Closed-Toe Sandals",
+      "School Sandals"
+    ],
+    "Accessories_Soft": [
+      "Scarf",
+      "Infinity Scarf",
+      "Bandana",
+      "Hair Scarf",
+      "Headscarf",
+      "Shawl",
+      "Pashmina",
+      "Stole",
+      "Snood",
+      "Neckerchief",
+      "Pocket Square",
+      "Handkerchief",
+      "Tie",
+      "Bow Tie",
+      "Cravat",
+      "Ascot Tie",
+      "Suspenders",
+      "Fabric Belt",
+      "Sash Belt",
+      "Obi Belt",
+      "Corset Belt",
+      "Apron",
+      "Arm Warmers",
+      "Leg Warmers",
+      "Fingerless Gloves",
+      "Gloves",
+      "Mittens",
+      "Opera Gloves",
+      "Beanie",
+      "Beret",
+      "Bucket Hat",
+      "Baseball Cap",
+      "Snapback",
+      "Trucker Cap",
+      "Dad Cap",
+      "Newsboy Cap",
+      "Flat Cap",
+      "Fedora",
+      "Panama Hat",
+      "Boater Hat",
+      "Sun Hat",
+      "Straw Hat",
+      "Cowboy Hat",
+      "Balaclava",
+      "Headband",
+      "Turban",
+      "Veil",
+      "Mask",
+      "Sleep Mask",
+      "Socks",
+      "No-Show Socks",
+      "Ankle Socks",
+      "Crew Socks",
+      "Knee-High Socks",
+      "Over-The-Knee Socks",
+      "Thigh-High Socks",
+      "Compression Socks",
+      "Stockings",
+      "Tights",
+      "Fishnet Tights",
+      "Leg Sleeves",
+      "Compression Sleeves",
+      "Wristband",
+      "Sweatband",
+      "Crossbody Bag",
+      "Fan",
+      "Handbag",
+      "Backpack",
+      "Shoulder Bag",
+      "Clutch",
+      "Arm Sleeves – mesh, slim, solid",
+      "Hair Clip"
+    ],
+    "Accessories_Hard": [
+      "Handbag",
+      "Tote Bag",
+      "Shoulder Bag",
+      "Crossbody Bag",
+      "Backpack",
+      "Clutch",
+      "Satchel",
+      "Hobo Bag",
+      "Bucket Bag",
+      "Saddle Bag",
+      "Belt Bag",
+      "Mini Bag",
+      "Wristlet",
+      "Evening Bag",
+      "Messenger Bag",
+      "Duffel Bag",
+      "Weekender Bag",
+      "Laptop Bag",
+      "Briefcase",
+      "Wallet",
+      "Card Holder",
+      "Coin Purse",
+      "Suitcase",
+      "Belt",
+      "Chain Belt",
+      "Studded Belt",
+      "Harness Belt",
+      "Pant Chain",
+      "Sunglasses",
+      "Eyeglasses",
+      "Goggles",
+      "Watch",
+      "Smartwatch",
+      "Bracelet",
+      "Bangle",
+      "Cuff Bracelet",
+      "Anklet",
+      "Necklace",
+      "Pendant Necklace",
+      "Choker",
+      "Pearl Necklace",
+      "Ring",
+      "Signet Ring",
+      "Cocktail Ring",
+      "Earrings",
+      "Stud Earrings",
+      "Hoop Earrings",
+      "Drop Earrings",
+      "Ear Cuff",
+      "Brooch",
+      "Pin",
+      "Tie Clip",
+      "Cufflinks",
+      "Hair Clip",
+      "Claw Clip",
+      "Hair Pin",
+      "Hair Comb",
+      "Tiara",
+      "Crown",
+      "Headpiece",
+      "Head Chain",
+      "Face Chain",
+      "Fascinator",
+      "Keychain",
+      "Phone Case",
+      "Umbrella",
+      "Fan",
+      "Chest Rig Bag",
+      "Gloves",
+      "Straw Bag – straw, n/a, n/a"
+    ],
+    "Jewelry": [
+      "Jewelry",
+      "Necklace",
+      "Pendant",
+      "Pendant Necklace",
+      "Choker",
+      "O-Ring Choker",
+      "Chain Necklace",
+      "Layered Necklace",
+      "Y-Necklace",
+      "Lariat Necklace",
+      "Pearl Necklace",
+      "Charm Necklace",
+      "Beaded Necklace",
+      "Statement Necklace",
+      "Nameplate Necklace",
+      "Lock Pendant Necklace",
+      "Earrings",
+      "Stud Earrings",
+      "Hoop Earrings",
+      "Huggie Earrings",
+      "Drop Earrings",
+      "Dangle Earrings",
+      "Chandelier Earrings",
+      "Threader Earrings",
+      "Cartilage Earring",
+      "Helix Earring",
+      "Ear Cuff",
+      "Ear Climbers",
+      "Clip-On Earrings",
+      "Jacket Earrings",
+      "Cluster Earrings",
+      "Pearl Earrings",
+      "Statement Earrings",
+      "Tassel Earrings",
+      "Spike Earrings",
+      "Bracelet",
+      "Chain Bracelet",
+      "Charm Bracelet",
+      "Tennis Bracelet",
+      "Bangle",
+      "Cuff Bracelet",
+      "Beaded Bracelet",
+      "Pearl Bracelet",
+      "Leather Bracelet",
+      "Friendship Bracelet",
+      "Ring",
+      "Signet Ring",
+      "Cocktail Ring",
+      "Statement Ring",
+      "Stackable Ring",
+      "Band Ring",
+      "Wedding Band",
+      "Engagement Ring",
+      "Midi Ring",
+      "Thumb Ring",
+      "Toe Ring",
+      "Promise Ring",
+      "Eternity Ring",
+      "Anklet",
+      "Chain Anklet",
+      "Beaded Anklet",
+      "Charm Anklet",
+      "Brooch",
+      "Pin",
+      "Lapel Pin",
+      "Badge",
+      "Body Chain",
+      "Waist Chain",
+      "Belly Chain",
+      "Hand Chain",
+      "Arm Cuff",
+      "Armlet",
+      "Nose Ring",
+      "Nose Stud",
+      "Septum Ring",
+      "Lip Ring",
+      "Eyebrow Ring",
+      "Navel Ring",
+      "Industrial Barbell",
+      "Barbell Piercing Jewelry",
+      "Watch"
+    ]
+  },
+  "attributes": {
+    "fit": [
+      "oversize",
+      "regular",
+      "slim",
+      "relaxed",
+      "tailored"
+    ],
+    "silhouette": [
+      "boxy",
+      "fitted",
+      "flowy",
+      "structured"
+    ],
+    "neckline": [
+      "crew",
+      "v-neck",
+      "square",
+      "halter",
+      "off-shoulder",
+      "collared",
+      "boat"
+    ],
+    "sleeve": [
+      "short",
+      "long",
+      "sleeveless",
+      "puff",
+      "bell",
+      "cap"
+    ],
+    "material": [
+      "cotton",
+      "denim",
+      "leather",
+      "wool",
+      "silk",
+      "mesh",
+      "linen",
+      "satin",
+      "knit",
+      "nylon",
+      "neoprene",
+      "velour",
+      "tweed",
+      "corduroy"
+    ],
+    "pattern": [
+      "solid",
+      "striped",
+      "plaid",
+      "floral",
+      "graphic",
+      "polka-dot",
+      "animal-print"
+    ],
+    "color_tone": [
+      "neutral",
+      "bright",
+      "pastel",
+      "dark",
+      "earth-tone",
+      "monochrome",
+      "muted",
+      "neon",
+      "metallic"
+    ],
+    "details": [
+      "distressed",
+      "pleated",
+      "ruffled",
+      "asymmetrical",
+      "layered",
+      "minimal-detail",
+      "lace",
+      "embroidery",
+      "cut-out"
+    ],
+    "length": [
+      "cropped",
+      "waist-length",
+      "hip-length",
+      "knee-length",
+      "ankle-length",
+      "mini",
+      "midi",
+      "maxi"
+    ],
+    "season": [
+      "spring",
+      "summer",
+      "fall",
+      "winter",
+      "all-season"
+    ],
+    "layer": [
+      "inner",
+      "outer"
+    ]
+  },
+  "styles": [
+    {
+      "id": "streetwear",
+      "name_en": "Streetwear",
+      "name_vi": "Streetwear",
+      "aliases": [
+        "street wear",
+        "urban street",
+        "street fashion",
+        "đường phố"
+      ]
+    },
+    {
+      "id": "hip_hop",
+      "name_en": "Hip hop",
+      "name_vi": "Hip hop",
+      "aliases": [
+        "hip-hop",
+        "hiphop",
+        "rap style",
+        "rap fashion"
+      ]
+    },
+    {
+      "id": "techwear",
+      "name_en": "Techwear",
+      "name_vi": "Techwear"
+    },
+    {
+      "id": "athleisure",
+      "name_en": "Athleisure",
+      "name_vi": "Athleisure"
+    },
+    {
+      "id": "skater_style",
+      "name_en": "Skater style",
+      "name_vi": "Phong cách trượt ván"
+    },
+    {
+      "id": "hypebeast",
+      "name_en": "Hypebeast",
+      "name_vi": "Hypebeast"
+    },
+    {
+      "id": "classic",
+      "name_en": "Classic",
+      "name_vi": "Cổ điển"
+    },
+    {
+      "id": "minimalist",
+      "name_en": "Minimalism",
+      "name_vi": "Tối giản"
+    },
+    {
+      "id": "formal",
+      "name_en": "Formal",
+      "name_vi": "Trang trọng"
+    },
+    {
+      "id": "business",
+      "name_en": "Business",
+      "name_vi": "Công sở"
+    },
+    {
+      "id": "smart_casual",
+      "name_en": "Smart casual",
+      "name_vi": "Smart casual"
+    },
+    {
+      "id": "preppy",
+      "name_en": "Preppy",
+      "name_vi": "Preppy"
+    },
+    {
+      "id": "old_money",
+      "name_en": "Old money",
+      "name_vi": "Old money"
+    },
+    {
+      "id": "vintage",
+      "name_en": "Vintage",
+      "name_vi": "Vintage"
+    },
+    {
+      "id": "retro",
+      "name_en": "Retro",
+      "name_vi": "Retro"
+    },
+    {
+      "id": "grunge",
+      "name_en": "Grunge",
+      "name_vi": "Grunge"
+    },
+    {
+      "id": "punk",
+      "name_en": "Punk",
+      "name_vi": "Punk"
+    },
+    {
+      "id": "gothic",
+      "name_en": "Gothic",
+      "name_vi": "Gothic"
+    },
+    {
+      "id": "bohemian",
+      "name_en": "Bohemian",
+      "name_vi": "Bohemian"
+    },
+    {
+      "id": "artsy",
+      "name_en": "Artsy",
+      "name_vi": "Nghệ sĩ"
+    },
+    {
+      "id": "feminine",
+      "name_en": "Feminine",
+      "name_vi": "Nữ tính"
+    },
+    {
+      "id": "sexy",
+      "name_en": "Sexy",
+      "name_vi": "Quyến rũ"
+    },
+    {
+      "id": "elegant",
+      "name_en": "Elegant",
+      "name_vi": "Thanh lịch"
+    },
+    {
+      "id": "soft_girl",
+      "name_en": "Soft girl",
+      "name_vi": "Soft girl"
+    },
+    {
+      "id": "coquette",
+      "name_en": "Coquette",
+      "name_vi": "Coquette"
+    },
+    {
+      "id": "casual",
+      "name_en": "Casual",
+      "name_vi": "Thường ngày"
+    },
+    {
+      "id": "normcore",
+      "name_en": "Normcore",
+      "name_vi": "Normcore"
+    },
+    {
+      "id": "basic",
+      "name_en": "Basic",
+      "name_vi": "Cơ bản"
+    },
+    {
+      "id": "comfy",
+      "name_en": "Comfy",
+      "name_vi": "Thoải mái"
+    },
+    {
+      "id": "sporty",
+      "name_en": "Sporty",
+      "name_vi": "Thể thao"
+    },
+    {
+      "id": "activewear",
+      "name_en": "Activewear",
+      "name_vi": "Đồ tập / Activewear"
+    },
+    {
+      "id": "blokecore",
+      "name_en": "Blokecore",
+      "name_vi": "Blokecore (áo bóng đá)"
+    },
+    {
+      "id": "korean_style",
+      "name_en": "Korean style",
+      "name_vi": "Phong cách Hàn (K-fashion)"
+    },
+    {
+      "id": "japanese_streetwear",
+      "name_en": "Japanese streetwear",
+      "name_vi": "Streetwear Nhật"
+    },
+    {
+      "id": "harajuku",
+      "name_en": "Harajuku",
+      "name_vi": "Harajuku"
+    },
+    {
+      "id": "chinese_street_style",
+      "name_en": "Chinese street style",
+      "name_vi": "Street style Trung Quốc"
+    },
+    {
+      "id": "parisian_style",
+      "name_en": "Parisian style",
+      "name_vi": "Phong cách Paris"
+    },
+    {
+      "id": "italian_style",
+      "name_en": "Italian style",
+      "name_vi": "Phong cách Ý"
+    },
+    {
+      "id": "cultural",
+      "name_en": "Cultural dress",
+      "name_vi": "Trang phục văn hoá / truyền thống",
+      "aliases": [
+        "traditional dress",
+        "ethnic wear",
+        "folk costume",
+        "vietnamese traditional",
+        "ao dai",
+        "áo dài",
+        "non la",
+        "nón lá"
+      ]
+    },
+    {
+      "id": "uniform",
+      "name_en": "Uniform",
+      "name_vi": "Đồng phục",
+      "aliases": [
+        "work uniform",
+        "school uniform",
+        "service dress",
+        "dong phuc",
+        "đồng phục",
+        "vietnamese school uniform",
+        "student uniform"
+      ]
+    },
+    {
+      "id": "dark_academia",
+      "name_en": "Dark academia",
+      "name_vi": "Dark academia"
+    },
+    {
+      "id": "light_academia",
+      "name_en": "Light academia",
+      "name_vi": "Light academia"
+    },
+    {
+      "id": "y2k",
+      "name_en": "Y2K",
+      "name_vi": "Y2K"
+    },
+    {
+      "id": "cyberpunk",
+      "name_en": "Cyberpunk",
+      "name_vi": "Cyberpunk"
+    },
+    {
+      "id": "egirl_eboy",
+      "name_en": "E-girl / E-boy",
+      "name_vi": "E-girl / E-boy",
+      "aliases": [
+        "egirl",
+        "eboy",
+        "e-girl",
+        "e-boy"
+      ]
+    },
+    {
+      "id": "cottagecore",
+      "name_en": "Cottagecore",
+      "name_vi": "Cottagecore"
+    },
+    {
+      "id": "fairycore",
+      "name_en": "Fairycore",
+      "name_vi": "Fairycore"
+    },
+    {
+      "id": "chic",
+      "name_en": "Chic",
+      "name_vi": "Chic"
+    },
+    {
+      "id": "romantic",
+      "name_en": "Romantic",
+      "name_vi": "Lãng mạn"
+    }
+  ],
+  "item_style_rules": {
+    "Baseball Cap": [
+      "streetwear",
+      "sporty",
+      "casual",
+      "y2k",
+      "classic"
+    ],
+    "Snapback": [
+      "streetwear",
+      "y2k",
+      "sporty",
+      "hip_hop",
+      "hypebeast"
+    ],
+    "Trucker Cap": [
+      "streetwear",
+      "y2k",
+      "sporty",
+      "hip_hop",
+      "hypebeast"
+    ],
+    "Bucket Hat": [
+      "streetwear",
+      "y2k",
+      "casual",
+      "sporty",
+      "classic"
+    ],
+    "Beret": [
+      "classic",
+      "romantic",
+      "formal",
+      "streetwear",
+      "casual"
+    ],
+    "Beanie": [
+      "streetwear",
+      "casual",
+      "grunge",
+      "sporty",
+      "y2k"
+    ],
+    "Fedora": [
+      "classic",
+      "vintage",
+      "chic",
+      "streetwear",
+      "casual"
+    ],
+    "Panama Hat": [
+      "classic",
+      "vintage",
+      "chic",
+      "streetwear",
+      "casual"
+    ],
+    "Wide-Brim Hat": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "streetwear",
+      "casual"
+    ],
+    "Boater Hat": [
+      "classic",
+      "vintage",
+      "preppy",
+      "streetwear",
+      "casual"
+    ],
+    "Cloche Hat": [
+      "romantic",
+      "formal",
+      "vintage",
+      "streetwear",
+      "casual"
+    ],
+    "Newsboy Cap": [
+      "classic",
+      "vintage",
+      "preppy",
+      "streetwear",
+      "casual"
+    ],
+    "Visor": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "y2k"
+    ],
+    "Headband": [
+      "sporty",
+      "y2k",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Hair Scarf": [
+      "bohemian",
+      "romantic",
+      "formal",
+      "streetwear",
+      "casual"
+    ],
+    "Turban": [
+      "bohemian",
+      "romantic",
+      "formal",
+      "cultural",
+      "streetwear"
+    ],
+    "Hood": [
+      "streetwear",
+      "sporty",
+      "grunge",
+      "casual",
+      "y2k"
+    ],
+    "Dad Cap": [
+      "streetwear",
+      "sporty",
+      "casual",
+      "y2k",
+      "classic"
+    ],
+    "Five-Panel Cap": [
+      "streetwear",
+      "sporty",
+      "casual",
+      "y2k",
+      "classic"
+    ],
+    "Running Cap": [
+      "sporty",
+      "casual",
+      "streetwear",
+      "activewear",
+      "athleisure"
+    ],
+    "Golf Cap": [
+      "streetwear",
+      "sporty",
+      "casual",
+      "y2k",
+      "classic"
+    ],
+    "Military Cap": [
+      "classic",
+      "vintage",
+      "formal",
+      "uniform",
+      "streetwear"
+    ],
+    "Patrol Cap": [
+      "classic",
+      "vintage",
+      "formal",
+      "uniform",
+      "streetwear"
+    ],
+    "Cowboy Hat": [
+      "classic",
+      "vintage",
+      "chic",
+      "streetwear",
+      "casual"
+    ],
+    "Sombrero": [
+      "classic",
+      "vintage",
+      "chic",
+      "streetwear",
+      "casual"
+    ],
+    "Top Hat": [
+      "classic",
+      "casual",
+      "chic",
+      "streetwear",
+      "sporty"
+    ],
+    "Fascinator": [
+      "romantic",
+      "formal",
+      "vintage",
+      "streetwear",
+      "casual"
+    ],
+    "Tiara": [
+      "romantic",
+      "formal",
+      "vintage",
+      "streetwear",
+      "casual"
+    ],
+    "Cat-Ear Headband": [
+      "sporty",
+      "y2k",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Knit Headband": [
+      "streetwear",
+      "casual",
+      "grunge",
+      "sporty",
+      "y2k"
+    ],
+    "Ear Warmer": [
+      "streetwear",
+      "casual",
+      "grunge",
+      "sporty",
+      "y2k"
+    ],
+    "Balaclava": [
+      "streetwear",
+      "casual",
+      "grunge",
+      "techwear",
+      "cyberpunk"
+    ],
+    "Ski Mask": [
+      "streetwear",
+      "casual",
+      "grunge",
+      "sporty",
+      "y2k"
+    ],
+    "Sun Hat": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "streetwear",
+      "casual"
+    ],
+    "Straw Hat": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "streetwear",
+      "casual"
+    ],
+    "Rain Hat": [
+      "classic",
+      "vintage",
+      "formal",
+      "streetwear",
+      "casual"
+    ],
+    "Faux Fur Hat": [
+      "streetwear",
+      "casual",
+      "chic",
+      "sporty",
+      "y2k"
+    ],
+    "Sherpa Hat": [
+      "streetwear",
+      "casual",
+      "chic",
+      "sporty",
+      "y2k"
+    ],
+    "Pilot Hat": [
+      "classic",
+      "vintage",
+      "formal",
+      "uniform",
+      "streetwear"
+    ],
+    "Ushanka": [
+      "classic",
+      "vintage",
+      "formal",
+      "streetwear",
+      "casual"
+    ],
+    "Tam O Shanter": [
+      "classic",
+      "chic",
+      "casual"
+    ],
+    "Deerstalker": [
+      "classic",
+      "vintage",
+      "preppy",
+      "streetwear",
+      "casual"
+    ],
+    "Chef Hat": [
+      "uniform",
+      "classic",
+      "vintage",
+      "formal",
+      "casual"
+    ],
+    "Graduation Cap": [
+      "classic",
+      "vintage",
+      "formal",
+      "uniform",
+      "streetwear"
+    ],
+    "Veil": [
+      "romantic",
+      "formal",
+      "vintage",
+      "streetwear",
+      "casual"
+    ],
+    "Durag": [
+      "streetwear",
+      "hip_hop",
+      "casual",
+      "y2k",
+      "sporty"
+    ],
+    "Ivy Cap": [
+      "old_money",
+      "classic",
+      "dark_academia",
+      "parisian_style",
+      "streetwear"
+    ],
+    "Flower Crown": [
+      "fairycore",
+      "cottagecore",
+      "bohemian",
+      "romantic",
+      "streetwear"
+    ],
+    "Boonie Hat": [
+      "streetwear",
+      "sporty",
+      "techwear",
+      "casual",
+      "y2k"
+    ],
+    "Fisherman Beanie": [
+      "streetwear",
+      "hip_hop",
+      "casual",
+      "skater_style",
+      "sporty"
+    ],
+    "Non La": [
+      "cultural",
+      "casual",
+      "chic",
+      "vintage",
+      "bohemian"
+    ],
+    "Khan Dong": [
+      "cultural",
+      "elegant",
+      "formal",
+      "feminine",
+      "romantic"
+    ],
+    "T-Shirt": [
+      "minimalist",
+      "streetwear",
+      "classic",
+      "casual"
+    ],
+    "Oversized T-Shirt": [
+      "streetwear",
+      "y2k",
+      "grunge",
+      "hip_hop",
+      "hypebeast"
+    ],
+    "Graphic T-Shirt": [
+      "streetwear",
+      "y2k",
+      "hypebeast",
+      "hip_hop",
+      "grunge"
+    ],
+    "Longline T-Shirt": [
+      "hip_hop",
+      "streetwear",
+      "skater_style",
+      "hypebeast",
+      "y2k"
+    ],
+    "Football Jersey": [
+      "streetwear",
+      "blokecore",
+      "sporty",
+      "casual",
+      "uniform"
+    ],
+    "Tank Top": [
+      "sporty",
+      "gothic",
+      "streetwear",
+      "minimalist",
+      "athleisure"
+    ],
+    "Ribbed Tank": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Crop Top": [
+      "streetwear",
+      "y2k",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Tube Top": [
+      "streetwear",
+      "y2k",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Bralette": [
+      "chic",
+      "y2k",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Camisole": [
+      "romantic",
+      "minimalist",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Halter Top": [
+      "chic",
+      "y2k",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Bodysuit": [
+      "chic",
+      "minimalist",
+      "streetwear",
+      "classic",
+      "formal"
+    ],
+    "Button-Up Shirt": [
+      "classic",
+      "formal",
+      "preppy",
+      "business",
+      "smart_casual"
+    ],
+    "Oxford Shirt": [
+      "classic",
+      "formal",
+      "old_money",
+      "preppy",
+      "business"
+    ],
+    "Dress Shirt": [
+      "classic",
+      "formal",
+      "business",
+      "preppy",
+      "italian_style"
+    ],
+    "Flannel Shirt": [
+      "classic",
+      "grunge",
+      "preppy",
+      "casual",
+      "streetwear"
+    ],
+    "Polo Shirt": [
+      "preppy",
+      "classic",
+      "sporty",
+      "uniform",
+      "business"
+    ],
+    "Henley Shirt": [
+      "minimalist",
+      "classic",
+      "streetwear",
+      "casual"
+    ],
+    "Mock Neck Top": [
+      "classic",
+      "minimalist",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Turtleneck": [
+      "classic",
+      "minimalist",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Thermal Top": [
+      "grunge",
+      "classic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Mesh Top": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "egirl_eboy",
+      "cyberpunk"
+    ],
+    "Sheer Top": [
+      "romantic",
+      "chic",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Long-Sleeve T-Shirt": [
+      "minimalist",
+      "streetwear",
+      "classic",
+      "casual"
+    ],
+    "Rugby Shirt": [
+      "preppy",
+      "classic",
+      "sporty",
+      "uniform",
+      "casual"
+    ],
+    "Bowling Shirt": [
+      "vintage",
+      "casual",
+      "streetwear",
+      "coquette",
+      "soft_girl"
+    ],
+    "Cuban Collar Shirt": [
+      "vintage",
+      "casual",
+      "streetwear",
+      "classic",
+      "minimalist"
+    ],
+    "Camp Shirt": [
+      "vintage",
+      "casual",
+      "streetwear",
+      "classic",
+      "minimalist"
+    ],
+    "Western Shirt": [
+      "classic",
+      "formal",
+      "preppy",
+      "casual",
+      "streetwear"
+    ],
+    "Peasant Blouse": [
+      "romantic",
+      "bohemian",
+      "chic",
+      "cultural",
+      "cottagecore"
+    ],
+    "Off-Shoulder Top": [
+      "chic",
+      "y2k",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "One-Shoulder Top": [
+      "chic",
+      "y2k",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Wrap Top": [
+      "romantic",
+      "chic",
+      "vintage",
+      "casual",
+      "streetwear"
+    ],
+    "Peplum Top": [
+      "romantic",
+      "chic",
+      "bohemian",
+      "feminine",
+      "coquette"
+    ],
+    "Smock Top": [
+      "romantic",
+      "bohemian",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Blouse": [
+      "romantic",
+      "bohemian",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Silk Blouse": [
+      "romantic",
+      "bohemian",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Chiffon Top": [
+      "romantic",
+      "chic",
+      "formal",
+      "feminine",
+      "coquette"
+    ],
+    "Lace Top": [
+      "romantic",
+      "chic",
+      "formal",
+      "feminine",
+      "coquette"
+    ],
+    "Sequin Top": [
+      "romantic",
+      "chic",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Velvet Top": [
+      "romantic",
+      "chic",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Satin Camisole": [
+      "romantic",
+      "minimalist",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Muscle Tank": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Yoga Top": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Sports Bra Top": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "activewear"
+    ],
+    "Compression Top": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "activewear"
+    ],
+    "Base Layer Top": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Undershirt": [
+      "grunge",
+      "classic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Grandad Collar Shirt": [
+      "classic",
+      "formal",
+      "preppy",
+      "casual",
+      "streetwear"
+    ],
+    "Band Collar Shirt": [
+      "classic",
+      "formal",
+      "preppy",
+      "casual",
+      "streetwear"
+    ],
+    "Mandarin Collar Shirt": [
+      "classic",
+      "formal",
+      "preppy",
+      "casual",
+      "streetwear"
+    ],
+    "Puff-Sleeve Top": [
+      "romantic",
+      "chic",
+      "vintage",
+      "coquette",
+      "soft_girl"
+    ],
+    "Bell-Sleeve Top": [
+      "romantic",
+      "chic",
+      "vintage",
+      "casual",
+      "streetwear"
+    ],
+    "Corset Top": [
+      "chic",
+      "y2k",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Bustier Top": [
+      "chic",
+      "y2k",
+      "romantic",
+      "classic",
+      "formal"
+    ],
+    "Peter Pan Collar Blouse": [
+      "coquette",
+      "light_academia",
+      "soft_girl",
+      "feminine",
+      "dark_academia"
+    ],
+    "Sailor Collar Top": [
+      "korean_style",
+      "harajuku",
+      "japanese_streetwear",
+      "preppy",
+      "feminine"
+    ],
+    "Band T-Shirt": [
+      "grunge",
+      "punk",
+      "streetwear",
+      "vintage",
+      "artsy"
+    ],
+    "Scrubs Top": [
+      "uniform",
+      "comfy",
+      "minimalist",
+      "casual",
+      "sporty"
+    ],
+    "Ba Ba Shirt": [
+      "cultural",
+      "casual",
+      "comfy",
+      "vintage",
+      "cottagecore"
+    ],
+    "Ao Dai Tunic": [
+      "cultural",
+      "elegant",
+      "formal",
+      "feminine",
+      "chic"
+    ],
+    "Ao Dai Shirt (Men)": [
+      "cultural",
+      "formal",
+      "elegant",
+      "business",
+      "classic"
+    ],
+    "School Uniform Shirt": [
+      "uniform",
+      "minimalist",
+      "casual",
+      "preppy",
+      "basic"
+    ],
+    "Yem Bodice": [
+      "cultural",
+      "romantic",
+      "vintage",
+      "bohemian",
+      "artsy"
+    ],
+    "Hoodie": [
+      "streetwear",
+      "hip_hop",
+      "sporty",
+      "grunge",
+      "athleisure"
+    ],
+    "Zip Hoodie": [
+      "streetwear",
+      "hip_hop",
+      "sporty",
+      "grunge",
+      "athleisure"
+    ],
+    "Pullover Hoodie": [
+      "streetwear",
+      "hip_hop",
+      "sporty",
+      "grunge",
+      "athleisure"
+    ],
+    "Sweatshirt": [
+      "streetwear",
+      "sporty",
+      "grunge",
+      "casual",
+      "classic"
+    ],
+    "Crewneck Sweatshirt": [
+      "streetwear",
+      "sporty",
+      "grunge",
+      "casual",
+      "classic"
+    ],
+    "Cardigan": [
+      "classic",
+      "dark_academia",
+      "romantic",
+      "minimalist",
+      "light_academia"
+    ],
+    "Long Cardigan": [
+      "classic",
+      "light_academia",
+      "romantic",
+      "minimalist",
+      "cottagecore"
+    ],
+    "Blazer": [
+      "classic",
+      "formal",
+      "smart_casual",
+      "business",
+      "chic"
+    ],
+    "Double-Breasted Blazer": [
+      "classic",
+      "formal",
+      "business",
+      "old_money",
+      "chic"
+    ],
+    "Suit Jacket": [
+      "classic",
+      "formal",
+      "business",
+      "chic",
+      "italian_style"
+    ],
+    "Denim Jacket": [
+      "streetwear",
+      "vintage",
+      "grunge",
+      "retro",
+      "skater_style"
+    ],
+    "Leather Jacket": [
+      "streetwear",
+      "punk",
+      "vintage",
+      "grunge",
+      "italian_style"
+    ],
+    "Bomber Jacket": [
+      "streetwear",
+      "sporty",
+      "vintage",
+      "casual",
+      "classic"
+    ],
+    "Varsity Jacket": [
+      "streetwear",
+      "sporty",
+      "vintage",
+      "casual",
+      "classic"
+    ],
+    "Windbreaker": [
+      "streetwear",
+      "sporty",
+      "techwear",
+      "minimalist",
+      "athleisure"
+    ],
+    "Shell Jacket": [
+      "techwear",
+      "athleisure",
+      "sporty",
+      "minimalist",
+      "streetwear"
+    ],
+    "Sweater Vest": [
+      "dark_academia",
+      "preppy",
+      "light_academia",
+      "old_money",
+      "smart_casual"
+    ],
+    "Puffer Jacket": [
+      "streetwear",
+      "sporty",
+      "minimalist",
+      "hypebeast",
+      "korean_style"
+    ],
+    "Down Jacket": [
+      "streetwear",
+      "sporty",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Trench Coat": [
+      "classic",
+      "formal",
+      "minimalist",
+      "parisian_style",
+      "old_money"
+    ],
+    "Overcoat": [
+      "classic",
+      "formal",
+      "minimalist",
+      "old_money",
+      "parisian_style"
+    ],
+    "Peacoat": [
+      "classic",
+      "formal",
+      "minimalist",
+      "old_money",
+      "parisian_style"
+    ],
+    "Cape": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Poncho": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Kimono-Style Jacket": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "cultural",
+      "japanese_streetwear"
+    ],
+    "Shacket": [
+      "streetwear",
+      "classic",
+      "vintage",
+      "casual",
+      "minimalist"
+    ],
+    "Anorak": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Parka": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Rain Jacket": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Softshell Jacket": [
+      "streetwear",
+      "sporty",
+      "minimalist",
+      "techwear",
+      "cyberpunk"
+    ],
+    "Track Jacket": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "athleisure",
+      "uniform"
+    ],
+    "Coach Jacket": [
+      "streetwear",
+      "sporty",
+      "vintage",
+      "casual",
+      "classic"
+    ],
+    "Trucker Jacket": [
+      "streetwear",
+      "vintage",
+      "grunge",
+      "hip_hop",
+      "y2k"
+    ],
+    "Suede Jacket": [
+      "classic",
+      "streetwear",
+      "minimalist",
+      "casual"
+    ],
+    "Shearling Jacket": [
+      "streetwear",
+      "vintage",
+      "grunge",
+      "casual",
+      "classic"
+    ],
+    "Faux Fur Coat": [
+      "chic",
+      "streetwear",
+      "vintage",
+      "casual",
+      "classic"
+    ],
+    "Duffle Coat": [
+      "classic",
+      "formal",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Military Jacket": [
+      "streetwear",
+      "classic",
+      "vintage",
+      "casual",
+      "minimalist"
+    ],
+    "Safari Jacket": [
+      "classic",
+      "streetwear",
+      "minimalist",
+      "casual"
+    ],
+    "Smoking Jacket": [
+      "formal",
+      "vintage",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Bolero Jacket": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Shrunken Blazer": [
+      "classic",
+      "formal",
+      "chic",
+      "business",
+      "smart_casual"
+    ],
+    "Cropped Jacket": [
+      "classic",
+      "streetwear",
+      "minimalist",
+      "casual"
+    ],
+    "Cape Blazer": [
+      "classic",
+      "formal",
+      "chic",
+      "business",
+      "smart_casual"
+    ],
+    "Gilet": [
+      "streetwear",
+      "sporty",
+      "classic",
+      "casual",
+      "minimalist"
+    ],
+    "Vest": [
+      "streetwear",
+      "sporty",
+      "classic",
+      "casual",
+      "minimalist"
+    ],
+    "Padded Vest": [
+      "streetwear",
+      "sporty",
+      "classic",
+      "casual",
+      "minimalist"
+    ],
+    "Denim Vest": [
+      "streetwear",
+      "sporty",
+      "classic",
+      "casual",
+      "minimalist"
+    ],
+    "Utility Jacket": [
+      "streetwear",
+      "classic",
+      "techwear",
+      "vintage",
+      "japanese_streetwear"
+    ],
+    "Field Jacket": [
+      "streetwear",
+      "classic",
+      "vintage",
+      "casual",
+      "minimalist"
+    ],
+    "Flight Jacket": [
+      "streetwear",
+      "sporty",
+      "vintage",
+      "casual",
+      "classic"
+    ],
+    "Harrington Jacket": [
+      "streetwear",
+      "sporty",
+      "vintage",
+      "casual",
+      "classic"
+    ],
+    "Cropped Hoodie": [
+      "y2k",
+      "streetwear",
+      "athleisure",
+      "korean_style",
+      "casual"
+    ],
+    "Teddy Jacket": [
+      "comfy",
+      "y2k",
+      "streetwear",
+      "korean_style",
+      "soft_girl"
+    ],
+    "Noragi Jacket": [
+      "japanese_streetwear",
+      "minimalist",
+      "artsy",
+      "streetwear",
+      "cultural"
+    ],
+    "Tech Fleece Jacket": [
+      "techwear",
+      "athleisure",
+      "sporty",
+      "activewear",
+      "streetwear"
+    ],
+    "Kimono Cardigan": [
+      "japanese_streetwear",
+      "bohemian",
+      "cottagecore",
+      "harajuku",
+      "cultural"
+    ],
+    "Lab Coat": [
+      "uniform",
+      "minimalist",
+      "business",
+      "classic",
+      "casual"
+    ],
+    "Jeans": [
+      "streetwear",
+      "vintage",
+      "classic",
+      "casual",
+      "chic"
+    ],
+    "Straight-Leg Jeans": [
+      "streetwear",
+      "vintage",
+      "classic",
+      "casual",
+      "chic"
+    ],
+    "Skinny Jeans": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Wide-Leg Jeans": [
+      "vintage",
+      "bohemian",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Flared Jeans": [
+      "vintage",
+      "bohemian",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Distressed Jeans": [
+      "streetwear",
+      "grunge",
+      "vintage",
+      "punk",
+      "casual"
+    ],
+    "Trousers": [
+      "formal",
+      "classic",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Tailored Trousers": [
+      "formal",
+      "classic",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Pleated Trousers": [
+      "classic",
+      "formal",
+      "minimalist",
+      "preppy",
+      "dark_academia"
+    ],
+    "Cigarette Pants": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual"
+    ],
+    "Slacks": [
+      "formal",
+      "classic",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Cargo Pants": [
+      "streetwear",
+      "y2k",
+      "sporty",
+      "hip_hop",
+      "techwear"
+    ],
+    "Tactical Cargo Pants": [
+      "streetwear",
+      "techwear",
+      "athleisure",
+      "cyberpunk",
+      "hip_hop"
+    ],
+    "Parachute Pants": [
+      "streetwear",
+      "sporty",
+      "y2k",
+      "casual",
+      "classic"
+    ],
+    "Joggers": [
+      "sporty",
+      "athleisure",
+      "streetwear",
+      "minimalist",
+      "comfy"
+    ],
+    "Track Pants": [
+      "sporty",
+      "athleisure",
+      "streetwear",
+      "minimalist",
+      "activewear"
+    ],
+    "Sweatpants": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "athleisure",
+      "comfy"
+    ],
+    "Culottes": [
+      "chic",
+      "romantic",
+      "bohemian",
+      "casual",
+      "classic"
+    ],
+    "Palazzo Pants": [
+      "chic",
+      "romantic",
+      "bohemian",
+      "casual",
+      "classic"
+    ],
+    "Capri Pants": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual"
+    ],
+    "Shorts": [
+      "sporty",
+      "preppy",
+      "streetwear",
+      "y2k",
+      "casual"
+    ],
+    "Bermuda Shorts": [
+      "sporty",
+      "preppy",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Cycling Shorts": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Mom Jeans": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Boyfriend Jeans": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Bootcut Jeans": [
+      "vintage",
+      "bohemian",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Cropped Jeans": [
+      "streetwear",
+      "vintage",
+      "classic",
+      "casual",
+      "chic"
+    ],
+    "Paperbag Pants": [
+      "chic",
+      "romantic",
+      "bohemian",
+      "casual",
+      "classic"
+    ],
+    "High-Waist Trousers": [
+      "formal",
+      "classic",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Wide-Leg Trousers": [
+      "formal",
+      "classic",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Chinos": [
+      "formal",
+      "classic",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Khakis": [
+      "formal",
+      "classic",
+      "minimalist"
+    ],
+    "Corduroy Pants": [
+      "vintage",
+      "streetwear",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Leather Pants": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "punk",
+      "gothic"
+    ],
+    "Pleated Shorts": [
+      "preppy",
+      "sporty",
+      "streetwear",
+      "classic",
+      "dark_academia"
+    ],
+    "Chino Shorts": [
+      "sporty",
+      "preppy",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Denim Shorts": [
+      "sporty",
+      "preppy",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Board Shorts": [
+      "sporty",
+      "preppy",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Running Shorts": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "activewear"
+    ],
+    "Skort": [
+      "sporty",
+      "preppy",
+      "streetwear",
+      "casual",
+      "classic"
+    ],
+    "Tap Pants": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Harem Pants": [
+      "streetwear",
+      "sporty",
+      "y2k",
+      "casual",
+      "classic"
+    ],
+    "Sarong Pants": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "cultural",
+      "casual"
+    ],
+    "Leggings": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "athleisure",
+      "activewear"
+    ],
+    "Jeggings": [
+      "streetwear",
+      "vintage",
+      "classic",
+      "casual",
+      "chic"
+    ],
+    "Stirrup Pants": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual"
+    ],
+    "Tuxedo Trousers": [
+      "formal",
+      "classic",
+      "minimalist",
+      "business",
+      "smart_casual"
+    ],
+    "Dress Pants": [
+      "formal",
+      "classic",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Linen Pants": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual"
+    ],
+    "Carpenter Pants": [
+      "skater_style",
+      "streetwear",
+      "vintage",
+      "casual",
+      "retro"
+    ],
+    "Baggy Jeans": [
+      "hip_hop",
+      "streetwear",
+      "y2k",
+      "skater_style",
+      "casual"
+    ],
+    "Side-Stripe Track Pants": [
+      "athleisure",
+      "sporty",
+      "blokecore",
+      "retro",
+      "streetwear"
+    ],
+    "Flared Leggings": [
+      "y2k",
+      "athleisure",
+      "retro",
+      "korean_style",
+      "casual"
+    ],
+    "Low-Rise Jeans": [
+      "y2k",
+      "streetwear",
+      "sexy",
+      "casual",
+      "classic"
+    ],
+    "Leather Shorts": [
+      "punk",
+      "gothic",
+      "streetwear",
+      "sexy",
+      "egirl_eboy"
+    ],
+    "Ao Dai Trousers": [
+      "cultural",
+      "elegant",
+      "formal",
+      "minimalist",
+      "classic"
+    ],
+    "School Uniform Trousers": [
+      "uniform",
+      "casual",
+      "minimalist",
+      "preppy",
+      "basic"
+    ],
+    "Scrubs Pants": [
+      "uniform",
+      "comfy",
+      "minimalist",
+      "activewear",
+      "casual"
+    ],
+    "Pe Gym Shorts": [
+      "sporty",
+      "casual",
+      "uniform",
+      "activewear",
+      "minimalist"
+    ],
+    "Mini Skirt": [
+      "y2k",
+      "gothic",
+      "streetwear",
+      "preppy",
+      "casual"
+    ],
+    "Micro Skirt": [
+      "y2k",
+      "streetwear",
+      "preppy",
+      "casual",
+      "classic"
+    ],
+    "Midi Skirt": [
+      "classic",
+      "formal",
+      "chic",
+      "casual",
+      "minimalist"
+    ],
+    "Maxi Skirt": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "A-Line Skirt": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Pencil Skirt": [
+      "classic",
+      "formal",
+      "chic",
+      "casual",
+      "minimalist"
+    ],
+    "Pleated Skirt": [
+      "classic",
+      "preppy",
+      "formal",
+      "chic",
+      "dark_academia"
+    ],
+    "Wrap Skirt": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Asymmetrical Skirt": [
+      "chic",
+      "formal",
+      "romantic"
+    ],
+    "Layered Skirt": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Denim Skirt": [
+      "streetwear",
+      "y2k",
+      "vintage",
+      "casual",
+      "classic"
+    ],
+    "Slit Skirt": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Bubble Skirt": [
+      "romantic",
+      "formal",
+      "y2k",
+      "casual",
+      "classic"
+    ],
+    "Tulle Skirt": [
+      "romantic",
+      "formal",
+      "y2k",
+      "chic",
+      "feminine"
+    ],
+    "Skater Skirt": [
+      "y2k",
+      "streetwear",
+      "preppy",
+      "casual",
+      "classic"
+    ],
+    "Trumpet Skirt": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "classic"
+    ],
+    "Mermaid Skirt": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "classic"
+    ],
+    "High-Low Skirt": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "classic"
+    ],
+    "Cargo Skirt": [
+      "streetwear",
+      "y2k",
+      "vintage",
+      "hip_hop",
+      "hypebeast"
+    ],
+    "Leather Skirt": [
+      "streetwear",
+      "gothic",
+      "chic",
+      "punk",
+      "egirl_eboy"
+    ],
+    "Pleated Tennis Skirt": [
+      "preppy",
+      "y2k",
+      "streetwear",
+      "uniform",
+      "casual"
+    ],
+    "Kilt": [
+      "classic",
+      "chic",
+      "romantic",
+      "cultural",
+      "formal"
+    ],
+    "Sarong Skirt": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "cultural",
+      "casual"
+    ],
+    "Broomstick Skirt": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Gored Skirt": [
+      "classic",
+      "formal",
+      "chic",
+      "casual",
+      "minimalist"
+    ],
+    "Hobble Skirt": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Peplum Skirt": [
+      "chic",
+      "classic",
+      "romantic",
+      "feminine",
+      "coquette"
+    ],
+    "Jacquard Skirt": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Sequin Skirt": [
+      "romantic",
+      "formal",
+      "y2k",
+      "casual",
+      "classic"
+    ],
+    "Corduroy Skirt": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Knit Skirt": [
+      "minimalist",
+      "chic",
+      "classic",
+      "casual"
+    ],
+    "Satin Skirt": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Tiered Ruffle Skirt": [
+      "coquette",
+      "feminine",
+      "romantic",
+      "cottagecore",
+      "fairycore"
+    ],
+    "Denim Maxi Skirt": [
+      "bohemian",
+      "y2k",
+      "streetwear",
+      "vintage",
+      "casual"
+    ],
+    "Slip Skirt": [
+      "y2k",
+      "minimalist",
+      "elegant",
+      "korean_style",
+      "chic"
+    ],
+    "School Uniform Skirt": [
+      "uniform",
+      "casual",
+      "minimalist",
+      "preppy",
+      "korean_style"
+    ],
+    "Shift Dress": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Sheath Dress": [
+      "formal",
+      "chic",
+      "classic",
+      "casual",
+      "minimalist"
+    ],
+    "Bodycon Dress": [
+      "chic",
+      "y2k",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Slip Dress": [
+      "chic",
+      "y2k",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Wrap Dress": [
+      "romantic",
+      "classic",
+      "chic",
+      "casual",
+      "minimalist"
+    ],
+    "A-Line Dress": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Empire Waist Dress": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Mermaid Dress": [
+      "formal",
+      "romantic",
+      "classic",
+      "casual",
+      "chic"
+    ],
+    "Ball Gown": [
+      "formal",
+      "romantic",
+      "classic",
+      "casual",
+      "chic"
+    ],
+    "Evening Gown": [
+      "formal",
+      "romantic",
+      "classic",
+      "casual",
+      "chic"
+    ],
+    "Cocktail Dress": [
+      "formal",
+      "chic",
+      "classic",
+      "casual",
+      "minimalist"
+    ],
+    "Little Black Dress": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Off-Shoulder Dress": [
+      "romantic",
+      "chic",
+      "formal",
+      "casual",
+      "classic"
+    ],
+    "One-Shoulder Dress": [
+      "romantic",
+      "chic",
+      "formal",
+      "casual",
+      "classic"
+    ],
+    "Halter Dress": [
+      "romantic",
+      "chic",
+      "formal",
+      "casual",
+      "classic"
+    ],
+    "Strapless Dress": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Backless Dress": [
+      "romantic",
+      "chic",
+      "formal",
+      "casual",
+      "classic"
+    ],
+    "Cut-Out Dress": [
+      "chic",
+      "y2k",
+      "minimalist"
+    ],
+    "Tiered Dress": [
+      "romantic",
+      "bohemian",
+      "chic",
+      "classic",
+      "formal"
+    ],
+    "Shirt Dress": [
+      "romantic",
+      "classic",
+      "chic",
+      "casual",
+      "minimalist"
+    ],
+    "T-Shirt Dress": [
+      "romantic",
+      "classic",
+      "chic",
+      "casual",
+      "minimalist"
+    ],
+    "Sweater Dress": [
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic",
+      "chic"
+    ],
+    "Denim Dress": [
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic",
+      "chic"
+    ],
+    "Midi Dress": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Maxi Dress": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Sundress": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Tea Dress": [
+      "romantic",
+      "classic",
+      "chic",
+      "casual",
+      "minimalist"
+    ],
+    "Babydoll Dress": [
+      "romantic",
+      "chic",
+      "classic",
+      "feminine",
+      "coquette"
+    ],
+    "Fit-And-Flare Dress": [
+      "romantic",
+      "classic",
+      "chic",
+      "casual",
+      "minimalist"
+    ],
+    "Column Dress": [
+      "formal",
+      "chic",
+      "classic",
+      "casual",
+      "minimalist"
+    ],
+    "Trumpet Dress": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "High-Low Dress": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Slip Midi Dress": [
+      "chic",
+      "y2k",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Velvet Dress": [
+      "formal",
+      "romantic",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Sequin Dress": [
+      "formal",
+      "romantic",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Lace Dress": [
+      "romantic",
+      "chic",
+      "formal",
+      "feminine",
+      "coquette"
+    ],
+    "Satin Dress": [
+      "formal",
+      "romantic",
+      "chic",
+      "casual",
+      "classic"
+    ],
+    "Knit Dress": [
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic",
+      "chic"
+    ],
+    "Boho Maxi Dress": [
+      "bohemian",
+      "romantic",
+      "chic",
+      "cottagecore"
+    ],
+    "Prairie Dress": [
+      "cottagecore",
+      "fairycore",
+      "romantic",
+      "feminine",
+      "casual"
+    ],
+    "Wedding Dress": [
+      "formal",
+      "romantic",
+      "classic",
+      "casual",
+      "chic"
+    ],
+    "Bridesmaid Dress": [
+      "classic",
+      "chic",
+      "romantic",
+      "casual",
+      "minimalist"
+    ],
+    "Prom Dress": [
+      "formal",
+      "romantic",
+      "classic",
+      "casual",
+      "chic"
+    ],
+    "Jumpsuit": [
+      "chic",
+      "streetwear",
+      "minimalist",
+      "classic",
+      "formal"
+    ],
+    "Culotte Jumpsuit": [
+      "chic",
+      "streetwear",
+      "minimalist",
+      "classic",
+      "formal"
+    ],
+    "Wide-Leg Jumpsuit": [
+      "chic",
+      "streetwear",
+      "minimalist",
+      "classic",
+      "formal"
+    ],
+    "Strapless Jumpsuit": [
+      "chic",
+      "streetwear",
+      "minimalist",
+      "classic",
+      "formal"
+    ],
+    "Romper": [
+      "chic",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "classic"
+    ],
+    "Playsuit": [
+      "chic",
+      "streetwear",
+      "minimalist",
+      "classic",
+      "formal"
+    ],
+    "Sailor Dress": [
+      "preppy",
+      "korean_style",
+      "harajuku",
+      "feminine",
+      "casual"
+    ],
+    "Corset Dress": [
+      "gothic",
+      "sexy",
+      "y2k",
+      "elegant",
+      "coquette"
+    ],
+    "Mesh Overlay Dress": [
+      "egirl_eboy",
+      "cyberpunk",
+      "sexy",
+      "harajuku",
+      "y2k"
+    ],
+    "Ao Dai Dress": [
+      "cultural",
+      "elegant",
+      "formal",
+      "feminine",
+      "romantic"
+    ],
+    "Ao Dai School Uniform": [
+      "uniform",
+      "cultural",
+      "minimalist",
+      "casual",
+      "preppy"
+    ],
+    "Ao Tu Than Dress": [
+      "cultural",
+      "vintage",
+      "artsy",
+      "romantic",
+      "bohemian"
+    ],
+    "Sneakers": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "skater_style",
+      "hypebeast"
+    ],
+    "Running Shoes": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "activewear"
+    ],
+    "Basketball Shoes": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual"
+    ],
+    "High-Top Sneakers": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "skater_style",
+      "hip_hop"
+    ],
+    "Low-Top Sneakers": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual"
+    ],
+    "Loafers": [
+      "classic",
+      "preppy",
+      "formal",
+      "dark_academia",
+      "light_academia"
+    ],
+    "Derby Shoes": [
+      "classic",
+      "preppy",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Oxford Shoes": [
+      "classic",
+      "preppy",
+      "formal",
+      "dark_academia",
+      "light_academia"
+    ],
+    "Brogues": [
+      "classic",
+      "preppy",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Monk Strap Shoes": [
+      "classic",
+      "preppy",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Pumps": [
+      "chic",
+      "formal",
+      "romantic",
+      "gothic",
+      "casual"
+    ],
+    "Stiletto Heels": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Block Heels": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Platform Heels": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Ankle Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Chelsea Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Combat Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "punk",
+      "gothic"
+    ],
+    "Knee-High Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Over-The-Knee Boots": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Slip-On Sneakers": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual"
+    ],
+    "Skate Shoes": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "skater_style",
+      "casual"
+    ],
+    "Trail Running Shoes": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "activewear"
+    ],
+    "Training Shoes": [
+      "sporty",
+      "streetwear",
+      "minimalist",
+      "casual",
+      "activewear"
+    ],
+    "Golf Shoes": [
+      "preppy",
+      "sporty",
+      "classic",
+      "casual",
+      "streetwear"
+    ],
+    "Boat Shoes": [
+      "classic",
+      "preppy",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Driving Shoes": [
+      "classic",
+      "preppy",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Espadrille Wedges": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Slingback Heels": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Mule Heels": [
+      "chic",
+      "formal",
+      "romantic"
+    ],
+    "Wedge Heels": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Kitten Heels": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Slingback Flats": [
+      "chic",
+      "formal",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Ballet Flats": [
+      "minimalist",
+      "classic",
+      "chic",
+      "parisian_style",
+      "feminine"
+    ],
+    "Pointed Flats": [
+      "minimalist",
+      "classic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Mary Jane Shoes": [
+      "romantic",
+      "chic",
+      "formal",
+      "coquette",
+      "soft_girl"
+    ],
+    "T-Bar Shoes": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Spectator Shoes": [
+      "classic",
+      "preppy",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Saddle Shoes": [
+      "classic",
+      "preppy",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Western Boots": [
+      "streetwear",
+      "vintage",
+      "chic"
+    ],
+    "Cowboy Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Hiking Boots": [
+      "streetwear",
+      "vintage",
+      "chic"
+    ],
+    "Work Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Rain Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Snow Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Uggs-Style Boots": [
+      "streetwear",
+      "vintage",
+      "chic"
+    ],
+    "Furry Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Sock Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Thigh-High Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Riding Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Duck Boots": [
+      "streetwear",
+      "vintage",
+      "chic",
+      "casual",
+      "sporty"
+    ],
+    "Wooden Clogs": [
+      "cultural",
+      "casual",
+      "vintage",
+      "cottagecore",
+      "bohemian"
+    ],
+    "White Canvas School Shoes": [
+      "uniform",
+      "minimalist",
+      "casual",
+      "preppy",
+      "basic"
+    ],
+    "Platform Sneakers": [
+      "y2k",
+      "egirl_eboy",
+      "korean_style",
+      "streetwear",
+      "hypebeast"
+    ],
+    "Chunky Sneakers": [
+      "streetwear",
+      "korean_style",
+      "normcore",
+      "athleisure",
+      "casual"
+    ],
+    "Tabi Boots": [
+      "japanese_streetwear",
+      "artsy",
+      "minimalist",
+      "chic",
+      "casual"
+    ],
+    "Mary Jane Platforms": [
+      "coquette",
+      "soft_girl",
+      "feminine",
+      "y2k",
+      "harajuku"
+    ],
+    "Flat Sandals": [
+      "bohemian",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Slide Sandals": [
+      "sporty",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Gladiator Sandals": [
+      "bohemian",
+      "romantic",
+      "vintage",
+      "casual",
+      "streetwear"
+    ],
+    "Fisherman Sandals": [
+      "sporty",
+      "classic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Espadrilles": [
+      "bohemian",
+      "romantic",
+      "vintage",
+      "casual",
+      "streetwear"
+    ],
+    "Wedge Sandals": [
+      "chic",
+      "romantic",
+      "y2k",
+      "casual",
+      "streetwear"
+    ],
+    "Platform Sandals": [
+      "chic",
+      "romantic",
+      "y2k",
+      "casual",
+      "streetwear"
+    ],
+    "Flip-Flops": [
+      "sporty",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Mules": [
+      "chic",
+      "classic",
+      "vintage",
+      "casual",
+      "streetwear"
+    ],
+    "Clogs": [
+      "chic",
+      "classic",
+      "vintage",
+      "casual",
+      "streetwear"
+    ],
+    "Toe-Loop Sandals": [
+      "bohemian",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "T-Strap Sandals": [
+      "bohemian",
+      "chic",
+      "minimalist"
+    ],
+    "Slingback Sandals": [
+      "bohemian",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Sport Sandals": [
+      "sporty",
+      "classic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Trekking Sandals": [
+      "sporty",
+      "classic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Huarache Sandals": [
+      "bohemian",
+      "romantic",
+      "vintage",
+      "casual",
+      "streetwear"
+    ],
+    "Barefoot Sandals": [
+      "bohemian",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Rhinestone Sandals": [
+      "romantic",
+      "formal",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Bridal Sandals": [
+      "romantic",
+      "formal",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Orthopedic Sandals": [
+      "classic",
+      "minimalist",
+      "casual",
+      "streetwear",
+      "sporty"
+    ],
+    "Pool Slides": [
+      "sporty",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Sheepskin Slippers": [
+      "casual",
+      "minimalist",
+      "classic",
+      "streetwear",
+      "sporty"
+    ],
+    "Moccasin Slippers": [
+      "casual",
+      "minimalist",
+      "classic",
+      "streetwear",
+      "sporty"
+    ],
+    "Jelly Sandals": [
+      "y2k",
+      "cottagecore",
+      "casual",
+      "fairycore",
+      "soft_girl"
+    ],
+    "Footbed Sandals": [
+      "normcore",
+      "comfy",
+      "casual",
+      "parisian_style",
+      "minimalist"
+    ],
+    "Scarf": [
+      "classic",
+      "romantic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Shawl": [
+      "classic",
+      "romantic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Bandana": [
+      "streetwear",
+      "grunge",
+      "y2k",
+      "casual",
+      "chic"
+    ],
+    "Neck Tie": [
+      "formal",
+      "classic",
+      "preppy",
+      "business",
+      "smart_casual"
+    ],
+    "Bow Tie": [
+      "formal",
+      "classic",
+      "preppy",
+      "business",
+      "smart_casual"
+    ],
+    "Gloves": [
+      "formal",
+      "classic",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Socks": [
+      "classic",
+      "sporty",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Stockings": [
+      "classic",
+      "sporty",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Tights": [
+      "classic",
+      "sporty",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Infinity Scarf": [
+      "classic",
+      "romantic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Pashmina": [
+      "classic",
+      "romantic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Stole": [
+      "classic",
+      "romantic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Snood": [
+      "classic",
+      "romantic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Neckerchief": [
+      "streetwear",
+      "grunge",
+      "y2k",
+      "casual",
+      "chic"
+    ],
+    "Cravat": [
+      "formal",
+      "classic",
+      "preppy",
+      "casual",
+      "streetwear"
+    ],
+    "Ascot": [
+      "formal",
+      "classic",
+      "preppy"
+    ],
+    "Pocket Square": [
+      "formal",
+      "classic",
+      "preppy",
+      "casual",
+      "streetwear"
+    ],
+    "Arm Warmers": [
+      "streetwear",
+      "y2k",
+      "sporty",
+      "casual",
+      "chic"
+    ],
+    "Leg Warmers": [
+      "streetwear",
+      "y2k",
+      "sporty",
+      "casual",
+      "chic"
+    ],
+    "Mittens": [
+      "formal",
+      "classic",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Fingerless Gloves": [
+      "formal",
+      "classic",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Opera Gloves": [
+      "formal",
+      "classic",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "No-Show Socks": [
+      "classic",
+      "sporty",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Ankle Socks": [
+      "classic",
+      "sporty",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Knee Socks": [
+      "classic",
+      "sporty",
+      "romantic"
+    ],
+    "Compression Socks": [
+      "sporty",
+      "classic",
+      "romantic",
+      "casual",
+      "activewear"
+    ],
+    "Patterned Tights": [
+      "classic",
+      "sporty",
+      "romantic"
+    ],
+    "Fishnet Tights": [
+      "classic",
+      "sporty",
+      "romantic",
+      "casual",
+      "streetwear"
+    ],
+    "Opaque Tights": [
+      "classic",
+      "sporty",
+      "romantic"
+    ],
+    "Sheer Tights": [
+      "classic",
+      "sporty",
+      "romantic"
+    ],
+    "Silk Neckerchief": [
+      "parisian_style",
+      "old_money",
+      "elegant",
+      "business",
+      "chic"
+    ],
+    "Football Scarf": [
+      "blokecore",
+      "sporty",
+      "casual",
+      "streetwear"
+    ],
+    "Ribbon Neck Tie": [
+      "coquette",
+      "soft_girl",
+      "feminine",
+      "romantic",
+      "preppy"
+    ],
+    "Scrunch Crew Socks": [
+      "y2k",
+      "soft_girl",
+      "comfy",
+      "casual",
+      "korean_style"
+    ],
+    "School Red Neckerchief": [
+      "uniform",
+      "preppy",
+      "casual",
+      "minimalist"
+    ],
+    "Ao Dai Silk Sash": [
+      "cultural",
+      "elegant",
+      "formal",
+      "feminine",
+      "romantic"
+    ],
+    "Handbag": [
+      "classic",
+      "chic",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Tote Bag": [
+      "minimalist",
+      "preppy",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Shoulder Bag": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Crossbody Bag": [
+      "streetwear",
+      "chic",
+      "minimalist",
+      "casual"
+    ],
+    "Backpack": [
+      "streetwear",
+      "sporty",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Clutch": [
+      "formal",
+      "chic",
+      "classic",
+      "casual",
+      "streetwear"
+    ],
+    "Belt": [
+      "formal",
+      "classic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Pant Chain": [
+      "streetwear",
+      "casual",
+      "minimalist",
+      "hip_hop",
+      "y2k"
+    ],
+    "Chain Accessory": [
+      "streetwear",
+      "casual",
+      "minimalist",
+      "hip_hop",
+      "y2k"
+    ],
+    "Sunglasses": [
+      "chic",
+      "classic",
+      "streetwear",
+      "casual",
+      "minimalist"
+    ],
+    "Eyeglasses": [
+      "chic",
+      "classic",
+      "streetwear",
+      "casual",
+      "minimalist"
+    ],
+    "Watch": [
+      "classic",
+      "formal",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Hair Clip": [
+      "romantic",
+      "chic",
+      "y2k",
+      "casual",
+      "streetwear"
+    ],
+    "Hair Claw": [
+      "romantic",
+      "chic",
+      "y2k"
+    ],
+    "Satchel": [
+      "classic",
+      "chic",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Hobo Bag": [
+      "classic",
+      "chic",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Bucket Bag": [
+      "classic",
+      "chic",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Saddle Bag": [
+      "classic",
+      "chic",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Belt Bag": [
+      "streetwear",
+      "chic",
+      "minimalist",
+      "casual"
+    ],
+    "Waist Bag": [
+      "streetwear",
+      "chic",
+      "minimalist"
+    ],
+    "Mini Bag": [
+      "streetwear",
+      "chic",
+      "minimalist",
+      "casual"
+    ],
+    "Wristlet": [
+      "formal",
+      "chic",
+      "classic",
+      "casual",
+      "streetwear"
+    ],
+    "Evening Bag": [
+      "formal",
+      "chic",
+      "classic",
+      "casual",
+      "streetwear"
+    ],
+    "Messenger Bag": [
+      "streetwear",
+      "chic",
+      "minimalist",
+      "casual"
+    ],
+    "Duffel Bag": [
+      "streetwear",
+      "sporty",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Weekender Bag": [
+      "streetwear",
+      "sporty",
+      "minimalist",
+      "casual",
+      "chic"
+    ],
+    "Laptop Bag": [
+      "classic",
+      "chic",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Briefcase": [
+      "classic",
+      "formal",
+      "chic",
+      "business",
+      "smart_casual"
+    ],
+    "Wallet": [
+      "minimalist",
+      "classic",
+      "streetwear",
+      "casual",
+      "chic"
+    ],
+    "Card Holder": [
+      "minimalist",
+      "classic",
+      "streetwear",
+      "casual",
+      "chic"
+    ],
+    "Coin Purse": [
+      "minimalist",
+      "classic",
+      "streetwear",
+      "casual",
+      "chic"
+    ],
+    "Keychain": [
+      "streetwear",
+      "minimalist",
+      "classic",
+      "hip_hop",
+      "y2k"
+    ],
+    "Brooch Pin": [
+      "classic",
+      "vintage",
+      "formal"
+    ],
+    "Lapel Pin": [
+      "classic",
+      "vintage",
+      "formal",
+      "chic",
+      "minimalist"
+    ],
+    "Tie Clip": [
+      "formal",
+      "classic",
+      "chic",
+      "business",
+      "smart_casual"
+    ],
+    "Cufflinks": [
+      "formal",
+      "classic",
+      "chic",
+      "business",
+      "smart_casual"
+    ],
+    "Suspenders": [
+      "formal",
+      "classic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Veil Comb": [
+      "romantic",
+      "chic",
+      "y2k"
+    ],
+    "Head Chain": [
+      "y2k",
+      "romantic",
+      "chic",
+      "streetwear",
+      "hip_hop"
+    ],
+    "Face Chain": [
+      "classic",
+      "chic",
+      "minimalist",
+      "streetwear",
+      "hip_hop"
+    ],
+    "Nose Ring Accessory": [
+      "classic",
+      "chic",
+      "minimalist"
+    ],
+    "Ear Cuff Non-Piercing": [
+      "classic",
+      "chic",
+      "minimalist"
+    ],
+    "Chest Rig Bag": [
+      "techwear",
+      "cyberpunk",
+      "streetwear",
+      "hypebeast",
+      "athleisure"
+    ],
+    "Chain Belt": [
+      "y2k",
+      "hip_hop",
+      "streetwear",
+      "punk",
+      "gothic"
+    ],
+    "Studded Belt": [
+      "punk",
+      "gothic",
+      "streetwear",
+      "retro",
+      "egirl_eboy"
+    ],
+    "Harness Belt": [
+      "egirl_eboy",
+      "cyberpunk",
+      "punk",
+      "gothic",
+      "streetwear"
+    ],
+    "Round Frame Glasses": [
+      "dark_academia",
+      "light_academia",
+      "artsy",
+      "vintage",
+      "classic"
+    ],
+    "Micro Sunglasses": [
+      "cyberpunk",
+      "y2k",
+      "italian_style",
+      "sexy",
+      "chic"
+    ],
+    "Quilted Handbag": [
+      "old_money",
+      "chic",
+      "elegant",
+      "preppy",
+      "formal"
+    ],
+    "Beaded Handbag": [
+      "cottagecore",
+      "fairycore",
+      "bohemian",
+      "coquette",
+      "romantic"
+    ],
+    "Necklace": [
+      "chic",
+      "classic",
+      "minimalist",
+      "romantic",
+      "feminine"
+    ],
+    "Pendant": [
+      "romantic",
+      "classic",
+      "chic",
+      "minimalist",
+      "y2k"
+    ],
+    "Choker": [
+      "gothic",
+      "streetwear",
+      "y2k",
+      "egirl_eboy",
+      "coquette"
+    ],
+    "Chain Necklace": [
+      "chic",
+      "streetwear",
+      "y2k",
+      "romantic",
+      "feminine"
+    ],
+    "Earrings": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Stud Earrings": [
+      "minimalist",
+      "classic",
+      "chic",
+      "casual",
+      "streetwear"
+    ],
+    "Hoop Earrings": [
+      "chic",
+      "romantic",
+      "y2k",
+      "casual",
+      "streetwear"
+    ],
+    "Drop Earrings": [
+      "chic",
+      "romantic",
+      "y2k",
+      "casual",
+      "streetwear"
+    ],
+    "Bracelet": [
+      "classic",
+      "chic",
+      "bohemian",
+      "casual",
+      "streetwear"
+    ],
+    "Cuff Bracelet": [
+      "classic",
+      "chic",
+      "bohemian",
+      "casual",
+      "streetwear"
+    ],
+    "Bangle": [
+      "classic",
+      "chic",
+      "bohemian",
+      "casual",
+      "streetwear"
+    ],
+    "Ring": [
+      "classic",
+      "chic",
+      "minimalist",
+      "casual",
+      "streetwear"
+    ],
+    "Statement Ring": [
+      "bohemian",
+      "chic",
+      "vintage",
+      "minimalist",
+      "classic"
+    ],
+    "Anklet": [
+      "y2k",
+      "bohemian",
+      "streetwear",
+      "casual",
+      "chic"
+    ],
+    "Brooch": [
+      "classic",
+      "vintage",
+      "formal",
+      "casual",
+      "streetwear"
+    ],
+    "Layered Necklace": [
+      "romantic",
+      "chic",
+      "classic",
+      "feminine",
+      "coquette"
+    ],
+    "Y-Necklace": [
+      "romantic",
+      "chic",
+      "classic",
+      "feminine",
+      "coquette"
+    ],
+    "Lariat Necklace": [
+      "romantic",
+      "chic",
+      "classic",
+      "feminine",
+      "coquette"
+    ],
+    "Pearl Necklace": [
+      "romantic",
+      "chic",
+      "coquette",
+      "classic",
+      "old_money"
+    ],
+    "Charm Bracelet": [
+      "classic",
+      "chic",
+      "bohemian",
+      "minimalist",
+      "y2k"
+    ],
+    "Tennis Bracelet": [
+      "classic",
+      "chic",
+      "bohemian",
+      "sporty",
+      "activewear"
+    ],
+    "Signet Ring": [
+      "bohemian",
+      "chic",
+      "vintage",
+      "casual",
+      "streetwear"
+    ],
+    "Stacking Rings": [
+      "bohemian",
+      "chic",
+      "vintage"
+    ],
+    "Midi Rings": [
+      "bohemian",
+      "chic",
+      "vintage"
+    ],
+    "Toe Ring": [
+      "bohemian",
+      "chic",
+      "vintage",
+      "minimalist",
+      "classic"
+    ],
+    "Body Chain": [
+      "y2k",
+      "streetwear",
+      "gothic",
+      "hip_hop",
+      "chic"
+    ],
+    "Nose Stud": [
+      "y2k",
+      "bohemian",
+      "streetwear",
+      "chic",
+      "minimalist"
+    ],
+    "Septum Ring": [
+      "y2k",
+      "bohemian",
+      "streetwear",
+      "chic",
+      "minimalist"
+    ],
+    "Industrial Barbell": [
+      "y2k",
+      "bohemian",
+      "streetwear",
+      "chic",
+      "minimalist"
+    ],
+    "Cartilage Earring": [
+      "classic",
+      "chic",
+      "minimalist",
+      "y2k"
+    ],
+    "Threader Earrings": [
+      "chic",
+      "romantic",
+      "y2k",
+      "minimalist",
+      "classic"
+    ],
+    "Ear Climbers": [
+      "chic",
+      "romantic",
+      "y2k",
+      "minimalist",
+      "classic"
+    ],
+    "Huggie Earrings": [
+      "chic",
+      "romantic",
+      "y2k",
+      "minimalist",
+      "classic"
+    ],
+    "Tassel Earrings": [
+      "chic",
+      "romantic",
+      "y2k",
+      "minimalist",
+      "classic"
+    ],
+    "Nameplate Necklace": [
+      "hip_hop",
+      "streetwear",
+      "y2k",
+      "hypebeast",
+      "chic"
+    ],
+    "Spike Earrings": [
+      "punk",
+      "gothic",
+      "egirl_eboy",
+      "cyberpunk",
+      "streetwear"
+    ],
+    "Lock Pendant Necklace": [
+      "y2k",
+      "streetwear",
+      "egirl_eboy",
+      "punk",
+      "chic"
+    ],
+    "O-Ring Choker": [
+      "gothic",
+      "punk",
+      "egirl_eboy",
+      "cyberpunk",
+      "streetwear"
+    ]
+  },
+  "style_weights": {
+    "Headwear": 1.0,
+    "Topwear_Inner": 2.0,
+    "Topwear_Outer": 2.2,
+    "Jackets_Coats": 2.2,
+    "Bottomwear": 2.0,
+    "Skirts": 2.0,
+    "Dresses": 2.2,
+    "Footwear_Shoes": 1.6,
+    "Footwear_Sandals": 1.4,
+    "Accessories_Soft": 1.0,
+    "Accessories_Hard": 1.0,
+    "Jewelry": 0.8,
+    "Other": 0.5
+  },
+  "occasions_by_style": {
+    "streetwear": [
+      "street",
+      "concert",
+      "photoshoot",
+      "hanging out"
+    ],
+    "hip_hop": [
+      "concert",
+      "club",
+      "street"
+    ],
+    "techwear": [
+      "urban",
+      "travel",
+      "night out"
+    ],
+    "athleisure": [
+      "gym",
+      "cafe",
+      "airport",
+      "daily"
+    ],
+    "skater_style": [
+      "skate park",
+      "street",
+      "casual hangout"
+    ],
+    "hypebeast": [
+      "street",
+      "sneaker event",
+      "concert"
+    ],
+    "classic": [
+      "office",
+      "date",
+      "travel",
+      "wedding guest"
+    ],
+    "minimalist": [
+      "office",
+      "cafe",
+      "shopping",
+      "gallery"
+    ],
+    "formal": [
+      "office",
+      "conference",
+      "interview",
+      "gala"
+    ],
+    "business": [
+      "office",
+      "conference",
+      "client meeting"
+    ],
+    "smart_casual": [
+      "office",
+      "date",
+      "restaurant",
+      "travel"
+    ],
+    "preppy": [
+      "school",
+      "date",
+      "country club",
+      "weekend"
+    ],
+    "old_money": [
+      "yacht club",
+      "polo",
+      "office",
+      "formal dinner"
+    ],
+    "vintage": [
+      "photoshoot",
+      "theme party",
+      "flea market"
+    ],
+    "retro": [
+      "party",
+      "photoshoot",
+      "concert"
+    ],
+    "grunge": [
+      "concert",
+      "club",
+      "casual"
+    ],
+    "punk": [
+      "concert",
+      "festival",
+      "protest",
+      "club"
+    ],
+    "gothic": [
+      "concert",
+      "themed event",
+      "club"
+    ],
+    "bohemian": [
+      "festival",
+      "travel",
+      "beach",
+      "outdoor market"
+    ],
+    "artsy": [
+      "gallery opening",
+      "studio",
+      "theater",
+      "photoshoot"
+    ],
+    "feminine": [
+      "date",
+      "brunch",
+      "wedding",
+      "tea party"
+    ],
+    "sexy": [
+      "date",
+      "club",
+      "party",
+      "night out"
+    ],
+    "elegant": [
+      "gala",
+      "wedding",
+      "opera",
+      "fine dining"
+    ],
+    "soft_girl": [
+      "cafe",
+      "picnic",
+      "study date",
+      "daily"
+    ],
+    "coquette": [
+      "date",
+      "brunch",
+      "party",
+      "photoshoot"
+    ],
+    "casual": [
+      "school",
+      "daily",
+      "hanging out",
+      "errands"
+    ],
+    "normcore": [
+      "daily",
+      "travel",
+      "grocery run"
+    ],
+    "basic": [
+      "daily",
+      "school",
+      "office casual"
+    ],
+    "comfy": [
+      "home",
+      "travel",
+      "lazy weekend",
+      "study"
+    ],
+    "sporty": [
+      "gym",
+      "sports",
+      "hiking",
+      "pickup game"
+    ],
+    "activewear": [
+      "gym",
+      "running",
+      "yoga",
+      "training"
+    ],
+    "blokecore": [
+      "pub",
+      "match day",
+      "street",
+      "concert"
+    ],
+    "korean_style": [
+      "cafe",
+      "date",
+      "K-pop event",
+      "daily"
+    ],
+    "japanese_streetwear": [
+      "Harajuku",
+      "street",
+      "photoshoot",
+      "anime con"
+    ],
+    "harajuku": [
+      "street",
+      "photoshoot",
+      "festival",
+      "cosplay-adjacent"
+    ],
+    "chinese_street_style": [
+      "street",
+      "mall",
+      "night market",
+      "photoshoot"
+    ],
+    "parisian_style": [
+      "cafe",
+      "museum",
+      "date",
+      "city stroll"
+    ],
+    "italian_style": [
+      "aperitivo",
+      "resort",
+      "date",
+      "fashion week"
+    ],
+    "cultural": [
+      "festival",
+      "ceremony",
+      "wedding traditional",
+      "national day",
+      "heritage event",
+      "photoshoot",
+      "Tet celebration",
+      "village festival",
+      "ao dai photo"
+    ],
+    "uniform": [
+      "school",
+      "work shift",
+      "hospital",
+      "military base",
+      "kitchen",
+      "flight deck",
+      "team match",
+      "graduation",
+      "morning flag ceremony",
+      "PE class",
+      "scouting activity"
+    ],
+    "dark_academia": [
+      "library",
+      "university",
+      "museum",
+      "rainy day cafe"
+    ],
+    "light_academia": [
+      "library",
+      "picnic",
+      "museum",
+      "bookstore"
+    ],
+    "y2k": [
+      "party",
+      "concert",
+      "mall",
+      "photoshoot"
+    ],
+    "cyberpunk": [
+      "club",
+      "festival",
+      "gaming event",
+      "photoshoot"
+    ],
+    "egirl_eboy": [
+      "streaming",
+      "convention",
+      "TikTok",
+      "street"
+    ],
+    "cottagecore": [
+      "picnic",
+      "farmers market",
+      "countryside",
+      "baking at home"
+    ],
+    "fairycore": [
+      "festival",
+      "forest walk",
+      "photoshoot",
+      "Renaissance fair"
+    ],
+    "chic": [
+      "event",
+      "party",
+      "gallery",
+      "date night"
+    ],
+    "romantic": [
+      "date",
+      "travel",
+      "wedding",
+      "sunset dinner"
+    ]
+  }
+}

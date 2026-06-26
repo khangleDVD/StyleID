@@ -1,0 +1,142 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}StyleID | Premium Login{% endblock %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/login-v2.css">
+<script>
+  (function () {
+    var t = document.querySelector('title');
+    if (t) t.setAttribute('data-i18n', 'meta.titleLogin');
+    document.documentElement.classList.remove('theme-light');
+  })();
+</script>
+{% endblock %}
+
+{% block body %}
+  <main class="login-v2-page" data-i18n-aria="authPage.loginTitle" aria-label="Đăng nhập">
+    <header class="login-v2-header">
+      <a href="/" class="login-v2-brand" data-i18n-aria="common.home" aria-label="Về trang chủ">StyleID</a>
+      <div class="login-v2-lang-wrap">{% include 'partials/lang_switcher.html' %}</div>
+    </header>
+
+    <div class="login-v2-body">
+      <section class="login-v2-hero" aria-hidden="true">
+        <div class="login-v2-hero-bg" id="loginHeroBg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClYz4tNq3r8GdRDvkPkbpJGhqc-O1O9z3OhW5eZswUQMfDSxgMIH9IE9FDCeSkuVyEBTjvGg4DQL2jcOz8xlpK36HryJswpdRwUMusXpvDq0FsI-LaB6hf2-6OxT9t4B_osdcWiA-Yet3PEAu9Iwbe33aaszTs9bFSMpYMDpWvfcAf17emYH6GDY3zXttEH-A61CzgBt8ixgsYZhNUI45GNplgr7NhSYpZQ9hApOSYb1UdpAUq-KpFiUD3LUP-0AJ_V9t6-hYQ4xA');"></div>
+
+        <div class="login-v2-markers">
+          <div class="login-v2-marker login-v2-marker--a">
+            <div class="login-v2-marker-dot"></div>
+            <div class="login-v2-marker-line"></div>
+            <span data-i18n="authPage.loginMarkerTextile">Textile Scan</span>
+          </div>
+          <div class="login-v2-marker login-v2-marker--b">
+            <div class="login-v2-marker-dot login-v2-marker-dot--lg"></div>
+            <span data-i18n="authPage.loginMarkerStyle">Style Mapping</span>
+          </div>
+        </div>
+
+        <div class="login-v2-hero-gradient" aria-hidden="true"></div>
+      </section>
+
+      <section class="login-v2-form-section" aria-label="Form đăng nhập">
+        <div class="login-v2-glass">
+          <header class="login-v2-form-header">
+            <h1 data-i18n="authPage.loginWelcome">Chào mừng trở lại</h1>
+            <p data-i18n="authPage.loginSub">Đăng nhập để khám phá thế giới thời trang AI của bạn.</p>
+          </header>
+
+          <form id="formLogin" class="login-v2-form" novalidate>
+            <div class="login-v2-field">
+              <label for="login_username" data-i18n="auth.usernameOrEmail">Email hoặc Tên đăng nhập</label>
+              <div class="login-v2-input-wrap">
+                <input id="login_username" type="text" name="username" required autocomplete="username" autofocus data-i18n-placeholder="auth.loginUsernamePh" placeholder="name@fashion.com">
+                <span class="material-symbols-outlined login-v2-field-icon" aria-hidden="true">person</span>
+              </div>
+            </div>
+
+            <div class="login-v2-field">
+              <label for="login_password" data-i18n="auth.password">Mật khẩu</label>
+              <div class="login-v2-input-wrap auth-input-wrap">
+                <input id="login_password" type="password" name="password" required autocomplete="current-password" placeholder="••••••••">
+                <button type="button" class="login-v2-pwd-toggle auth-pwd-toggle" data-i18n-aria="auth.showPassword" aria-label="Hiện mật khẩu" aria-pressed="false">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-eye"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="login-v2-options">
+              <label class="login-v2-remember">
+                <input id="login_remember" type="checkbox" name="remember">
+                <span data-i18n="auth.rememberPassword">Ghi nhớ đăng nhập</span>
+              </label>
+              <a href="/forgot-password" class="login-v2-forgot" data-i18n="auth.forgotPassword">Quên mật khẩu?</a>
+            </div>
+
+            <p id="loginError" class="login-v2-error hidden" role="alert"></p>
+
+            <div class="login-v2-actions">
+              <button type="submit" id="loginSubmitBtn" class="login-v2-submit" data-i18n="auth.login">Đăng nhập</button>
+
+              <div class="login-v2-divider" aria-hidden="true">
+                <span data-i18n="auth.orContinueWith">Hoặc tiếp tục với</span>
+              </div>
+
+              <a href="/api/auth/google" id="btnGoogleLogin" class="login-v2-google">
+                <svg class="login-v2-google-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                <span data-i18n="auth.googleShort">Google</span>
+              </a>
+            </div>
+          </form>
+
+          <p class="login-v2-register-link">
+            <span data-i18n="authPage.noAccount">Chưa có tài khoản?</span>
+            <a href="/register" data-i18n="auth.registerNow">Đăng ký ngay</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="login-v2-spacer" aria-hidden="true">
+        <div class="login-v2-spacer-line"></div>
+        <span data-i18n="authPage.loginPremium">Premium Edition</span>
+      </section>
+    </div>
+
+    <footer class="login-v2-footer" role="contentinfo">
+      <span class="login-v2-footer-brand">StyleID</span>
+      <nav class="login-v2-footer-nav" data-i18n-aria="footer.navAria" aria-label="Liên kết pháp lý">
+        <a href="/terms" data-i18n="footer.terms">Điều khoản</a>
+        <a href="/privacy" data-i18n="footer.privacy">Bảo mật</a>
+        <a href="/support" data-i18n="footer.support">Hỗ trợ</a>
+      </nav>
+      <p class="login-v2-footer-copy">
+        © {{ site.year }} {{ site.app_name }}. <span data-i18n="footer.rightsReserved">Bảo lưu mọi quyền.</span><br>
+        <span class="legal-lang legal-lang--vi">{{ site.company_name_vi }}</span>
+        <span class="legal-lang legal-lang--en hidden">{{ site.company_name_en }}</span>
+      </p>
+    </footer>
+  </main>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/legal-page.js"></script>
+  <script src="/static/js/auth.js"></script>
+  <script>
+    (function () {
+      var bg = document.getElementById('loginHeroBg');
+      if (bg && window.matchMedia('(pointer: fine)').matches) {
+        document.addEventListener('mousemove', function (e) {
+          var moveX = (e.clientX - window.innerWidth / 2) / 50;
+          var moveY = (e.clientY - window.innerHeight / 2) / 50;
+          bg.style.transform = 'scale(1.1) translate(' + moveX + 'px, ' + moveY + 'px)';
+        });
+      }
+    })();
+  </script>
+{% endblock %}

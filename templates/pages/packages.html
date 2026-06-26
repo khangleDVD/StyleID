@@ -1,0 +1,27 @@
+      <section id="pagePackages" class="page page-packages-v2" data-i18n-aria="packages.title" aria-label="Gói cước">
+        <div class="pkg-v2-shell">
+          <header class="pkg-v2-header">
+            <div class="pkg-v2-header-top">
+              <span class="material-symbols-outlined pkg-v2-header-icon" aria-hidden="true">credit_card</span>
+              <h2 class="pkg-v2-title" data-i18n="packages.title">Gói cước dịch vụ</h2>
+            </div>
+            <p class="pkg-v2-lead" data-i18n-html="packages.leadHtml">Chọn gói và bấm <strong>«Nạp gói này»</strong> để tạo QR chuyển khoản. Sau khi thanh toán, hệ thống sẽ tự đối soát SePay và cộng lượt. Bạn cũng có thể xem lại lịch sử mua gói ở cuối trang.</p>
+            <div class="pkg-v2-info-pill" id="packagesPageHintWrap">
+              <span class="material-symbols-outlined" aria-hidden="true">info</span>
+              <span id="packagesPageHint"></span>
+            </div>
+          </header>
+
+          <div id="packagesGrid" class="pkg-v2-grid" aria-live="polite"></div>
+          <p id="packagesPageError" class="pkg-v2-error hidden" role="alert"></p>
+
+          <section id="userPaymentsWrap" class="pkg-v2-history hidden" data-i18n-aria="packages.historyTitle" aria-label="Lịch sử mua gói">
+            <div class="pkg-v2-history-head">
+              <span class="material-symbols-outlined" aria-hidden="true">history</span>
+              <h3 data-i18n="packages.historyTitle">Lịch sử mua gói của bạn</h3>
+            </div>
+            <p id="userPaymentsHint" class="pkg-v2-history-meta"></p>
+            <div id="userPaymentsTable" class="pkg-v2-history-body"></div>
+          </section>
+        </div>
+      </section>

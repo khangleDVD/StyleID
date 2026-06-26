@@ -1,0 +1,232 @@
+      <section id="pageIntro" class="page page-intro landing-v2 active" data-i18n-aria="intro.aria" aria-label="Giới thiệu">
+        <div class="landing-scroll">
+          <header class="landing-v2-nav landing-v2-nav--fixed">
+            <button type="button" class="landing-v2-logo logo-home" data-i18n-aria="common.home" aria-label="Về đầu trang">Style<span class="landing-v2-logo-accent">ID</span></button>
+            <button type="button" class="landing-v2-menu" id="btnLandingMenu" data-i18n-aria="nav.openMenu" aria-label="Mở menu" aria-controls="appSidebar" aria-expanded="false">
+              <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            </button>
+            <nav class="landing-v2-links" aria-label="Mục trên trang chủ">
+              <a class="landing-v2-link is-active" href="#landing-features" data-i18n="intro.nav.features">Tính năng</a>
+              <a class="landing-v2-link" href="#landing-gallery" data-i18n="intro.nav.gallery">Giao diện</a>
+              <a class="landing-v2-link" href="#landing-tech" data-i18n="intro.nav.tech">Công nghệ</a>
+              <a class="landing-v2-link" href="#intro-how" data-i18n="intro.nav.how">Cách dùng</a>
+              <a class="landing-v2-link" href="#landing-cta-final" data-i18n="intro.nav.about">Về dự án</a>
+            </nav>
+            <div class="landing-v2-nav-actions">
+              <div class="landing-v2-auth" id="landingNavAuthSlot" aria-label="Tài khoản"></div>
+            </div>
+          </header>
+
+          <div class="landing-v2-main">
+            <!-- Hero -->
+            <section class="landing-v2-hero" id="landing-hero">
+              <div class="landing-v2-hero-glow" aria-hidden="true"></div>
+              <div class="landing-v2-hero-inner lv2-reveal">
+                <div class="landing-v2-kicker">
+                  <span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span>
+                  <span data-i18n="intro.kicker">Nhận dạng phong cách thời trang</span>
+                </div>
+                <h1 class="landing-v2-hero-title">
+                  <span data-i18n="intro.heroTitleLine1">StyleID: Định danh</span><br>
+                  <span class="landing-v2-hero-accent" data-i18n="intro.heroTitleLine2">Phong cách AI</span>
+                </h1>
+                <p class="landing-v2-hero-lead" data-i18n="intro.lead">Trải nghiệm công nghệ AI phân tích outfit chuyên sâu. Nhận diện từng chi tiết trang phục, giải mã phong cách cá nhân và gợi ý phối đồ thông minh cho mọi sự kiện.</p>
+                <div class="landing-v2-hero-actions">
+                  <button type="button" class="landing-v2-btn landing-v2-btn-primary" id="btnIntroAnalyze">
+                    <span class="material-symbols-outlined" aria-hidden="true">upload_file</span>
+                    <span data-i18n="intro.startAnalyze">Bắt đầu phân tích</span>
+                  </button>
+                  <button type="button" class="landing-v2-btn landing-v2-btn-outline js-landing-dashboard">
+                    <span class="material-symbols-outlined" aria-hidden="true">dashboard</span>
+                    <span data-i18n="intro.dashboard">Bảng điều khiển</span>
+                  </button>
+                </div>
+                <p class="landing-v2-hero-note" data-i18n-html="intro.note">Đăng ký miễn phí · <strong>5 lượt</strong> phân tích ảnh mặc định cho mỗi tài khoản</p>
+              </div>
+              <div class="landing-v2-hero-visual lv2-reveal lv2-reveal-delay">
+                <img
+                  id="landingHeroImg"
+                  class="landing-v2-hero-img"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk2Knb30lCAojqQge0PzJQlCLTnpULj3THoW_7MSRe3nHAAt5El9WjKPj6T8sHPaEt6RVxw-y1u_bfbd0wZmvTnJuJX-_ztQIHlvaOG719UJiRblB23LDb2hEedGmcINkW1yjLTn6pFAbzOhGSaxlLKGEbmLT48kCvslbtMu6jJg8oz_653nND2UKTAUBoShpUW0lUiO_C0CcHKUyrHnDGijFGsgve0u6fBFY1XAWFDsPNh6yAx-xHKeIWz_CK1mrEuf1fscgb6ao"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                >
+                <div class="landing-v2-marker landing-v2-marker--a ai-marker" aria-hidden="true">
+                  <div class="landing-v2-marker-dot"><span></span></div>
+                  <div id="landingHeroMarkerA" class="landing-v2-marker-label">Wool Overcoat · 92% Match</div>
+                </div>
+                <div class="landing-v2-marker landing-v2-marker--b ai-marker" aria-hidden="true">
+                  <div class="landing-v2-marker-dot"><span></span></div>
+                  <div id="landingHeroMarkerB" class="landing-v2-marker-label landing-v2-marker-label--left">Leather Chelsea Boots · Minimalist</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Features -->
+            <section class="landing-v2-section" id="landing-features">
+              <div class="landing-v2-section-head lv2-reveal">
+                <h2 class="landing-v2-section-title" data-i18n="intro.featuresTitle">Tính năng cốt lõi</h2>
+                <p class="landing-v2-section-lead" data-i18n="intro.featuresLead">Mọi thứ bạn cần để demo đề tài hoặc trải nghiệm người dùng thật — tập trung vào ảnh và kết quả, không rườm rà.</p>
+              </div>
+              <div class="landing-v2-features-grid">
+                <article class="landing-v2-glass-card lv2-reveal">
+                  <div class="landing-v2-icon-wrap"><span class="material-symbols-outlined">photo_library</span></div>
+                  <h3 data-i18n="intro.f1Title">Phân tích đa ảnh</h3>
+                  <p data-i18n="intro.f1Desc">Tải nhiều ảnh định dạng PNG, JPG hoặc WEBP. Hệ thống AI tổng hợp kết quả thành một bức tranh phong cách thống nhất, loại bỏ sai sót từ góc chụp.</p>
+                </article>
+                <article class="landing-v2-glass-card lv2-reveal">
+                  <div class="landing-v2-icon-wrap"><span class="material-symbols-outlined">apparel</span></div>
+                  <h3 data-i18n="intro.f2Title">Chi tiết từng món đồ</h3>
+                  <p data-i18n="intro.f2Desc">Áo, quần, giày, phụ kiện... được nhận dạng và mô tả có trọng số. Công nghệ AI bóc tách từng lớp vật liệu và form dáng để phản ánh đúng outfit của bạn.</p>
+                </article>
+                <article class="landing-v2-glass-card lv2-reveal">
+                  <div class="landing-v2-icon-wrap"><span class="material-symbols-outlined">event_repeat</span></div>
+                  <h3 data-i18n="intro.f3Title">Gợi ý phong cách &amp; Dịp</h3>
+                  <p data-i18n="intro.f3Desc">Phân loại phong cách tổng thể và gợi ý bối cảnh phù hợp. Từ Casual thoải mái, Formal sang trọng đến Streetwear cá tính — AI biết bạn thuộc về đâu.</p>
+                </article>
+                <article class="landing-v2-glass-card lv2-reveal">
+                  <div class="landing-v2-icon-wrap"><span class="material-symbols-outlined">analytics</span></div>
+                  <h3 data-i18n="intro.f4Title">Lịch sử &amp; Thống kê</h3>
+                  <p data-i18n="intro.f4Desc">Đăng nhập để lưu lượt phân tích, xem lại kết quả và theo dõi biểu đồ xu hướng cá nhân. Quản lý hành trình định hình phong cách qua thời gian.</p>
+                </article>
+              </div>
+            </section>
+
+            <!-- Workflow -->
+            <section class="landing-v2-section" id="landing-gallery" data-i18n-aria="intro.nav.gallery" aria-label="Giao diện ứng dụng">
+              <div class="landing-v2-section-head lv2-reveal">
+                <h2 class="landing-v2-section-title" data-i18n="intro.galleryTitle">Giao diện thao tác</h2>
+                <p class="landing-v2-section-lead" data-i18n-html="intro.galleryLead">Khu vực phân tích định dạng thực: tải ảnh, số dư lượt, kết quả chi tiết và lịch sử — chuyển sang <strong>Bảng điều khiển</strong> để dùng trực tiếp.</p>
+              </div>
+              <div class="landing-v2-workflow-grid">
+                <article class="landing-v2-glass-card lv2-reveal">
+                  <span class="landing-v2-step-label" data-i18n="intro.step1">Bước 1</span>
+                  <h3 data-i18n="intro.wf1Title">Tải ảnh &amp; xem trước</h3>
+                  <div class="landing-v2-step-preview" aria-hidden="true">
+                    <span class="material-symbols-outlined">add_photo_alternate</span>
+                  </div>
+                </article>
+                <article class="landing-v2-glass-card lv2-reveal">
+                  <span class="landing-v2-step-label" data-i18n="intro.step2">Bước 2</span>
+                  <h3 data-i18n="intro.wf2Title">Phân tích &amp; chờ AI</h3>
+                  <div class="landing-v2-step-preview" aria-hidden="true">
+                    <span class="landing-v2-spinner"></span>
+                  </div>
+                </article>
+                <article class="landing-v2-glass-card lv2-reveal">
+                  <span class="landing-v2-step-label" data-i18n="intro.step3">Bước 3</span>
+                  <h3 data-i18n="intro.wf3Title">Kết quả &amp; lịch sử</h3>
+                  <div class="landing-v2-step-preview" aria-hidden="true">
+                    <span class="material-symbols-outlined">verified_user</span>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <!-- Technology -->
+            <section class="landing-v2-section" id="landing-tech" data-i18n-aria="intro.nav.tech" aria-label="Công nghệ">
+              <div class="landing-v2-section-head lv2-reveal">
+                <h2 class="landing-v2-section-title" data-i18n="intro.techTitle">Công nghệ &amp; kiến trúc</h2>
+                <p class="landing-v2-section-lead" data-i18n="intro.techLead">Backend Flask, MySQL, JWT / Google OAuth; Frontend tinh tối ưu hiệu năng. Phân tích ảnh qua OpenRouter với nhiều model vision song song, hợp nhất kết quả.</p>
+              </div>
+              <div class="landing-v2-tech-grid">
+                <article class="landing-v2-glass-card landing-v2-glass-card--compact lv2-reveal">
+                  <h3 data-i18n="intro.tech1Title">OpenRouter Vision</h3>
+                  <p data-i18n="intro.tech1Desc">Nhiều model nhìn ảnh cùng lúc, bỏ phiếu phong cách để ổn định nhãn.</p>
+                </article>
+                <article class="landing-v2-glass-card landing-v2-glass-card--compact lv2-reveal">
+                  <h3 data-i18n="intro.tech2Title">Tập dữ liệu phong cách</h3>
+                  <p data-i18n="intro.tech2Desc">Chuẩn hóa theo danh mục thời trang, cá thể hóa riêng từ phân tích thực tế.</p>
+                </article>
+                <article class="landing-v2-glass-card landing-v2-glass-card--compact lv2-reveal">
+                  <h3 data-i18n="intro.tech3Title">Bảo mật cơ bản</h3>
+                  <p data-i18n="intro.tech3Desc">Đăng nhập, phân quyền admin, giới hạn lượt theo tài khoản.</p>
+                </article>
+              </div>
+            </section>
+
+            <!-- How to use -->
+            <section class="landing-v2-section" id="intro-how">
+              <div class="landing-v2-section-head landing-v2-section-head--tight lv2-reveal">
+                <h2 class="landing-v2-section-title" data-i18n="intro.howTitle">Cách sử dụng</h2>
+              </div>
+              <div class="landing-v2-glass-card landing-v2-how-card lv2-reveal">
+                <div class="landing-v2-how-row">
+                  <span class="landing-v2-how-num">1</span>
+                  <div>
+                    <h4 data-i18n="intro.how1Title">Chọn ảnh</h4>
+                    <p data-i18n="intro.how1Desc">Mở thư viện hoặc chọn file từ thiết bị.</p>
+                  </div>
+                </div>
+                <div class="landing-v2-how-row">
+                  <span class="landing-v2-how-num">2</span>
+                  <div>
+                    <h4 data-i18n="intro.how2Title">Phân tích</h4>
+                    <p data-i18n="intro.how2Desc">Nhấn nút phân tích — ảnh được gửi tới mô hình thị giác AI.</p>
+                  </div>
+                </div>
+                <div class="landing-v2-how-row">
+                  <span class="landing-v2-how-num">3</span>
+                  <div>
+                    <h4 data-i18n="intro.how3Title">Xem kết quả</h4>
+                    <p data-i18n="intro.how3Desc">Đọc mô tả, phong cách tổng thể và gợi ý dịp ngay trên trang.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="landing-v2-section landing-v2-faq" id="landing-faq" aria-label="Câu hỏi thường gặp">
+              <div class="landing-v2-section-head lv2-reveal">
+                <h2 class="landing-v2-section-title" data-i18n="intro.faqTitle">FAQ ngắn</h2>
+              </div>
+              <div class="landing-v2-faq-list">
+                <details class="landing-v2-glass-card landing-v2-faq-item lv2-reveal">
+                  <summary>
+                    <span data-i18n="intro.faq1Q">Có cần cài app?</span>
+                    <span class="material-symbols-outlined landing-v2-faq-chevron" aria-hidden="true">expand_more</span>
+                  </summary>
+                  <div class="landing-v2-faq-answer" data-i18n="intro.faq1A">Không — chỉ cần trình duyệt, responsive trên điện thoại.</div>
+                </details>
+                <details class="landing-v2-glass-card landing-v2-faq-item lv2-reveal">
+                  <summary>
+                    <span data-i18n="intro.faq2Q">Lượt phân tích là gì?</span>
+                    <span class="material-symbols-outlined landing-v2-faq-chevron" aria-hidden="true">expand_more</span>
+                  </summary>
+                  <div class="landing-v2-faq-answer" data-i18n="intro.faq2A">Mỗi lượt tương ứng một lần gửi phân tích (theo số ảnh trong luồng hiện tại). Tài khoản mới có 5 lượt mặc định.</div>
+                </details>
+                <details class="landing-v2-glass-card landing-v2-faq-item lv2-reveal">
+                  <summary>
+                    <span data-i18n="intro.faq3Q">Ảnh có được lưu đâu?</span>
+                    <span class="material-symbols-outlined landing-v2-faq-chevron" aria-hidden="true">expand_more</span>
+                  </summary>
+                  <div class="landing-v2-faq-answer" data-i18n="intro.faq3A">Ảnh lưu trên máy chủ để hiển thị lịch sử nhưng chỉ dùng trong phạm vi đồ án / hệ thống đang triển khai.</div>
+                </details>
+              </div>
+            </section>
+
+            <!-- CTA / About -->
+            <section class="landing-v2-cta" id="landing-cta-final" aria-labelledby="landing-cta-heading">
+              <div class="landing-v2-cta-inner lv2-reveal">
+                <p class="landing-v2-cta-eyebrow" data-i18n="intro.ctaEyebrow">• VỀ DỰ ÁN &amp; ĐƠN VỊ •</p>
+                <h2 class="landing-v2-cta-title" id="landing-cta-heading" data-i18n="intro.ctaTitle">StyleID — bộ công cụ nhận dạng &amp; gợi ý phong cách thời trang</h2>
+                <div class="landing-v2-cta-actions">
+                  <a href="/register" class="landing-v2-cta-btn landing-v2-cta-btn--register" id="btnIntroRegister">
+                    <span aria-hidden="true">✨</span>
+                    <span data-i18n="intro.ctaRegister">Đăng ký điều khiển</span>
+                  </a>
+                  <button type="button" class="landing-v2-cta-btn landing-v2-cta-btn--ghost js-landing-dashboard hidden" id="btnIntroDashboard">
+                    <span class="material-symbols-outlined" aria-hidden="true">dashboard</span>
+                    <span data-i18n="intro.dashboard">Bảng điều khiển</span>
+                  </button>
+                </div>
+                <p class="landing-v2-cta-foot" data-i18n-html="intro.ctaFootAlt">(Không mất phí sử dụng — <strong>5 lượt</strong> phân tích miễn phí khi đăng ký)</p>
+              </div>
+            </section>
+          </div>
+          <div class="landing-v2-footer-wrap">
+            {% include 'partials/footer.html' %}
+          </div>
+        </div>
+      </section>

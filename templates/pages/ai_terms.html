@@ -1,0 +1,157 @@
+{% set title_i18n_key = 'meta.titleAiTerms' %}
+{% extends 'layouts/legal_page.html' %}
+
+{% block legal_content %}  <div class="legal-lang legal-lang--vi">
+    <h1 id="legal-page-title">Điều khoản sử dụng AI</h1>
+        <p class="legal-updated">Cập nhật lần cuối: 20/06/2026</p>
+        <p class="legal-lead">Quy định khi bạn sử dụng tính năng phân tích ảnh, gợi ý phối đồ và các dịch vụ trí tuệ nhân tạo trên <strong>{{ site.app_name }}</strong>.</p>
+
+        <section>
+          <h2>1. Phạm vi áp dụng</h2>
+          <p>Điều khoản này bổ sung cho <a href="/terms">Điều khoản sử dụng</a> và <a href="/privacy">Chính sách bảo mật</a>, áp dụng riêng cho các tính năng AI: nhận diện trang phục, phân loại phong cách, gợi ý dịp phù hợp, gợi ý mix &amp; match và thống kê dựa trên kết quả AI.</p>
+        </section>
+
+        <section>
+          <h2>2. Bản chất dịch vụ AI</h2>
+          <ul>
+            <li>Kết quả do mô hình AI vision tạo ra dựa trên ảnh và ngữ cảnh bạn cung cấp.</li>
+            <li>Gợi ý mang tính <strong>tham khảo</strong>, không phải tư vấn thời trang chuyên nghiệp, mua sắm hay pháp lý.</li>
+            <li>Độ chính xác phụ thuộc chất lượng ảnh, góc chụp, ánh sáng và giới hạn của mô hình — có thể sai hoặc thiếu sót.</li>
+            <li>Chúng tôi không đảm bảo nhận diện đúng 100% nhãn hiệu, chất liệu hoặc xuất xứ sản phẩm.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3. Dữ liệu gửi tới AI</h2>
+          <p>Khi bạn bấm phân tích hoặc yêu cầu gợi ý:</p>
+          <ul>
+            <li>Ảnh trang phục có thể được gửi tới nhà cung cấp mô hình AI (ví dụ <strong>OpenRouter</strong>) để xử lý.</li>
+            <li>Văn bản mô tả ngữ cảnh (nếu có) có thể đi kèm prompt hệ thống — không gửi mật khẩu hay thông tin thanh toán.</li>
+            <li>Kết quả JSON được lưu vào lịch sử tài khoản để bạn xem lại.</li>
+            <li>Chi tiết thu thập và chia sẻ dữ liệu: xem <a href="/privacy">Chính sách bảo mật</a>.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Lượt phân tích (credits)</h2>
+          <ul>
+            <li>Mỗi lần phân tích ảnh hoặc gọi tính năng AI tiêu tốn <strong>lượt phân tích</strong> theo cấu hình hệ thống.</li>
+            <li>Lượt đã trừ <strong>không hoàn lại</strong> khi yêu cầu đã được gửi tới máy chủ, kể cả khi kết quả không như mong đợi.</li>
+            <li>Tài khoản mới có thể được cấp lượt miễn phí; mua thêm qua <a href="/payment-policy">Chính sách thanh toán</a> và trang Gói cước.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>5. Trách nhiệm người dùng</h2>
+          <p>Bạn cam kết:</p>
+          <ul>
+            <li>Chỉ tải ảnh bạn có quyền sử dụng; không tải ảnh người khác khi chưa được phép.</li>
+            <li>Không cố gắng jailbreak prompt, spam API hoặc lạm dụng tài nguyên AI.</li>
+            <li>Không dùng kết quả AI để quấy rối, phân biệt đối xử hoặc vi phạm pháp luật.</li>
+            <li>Tự đánh giá trước khi áp dụng gợi ý trang phục trong bối cảnh thực tế (công sở, sự kiện, văn hóa địa phương…).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>6. Nội dung bị cấm với AI</h2>
+          <ul>
+            <li>Ảnh khiêu dâm, bạo lực, người chưa thành niên không phù hợp, hoặc vi phạm pháp luật Việt Nam.</li>
+            <li>Nội dung xâm phạm quyền riêng tư, bản quyền hình ảnh của bên thứ ba.</li>
+            <li>Yêu cầu AI tạo nội dung lừa đảo, mạo danh thương hiệu hoặc thông tin sai lệch có hại.</li>
+          </ul>
+          <p>Chúng tôi có quyền từ chối xử lý, xóa lịch sử và tạm khóa tài khoản vi phạm.</p>
+        </section>
+
+        <section>
+          <h2>7. Giới hạn trách nhiệm</h2>
+          <p>Trong phạm vi pháp luật cho phép, {{ site.company_name_vi }} không chịu trách nhiệm cho thiệt hại phát sinh từ việc bạn tin tưởng hoàn toàn vào gợi ý AI (ví dụ: mua sắm, trang phục không phù hợp dịp, nhận diện sai món đồ).</p>
+        </section>
+
+        <section>
+          <h2>8. Thay đổi mô hình và tính năng</h2>
+          <p>Chúng tôi có thể đổi nhà cung cấp AI, phiên bản mô hình hoặc định dạng kết quả để cải thiện dịch vụ mà không cần báo trước từng lần. Thay đổi quan trọng sẽ được cập nhật tại trang này.</p>
+        </section>
+
+        <section>
+          <h2>9. Liên hệ</h2>
+          <p>Câu hỏi về sử dụng AI: <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> · {{ site.support_phone }}</p>
+        </section>
+  </div>
+
+  <div class="legal-lang legal-lang--en hidden">
+    <h1 id="legal-page-title-en">Terms of Use for AI</h1>
+        <p class="legal-updated">Last updated: 06/20/2026</p>
+        <p class="legal-lead">Regulations when you use the image analysis feature, outfit suggestion, and other artificial intelligence services on <strong>{{ site.app_name }}</strong>.</p>
+
+        <section>
+          <h2>1. Scope of Application</h2>
+          <p>This clause supplements the <a href="/terms">Terms of Use</a> and <a href="/privacy">Privacy Policy</a>, specifically applicable to AI features: apparel recognition, style classification, suitable occasion suggestions, mix &amp; match recommendations, and statistics based on AI results.</p>
+    </section>
+
+        <section>
+          <h2>2. Nature of AI Services</h2>
+          <ul>
+            <li>The results generated by the AI vision model are based on the images and context you provide.</li>
+            <li>The suggestions are for <strong>reference</strong> only and do not constitute professional fashion advice, shopping, or legal consultation.</li>
+            <li>The accuracy depends on the quality of the images, angles, lighting, and the limitations of the model — it may be incorrect or incomplete.</li>
+            <li>We do not guarantee 100% accurate identification of brands, materials, or product origins.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3. Data Sent to AI</h2>
+          <p>When you click analyze or request suggestions:</p>
+          <ul>
+            <li>Images of clothing may be sent to the AI model provider (e.g., <strong>OpenRouter</strong>) for processing.</li>
+            <li>Contextual descriptive text (if any) may accompany the system prompt — do not send passwords or payment information.</li>
+            <li>JSON results are stored in account history for your review.</li>
+            <li>Details on data collection and sharing: see <a href="/privacy">Privacy Policy</a>.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Analysis Credits</h2>
+          <ul>
+            <li>Each image analysis or use of an AI feature consumes <strong>analysis credits</strong> as per system configuration.</li>
+            <li>Credits deducted are <strong>non-refundable</strong> once the request has been sent to the server, even if the results are not as expected.</li>
+            <li>New accounts may receive free credits; additional credits can be purchased through the <a href="/payment-policy">Payment Policy</a> and the Pricing Plans page.</li>
+          </ul>
+    </section>
+
+        <section>
+          <h2>5. User Responsibilities</h2>
+          <p>You agree to:</p>
+          <ul>
+            <li>Only upload images you have the right to use; do not upload images of others without permission.</li>
+            <li>Not attempt to jailbreak the prompt, spam the API, or misuse AI resources.</li>
+            <li>Not use AI-generated results to harass, discriminate, or violate the law.</li>
+            <li>Self-evaluate before applying clothing suggestions in real-world contexts (office, events, local culture…).</li>
+          </ul>
+    </section>
+
+        <section>
+          <h2>6. Prohibited Content with AI</h2>
+          <ul>
+            <li>Pornographic images, violence, inappropriate minors, or violations of Vietnamese law.</li>
+            <li>Content that infringes on privacy rights, third-party image copyrights.</li>
+            <li>Requesting AI to create fraudulent content, impersonating brands or harmful misinformation.</li>
+          </ul>
+          <p>We reserve the right to refuse processing, delete history, and temporarily suspend violating accounts.</p>
+    </section>
+
+        <section>
+          <h2>7. Limitation of Liability</h2>
+          <p>To the extent permitted by law, {{ site.company_name_en }} shall not be liable for any damages arising from your complete reliance on AI suggestions (e.g., shopping, inappropriate attire for occasions, misidentification of items).</p>
+    </section>
+
+        <section>
+          <h2>8. Changes to the Model and Features</h2>
+          <p>We may change the AI provider, model version, or output format to improve the service without prior notice for each occurrence. Significant changes will be updated on this page.</p>
+    </section>
+
+        <section>
+          <h2>9. Contact</h2>
+          <p>Questions regarding the use of AI: <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> · {{ site.support_phone }}</p>
+        </section>
+  </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{
+  "packages": [
+    {
+      "key": "st",
+      "name": "Khởi đầu",
+      "credits": 5,
+      "price_vnd": 2000,
+      "popular": false
+    },
+    {
+      "key": "30",
+      "name": "Cơ bản",
+      "credits": 30,
+      "price_vnd": 2000,
+      "popular": true
+    },
+    {
+      "key": "50",
+      "name": "Nâng cao",
+      "credits": 50,
+      "price_vnd": 10000,
+      "popular": false
+    }
+  ]
+}

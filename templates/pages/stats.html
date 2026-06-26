@@ -1,0 +1,144 @@
+      <section id="pageStats" class="page page-stats-v2" data-i18n-aria="stats.aria" aria-label="Tổng quan thống kê">
+        <div class="stats-v2-shell">
+          <header class="stats-v2-header">
+            <div class="stats-v2-kicker">
+              <span class="material-symbols-outlined" aria-hidden="true">analytics</span>
+              <span data-i18n="stats.kicker">Thống kê cá nhân</span>
+            </div>
+            <h2 class="stats-v2-title" data-i18n="stats.title">Tổng quan thống kê</h2>
+            <p class="stats-v2-lead" data-i18n="stats.lead">Theo dõi xu hướng phong cách và món đồ từ lịch sử phân tích của bạn — lọc theo khoảng thời gian để nhìn rõ hơn.</p>
+          </header>
+
+          <div id="statsLoginHint" class="stats-v2-glass stats-v2-guest">
+            <span class="material-symbols-outlined stats-v2-guest-icon" aria-hidden="true">lock</span>
+            <p data-i18n="stats.loginHint">Đăng nhập để xem thống kê theo lịch sử phân tích của bạn.</p>
+            <a href="/login" class="stats-v2-btn stats-v2-btn-primary">
+              <span class="material-symbols-outlined" aria-hidden="true">login</span>
+              <span data-i18n="stats.loginBtn">Đăng nhập</span>
+            </a>
+          </div>
+
+          <div id="statsContent" class="stats-v2-content hidden">
+            <div class="stats-v2-toolbar stats-v2-glass">
+              <label class="stats-v2-period-label" for="statsPeriod">
+                <span class="material-symbols-outlined" aria-hidden="true">date_range</span>
+                <span data-i18n="stats.period">Khoảng thời gian</span>
+              </label>
+              <select id="statsPeriod" class="stats-v2-select" data-i18n-aria="stats.period" aria-label="Khoảng thời gian">
+                <option value="all" data-i18n="common.all">Tất cả</option>
+                <option value="7d" data-i18n="stats.period7d">7 ngày qua</option>
+                <option value="30d" data-i18n="stats.period30d">30 ngày qua</option>
+              </select>
+            </div>
+
+            <article id="statsPrimaryStyle" class="stats-v2-glass stats-v2-primary hidden" aria-live="polite">
+              <div class="stats-v2-primary-icon" aria-hidden="true">
+                <span class="material-symbols-outlined">auto_awesome</span>
+              </div>
+              <div class="stats-v2-primary-body">
+                <p class="stats-v2-primary-kicker" data-i18n="stats.primaryStyleLabel">Phong cách chủ đạo</p>
+                <p class="stats-v2-primary-name" id="statsPrimaryStyleName">—</p>
+                <p class="stats-v2-primary-meta" id="statsPrimaryStyleMeta"></p>
+              </div>
+            </article>
+
+            <article id="statsPeriodComparison" class="stats-v2-glass stats-v2-compare hidden" aria-live="polite">
+              <header class="stats-v2-compare-head">
+                <h3 class="stats-v2-panel-title stats-v2-panel-title--flush">
+                  <span class="material-symbols-outlined" aria-hidden="true">compare_arrows</span>
+                  <span data-i18n="stats.compareTitle">So sánh kỳ trước</span>
+                </h3>
+                <p class="stats-v2-compare-sub" id="statsCompareWindowLabel"></p>
+              </header>
+              <div id="statsCompareBody" class="stats-v2-compare-grid"></div>
+            </article>
+
+            <article class="stats-v2-glass stats-v2-panel stats-v2-panel--wide">
+              <h3 class="stats-v2-panel-title">
+                <span class="material-symbols-outlined" aria-hidden="true">show_chart</span>
+                <span data-i18n="stats.chartAnalysesPerDay">Lượt phân tích theo ngày</span>
+              </h3>
+              <div id="statsByDayChart" class="stats-v2-chart-wrap"></div>
+            </article>
+
+            <div class="stats-v2-kpis stats-v2-kpis--3">
+              <article class="stats-v2-glass stats-v2-kpi">
+                <div class="stats-v2-kpi-icon" aria-hidden="true">
+                  <span class="material-symbols-outlined">query_stats</span>
+                </div>
+                <span class="stats-v2-kpi-value" id="statTotalAnalyses">0</span>
+                <span class="stats-v2-kpi-label" data-i18n="stats.analyses">Lượt phân tích</span>
+              </article>
+              <article class="stats-v2-glass stats-v2-kpi">
+                <div class="stats-v2-kpi-icon" aria-hidden="true">
+                  <span class="material-symbols-outlined">photo_library</span>
+                </div>
+                <span class="stats-v2-kpi-value" id="statTotalImages">0</span>
+                <span class="stats-v2-kpi-label" data-i18n="stats.images">Ảnh đã phân tích</span>
+              </article>
+              <article class="stats-v2-glass stats-v2-kpi">
+                <div class="stats-v2-kpi-icon" aria-hidden="true">
+                  <span class="material-symbols-outlined">verified</span>
+                </div>
+                <span class="stats-v2-kpi-value" id="statAvgConfidence">—</span>
+                <span class="stats-v2-kpi-label" data-i18n="stats.avgConfidence">Độ tin cậy AI trung bình</span>
+                <span class="stats-v2-kpi-hint" id="statAvgConfidenceHint"></span>
+              </article>
+            </div>
+
+            <div class="stats-v2-grid stats-v2-grid--4">
+              <article class="stats-v2-glass stats-v2-panel">
+                <h3 class="stats-v2-panel-title">
+                  <span class="material-symbols-outlined" aria-hidden="true">style</span>
+                  <span data-i18n="stats.topStyles">Phong cách xuất hiện nhiều nhất</span>
+                </h3>
+                <div id="statsStylesTable" class="stats-v2-table-wrap"></div>
+              </article>
+              <article class="stats-v2-glass stats-v2-panel">
+                <h3 class="stats-v2-panel-title">
+                  <span class="material-symbols-outlined" aria-hidden="true">apparel</span>
+                  <span data-i18n="stats.topItems">Món đồ xuất hiện nhiều nhất</span>
+                </h3>
+                <div id="statsItemsTable" class="stats-v2-table-wrap"></div>
+              </article>
+              <article class="stats-v2-glass stats-v2-panel">
+                <h3 class="stats-v2-panel-title">
+                  <span class="material-symbols-outlined" aria-hidden="true">event</span>
+                  <span data-i18n="stats.topOccasions">Dịp phù hợp xuất hiện nhiều</span>
+                </h3>
+                <div id="statsOccasionsTable" class="stats-v2-table-wrap"></div>
+              </article>
+              <article class="stats-v2-glass stats-v2-panel">
+                <h3 class="stats-v2-panel-title">
+                  <span class="material-symbols-outlined" aria-hidden="true">category</span>
+                  <span data-i18n="stats.topCategories">Danh mục trang phục</span>
+                </h3>
+                <div id="statsCategoriesTable" class="stats-v2-table-wrap"></div>
+              </article>
+            </div>
+
+            <article class="stats-v2-glass stats-v2-export">
+              <div class="stats-v2-export-inner">
+                <div class="stats-v2-export-copy">
+                  <h3 class="stats-v2-panel-title stats-v2-panel-title--flush">
+                    <span class="material-symbols-outlined" aria-hidden="true">description</span>
+                    <span data-i18n="stats.exportTitle">Xuất báo cáo thống kê</span>
+                  </h3>
+                  <p class="stats-v2-export-lead" data-i18n="stats.exportLead">Tải file JSON đầy đủ hoặc in / lưu PDF theo khoảng thời gian đang chọn.</p>
+                </div>
+                <div class="stats-v2-export-actions">
+                  <button type="button" id="statsExportJson" class="stats-v2-btn stats-v2-btn-ghost" disabled data-i18n-aria="stats.exportJsonAria" aria-label="Xuất JSON">
+                    <span class="material-symbols-outlined" aria-hidden="true">data_object</span>
+                    <span data-i18n="stats.exportJson">Xuất JSON</span>
+                  </button>
+                  <button type="button" id="statsExportPrint" class="stats-v2-btn stats-v2-btn-primary" disabled data-i18n-aria="stats.exportPrintAria" aria-label="In hoặc lưu PDF">
+                    <span class="material-symbols-outlined" aria-hidden="true">picture_as_pdf</span>
+                    <span data-i18n="stats.exportPrint">In / Lưu PDF</span>
+                  </button>
+                </div>
+              </div>
+              <p id="statsExportHint" class="stats-v2-export-hint hidden" data-i18n="stats.exportNoData">Chưa có dữ liệu để xuất báo cáo trong khoảng đã chọn.</p>
+            </article>
+          </div>
+        </div>
+      </section>

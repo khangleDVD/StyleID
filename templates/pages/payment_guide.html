@@ -1,0 +1,128 @@
+{% set title_i18n_key = 'meta.titlePaymentGuide' %}
+{% extends 'layouts/legal_page.html' %}
+
+{% block legal_content %}
+  <div class="legal-lang legal-lang--vi">
+    <h1 id="legal-page-title">Hướng dẫn thanh toán</h1>
+    <p class="legal-lead">Cách nạp lượt phân tích qua chuyển khoản ngân hàng (VietQR) trên <strong>{{ site.app_name }}</strong>.</p>
+
+    <section class="legal-contact-card" id="contact">
+      <h2>Liên hệ hỗ trợ thanh toán</h2>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a></li>
+        <li><strong>Điện thoại:</strong> <a href="tel:{{ site.support_phone | replace(' ', '') }}">{{ site.support_phone }}</a></li>
+      </ul>
+      <p class="hint">Nếu quá 24 giờ chưa được cộng lượt, gửi email kèm mã hóa đơn và ảnh chụp giao dịch.</p>
+    </section>
+
+    <section>
+      <h2>1. Chọn gói cước</h2>
+      <ol>
+        <li>Đăng nhập tài khoản <strong>{{ site.app_name }}</strong>.</li>
+        <li>Vào menu <strong>Gói cước</strong> (<code>/packages</code>).</li>
+        <li>Chọn gói phù hợp và bấm <strong>Nạp gói này</strong>.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>2. Quét QR và chuyển khoản</h2>
+      <ol>
+        <li>Cửa sổ thanh toán hiển thị <strong>mã VietQR</strong>, số tiền và <strong>nội dung chuyển khoản</strong>.</li>
+        <li>Mở app ngân hàng trên điện thoại, chọn quét QR hoặc chuyển khoản thủ công.</li>
+        <li>Nhập <strong>đúng số tiền</strong> và <strong>đúng nội dung chuyển khoản</strong> (copy từ màn hình thanh toán).</li>
+        <li>Xác nhận giao dịch. Hóa đơn có thời hạn (thường 60 phút) — thanh toán trong thời gian này.</li>
+      </ol>
+      <p class="hint">Nội dung chuyển khoản sai có thể khiến hệ thống không tự đối soát được. Luôn dùng nội dung hiển thị trên QR.</p>
+    </section>
+
+    <section>
+      <h2>3. Đối soát và cộng lượt</h2>
+      <ul>
+        <li>Hệ thống đối soát giao dịch qua <strong>SePay</strong> (khi đã cấu hình trên máy chủ).</li>
+        <li>Sau khi thanh toán thành công, lượt phân tích được <strong>tự động cộng</strong> vào tài khoản.</li>
+        <li>Bạn có thể xem trạng thái trong cửa sổ thanh toán hoặc mục <strong>Lịch sử mua gói</strong> ở trang Gói cước.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Lưu ý</h2>
+      <ul>
+        <li>Cần <strong>đăng nhập</strong> trước khi tạo hóa đơn thanh toán.</li>
+        <li>Mỗi hóa đơn gắn với một mã nội dung riêng — không dùng lại mã cũ.</li>
+        <li>Thanh toán quá hạn: tạo hóa đơn mới từ trang Gói cước.</li>
+        <li>Tranh chấp thanh toán: xem <a href="/terms">Điều khoản sử dụng</a> hoặc liên hệ <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tài liệu liên quan</h2>
+      <ul>
+        <li><a href="/user-guide">Hướng dẫn sử dụng</a></li>
+        <li><a href="/support">Trang hỗ trợ &amp; FAQ</a></li>
+        <li><a href="/packages">Gói cước</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="legal-lang legal-lang--en hidden">
+    <h1 id="legal-page-title-en">Payment Guide</h1>
+    <p class="legal-lead">How to top up analysis credits via bank transfer (VietQR) on <strong>{{ site.app_name }}</strong>.</p>
+
+    <section class="legal-contact-card" id="contact-en">
+      <h2>Payment support contact</h2>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a></li>
+        <li><strong>Phone:</strong> <a href="tel:{{ site.support_phone | replace(' ', '') }}">{{ site.support_phone }}</a></li>
+      </ul>
+      <p class="hint">If credits are not added within 24 hours, email us with the invoice ID and proof of payment.</p>
+    </section>
+
+    <section>
+      <h2>1. Choose a plan</h2>
+      <ol>
+        <li>Sign in to your <strong>{{ site.app_name }}</strong> account.</li>
+        <li>Open <strong>Plans</strong> (<code>/packages</code>).</li>
+        <li>Select a plan and tap <strong>Buy this plan</strong>.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>2. Scan QR and transfer</h2>
+      <ol>
+        <li>The payment modal shows a <strong>VietQR</strong> code, amount, and <strong>transfer memo</strong>.</li>
+        <li>Open your banking app and scan the QR or enter details manually.</li>
+        <li>Use the <strong>exact amount</strong> and <strong>exact transfer memo</strong> from the payment screen.</li>
+        <li>Confirm the transaction before the invoice expires (typically 60 minutes).</li>
+      </ol>
+      <p class="hint">An incorrect transfer memo may prevent automatic reconciliation. Always copy the memo from the QR screen.</p>
+    </section>
+
+    <section>
+      <h2>3. Reconciliation &amp; credits</h2>
+      <ul>
+        <li>Transactions are matched via <strong>SePay</strong> when configured on the server.</li>
+        <li>After a successful payment, credits are <strong>added automatically</strong> to your account.</li>
+        <li>Check status in the payment modal or <strong>Purchase history</strong> on the Plans page.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Notes</h2>
+      <ul>
+        <li>You must be <strong>signed in</strong> before creating a payment invoice.</li>
+        <li>Each invoice has a unique transfer memo — do not reuse old memos.</li>
+        <li>If expired, create a new invoice from Plans.</li>
+        <li>Payment disputes: see <a href="/terms">Terms of Service</a> or email <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Related docs</h2>
+      <ul>
+        <li><a href="/user-guide">User Guide</a></li>
+        <li><a href="/support">Support &amp; FAQ</a></li>
+        <li><a href="/packages">Plans</a></li>
+      </ul>
+    </section>
+  </div>
+{% endblock %}

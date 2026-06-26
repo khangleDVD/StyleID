@@ -1,0 +1,188 @@
+/* StyleID footer v2 — shared 4-column dark gold layout */
+.landing-v2-footer {
+  --lv2-surface: #121414;
+  --lv2-primary: #ffd165;
+  --lv2-on-surface: #e2e2e2;
+  --lv2-on-surface-variant: #d3c5ac;
+  --lv2-outline: #9b8f79;
+  --lv2-max: 1280px;
+  --lv2-font: "Be Vietnam Pro", "DM Sans", system-ui, sans-serif;
+  --lv2-label: "Geist", "DM Sans", system-ui, sans-serif;
+  --lv2-legal-font: "Inter", "DM Sans", system-ui, sans-serif;
+  flex-shrink: 0;
+  background: var(--lv2-surface);
+  border-top: 2px solid color-mix(in srgb, var(--lv2-primary) 20%, transparent);
+  padding: 4rem clamp(1rem, 4vw, 3rem) 2rem;
+  color: var(--lv2-on-surface);
+  font-family: var(--lv2-font);
+}
+
+.landing-v2-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  max-width: var(--lv2-max);
+  margin: 0 auto 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .landing-v2-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .landing-v2-footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.landing-v2-footer-brand {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--lv2-primary);
+}
+
+.landing-v2-footer-company {
+  margin: 0.75rem 0 0;
+  font-family: var(--lv2-label);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--lv2-on-surface);
+}
+
+.landing-v2-footer-tagline {
+  margin: 0.35rem 0 0;
+  font-family: var(--lv2-label);
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--lv2-on-surface-variant);
+}
+
+.landing-v2-footer-heading {
+  margin: 0 0 0.85rem;
+  font-family: var(--lv2-label);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lv2-primary);
+}
+
+.landing-v2-footer-links,
+.landing-v2-footer-contact {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.landing-v2-footer-links a,
+.landing-v2-footer-contact a {
+  font-family: var(--lv2-label);
+  font-size: 0.875rem;
+  color: var(--lv2-on-surface-variant);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.landing-v2-footer-links a:hover,
+.landing-v2-footer-contact a:hover {
+  color: var(--lv2-primary);
+}
+
+.landing-v2-footer-col--legal .landing-v2-footer-heading,
+.landing-v2-footer-links--legal a {
+  font-family: var(--lv2-legal-font);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  letter-spacing: -0.01em;
+}
+
+.landing-v2-footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-family: var(--lv2-label);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--lv2-on-surface-variant);
+}
+
+.landing-v2-footer-contact .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  line-height: 1;
+}
+
+.landing-v2-footer-bottom {
+  max-width: var(--lv2-max);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.landing-v2-footer-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.2;
+  user-select: none;
+}
+
+.landing-v2-footer-divider span:first-child,
+.landing-v2-footer-divider span:last-child {
+  width: 3rem;
+  height: 1px;
+  background: var(--lv2-primary);
+}
+
+.landing-v2-footer-divider .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-size: 0.875rem;
+  color: var(--lv2-primary);
+  line-height: 1;
+}
+
+.landing-v2-footer-copy {
+  margin: 0;
+  font-family: var(--lv2-label);
+  font-size: 0.75rem;
+  color: var(--lv2-outline);
+}
+
+.landing-v2-footer-copy-en {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+@media (min-width: 768px) {
+  .landing-v2-footer-copy-en {
+    display: inline;
+    margin-top: 0;
+    margin-left: 0.35rem;
+  }
+}
+
+/* App shell: ẩn footer toàn cục khi đang ở trang chủ (footer nằm trong landing-scroll) */
+.app-shell--landing .main > .landing-v2-footer {
+  display: none;
+}
+
+.landing-v2-footer-wrap {
+  width: 100%;
+}
+
+.legal-shell .landing-v2-footer {
+  margin-top: auto;
+}

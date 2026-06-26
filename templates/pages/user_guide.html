@@ -1,0 +1,202 @@
+{% set title_i18n_key = 'meta.titleUserGuide' %}
+{% extends 'layouts/legal_page.html' %}
+
+{% block legal_content %}
+  <div class="legal-lang legal-lang--vi">
+    <h1 id="legal-page-title">Hướng dẫn sử dụng</h1>
+    <p class="legal-lead">Cách dùng giao diện web <strong>{{ site.app_name }}</strong> — từ đăng ký đến phân tích ảnh, lịch sử, thống kê và gói cước.</p>
+    <p class="legal-updated">Tài liệu đầy đủ: <code>docs/HUONG_DAN_SU_DUNG.md</code> trong repository.</p>
+      <h2>1. Đăng ký / Đăng nhập</h2>
+      <ol>
+        <li>Bấm <strong>Đăng ký</strong> — nhập tên đăng nhập, mật khẩu, họ tên.</li>
+        <li>Hoặc bấm <strong>Đăng nhập bằng Google</strong> (cần quản trị viên cấu hình OAuth).</li>
+        <li>Sau đăng nhập, sidebar hiển thị tên user và số lượt phân tích còn lại.</li>
+      </ol>
+      <p class="hint">Tài khoản username và Google là <strong>hai user độc lập</strong> — không gộp lịch sử. Tài khoản mới có lượt phân tích miễn phí mặc định.</p>
+    </section>
+
+    <section>
+      <h2>2. Phân tích ảnh</h2>
+      <ol>
+        <li>Vào menu <strong>Phân tích ảnh</strong> (hoặc bấm «Bắt đầu phân tích» trên trang chủ).</li>
+        <li>Kéo thả hoặc chọn ảnh (PNG, JPG, JPEG, WEBP).</li>
+        <li>Có thể chọn <strong>nhiều ảnh</strong> trong một lần (giới hạn theo cấu hình hệ thống).</li>
+        <li>Bấm <strong>Phân tích</strong> — đợi AI xử lý (mỗi ảnh gọi nhiều model vision song song).</li>
+        <li>Xem kết quả:
+          <ul>
+            <li><strong>Danh sách món đồ</strong> — tên, danh mục, phong cách, độ tin cậy</li>
+            <li><strong>Phong cách tổng thể</strong> — nhãn chính, Top-3, mô tả</li>
+            <li><strong>Dịp phù hợp</strong> — gợi ý theo phong cách</li>
+          </ul>
+        </li>
+        <li>Bấm <strong>Gợi ý mix</strong> (tuỳ chọn) — AI gợi ý thêm món để hoàn thiện outfit.</li>
+      </ol>
+      <p>Mỗi lần bấm Phân tích tiêu tốn <strong>một lượt</strong> (trừ tài khoản admin).</p>
+    </section>
+
+    <section>
+      <h2>3. Lịch sử phân tích</h2>
+      <ul>
+        <li>Menu <strong>Lịch sử</strong> — xem các lần phân tích trước (cần đăng nhập).</li>
+        <li>Có thể <strong>xóa từng bản ghi</strong>.</li>
+        <li>Ảnh hiển thị qua đường dẫn <code>/uploads/&lt;tên-file&gt;</code>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Tổng quan (Thống kê)</h2>
+      <ul>
+        <li>Menu <strong>Tổng quan</strong> — số lần phân tích, top phong cách, top món đồ.</li>
+        <li>Lọc theo <strong>7 ngày</strong>, <strong>30 ngày</strong> hoặc <strong>toàn bộ</strong>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Gói cước</h2>
+      <ul>
+        <li>Menu <strong>Gói cước</strong> — xem gói nạp lượt phân tích.</li>
+        <li>Nếu bật thanh toán: quét <strong>VietQR</strong>, hệ thống đối soát qua SePay và tự cộng lượt.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Quản trị (admin)</h2>
+      <ul>
+        <li>User có <code>role = 'admin'</code> thấy menu <strong>Quản trị</strong>.</li>
+        <li>Quản lý user, cấp lượt phân tích, xem lịch sử toàn hệ thống.</li>
+        <li>Admin <strong>không bị trừ lượt</strong> khi phân tích.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Ngôn ngữ &amp; giao diện</h2>
+      <ul>
+        <li>Nút <strong>EN / VI</strong> trên thanh công cụ — chuyển ngôn ngữ giao diện.</li>
+        <li>Nút chuyển <strong>sáng / tối</strong> — tuỳ chọn giao diện (lưu trên trình duyệt).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. Câu hỏi thường gặp</h2>
+      <dl class="legal-faq">
+        <dt>Có cần cài app?</dt>
+        <dd>Không — chỉ cần trình duyệt, responsive trên điện thoại.</dd>
+
+        <dt>Ảnh có được lưu không?</dt>
+        <dd>Có — trên máy chủ để hiển thị lịch sử. Bạn có thể xóa từng bản ghi.</dd>
+
+        <dt>Làm sao xóa tài khoản?</dt>
+        <dd>Gửi email tới <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a>. Xem <a href="/data-deletion">Chính sách xóa dữ liệu</a>.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Tài liệu liên quan</h2>
+      <ul>
+        <li><a href="/install-guide">Hướng dẫn cài đặt</a> (dành cho quản trị viên / triển khai)</li>
+        <li><a href="/support">Hỗ trợ</a></li>
+        <li><a href="/privacy">Chính sách quyền riêng tư</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="legal-lang legal-lang--en hidden">
+    <h1 id="legal-page-title-en">User Guide</h1>
+    <p class="legal-lead">How to use the <strong>{{ site.app_name }}</strong> web app — sign-up, image analysis, history, stats, and plans.</p>
+    <p class="legal-updated">Full documentation: <code>docs/HUONG_DAN_SU_DUNG.md</code> in the repository.</p>
+
+    <section>
+      <h2>1. Sign up / Sign in</h2>
+      <ol>
+        <li>Tap <strong>Sign up</strong> — username, password, display name.</li>
+        <li>Or <strong>Sign in with Google</strong> (requires OAuth setup).</li>
+        <li>After sign-in, the sidebar shows your name and remaining analysis credits.</li>
+      </ol>
+      <p class="hint">Username and Google accounts are <strong>separate users</strong> — history is not merged. New accounts get free credits by default.</p>
+    </section>
+
+    <section>
+      <h2>2. Image analysis</h2>
+      <ol>
+        <li>Open <strong>Analyze</strong> (or «Start analyzing» on the home page).</li>
+        <li>Drag &amp; drop or browse images (PNG, JPG, JPEG, WEBP).</li>
+        <li>You can upload <strong>multiple images</strong> in one run (system limit applies).</li>
+        <li>Tap <strong>Analyze</strong> — wait for AI (parallel vision models per image).</li>
+        <li>Review results:
+          <ul>
+            <li><strong>Item list</strong> — name, category, style, confidence</li>
+            <li><strong>Overall style</strong> — primary label, Top-3, description</li>
+            <li><strong>Occasions</strong> — context suggestions</li>
+          </ul>
+        </li>
+        <li>Optional <strong>Mix suggestions</strong> — AI suggests items to complete the outfit.</li>
+      </ol>
+      <p>Each Analyze action uses <strong>one credit</strong> (admin accounts are exempt).</p>
+    </section>
+
+    <section>
+      <h2>3. History</h2>
+      <ul>
+        <li><strong>History</strong> menu — past analyses (sign-in required).</li>
+        <li><strong>Delete</strong> individual records.</li>
+        <li>Images served at <code>/uploads/&lt;filename&gt;</code>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Statistics overview</h2>
+      <ul>
+        <li><strong>Overview</strong> — analysis count, top styles, top items.</li>
+        <li>Filter by <strong>7 days</strong>, <strong>30 days</strong>, or <strong>all time</strong>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Service plans</h2>
+      <ul>
+        <li><strong>Plans</strong> — buy analysis credits.</li>
+        <li>If payments enabled: scan <strong>VietQR</strong>; SePay reconciliation adds credits automatically.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Admin</h2>
+      <ul>
+        <li>Users with <code>role = 'admin'</code> see the <strong>Admin</strong> menu.</li>
+        <li>Manage users, grant credits, view system-wide history.</li>
+        <li>Admins are <strong>not charged</strong> for analysis.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Language &amp; theme</h2>
+      <ul>
+        <li><strong>EN / VI</strong> toggle — switch UI language.</li>
+        <li><strong>Light / dark</strong> theme toggle (saved in browser).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. FAQ</h2>
+      <dl class="legal-faq">
+        <dt>Need to install an app?</dt>
+        <dd>No — browser only, mobile responsive.</dd>
+
+        <dt>Are images stored?</dt>
+        <dd>Yes — on the server for history. Delete records individually.</dd>
+
+        <dt>How to delete my account?</dt>
+        <dd>Email <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a>. See <a href="/data-deletion">Data Deletion Policy</a>.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Related docs</h2>
+      <ul>
+        <li><a href="/install-guide">Installation Guide</a> (for admins / deployment)</li>
+        <li><a href="/support">Support</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>
+      </ul>
+    </section>
+  </div>
+{% endblock %}

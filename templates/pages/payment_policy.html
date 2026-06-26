@@ -1,0 +1,176 @@
+{% set title_i18n_key = 'meta.titlePaymentPolicy' %}
+{% extends 'layouts/legal_page.html' %}
+
+{% block legal_content %}
+  <div class="legal-lang legal-lang--vi">
+    <h1 id="legal-page-title">Chính sách thanh toán</h1>
+    <p class="legal-updated">Cập nhật lần cuối: 20/06/2026</p>
+    <p class="legal-lead">Quy định về giá, phương thức thanh toán, đối soát và xử lý tranh chấp khi nạp lượt phân tích trên <strong>{{ site.app_name }}</strong>.</p>
+
+    <section>
+      <h2>1. Phạm vi</h2>
+      <p>Chính sách này áp dụng cho giao dịch mua <strong>gói lượt phân tích</strong> trên website/app {{ site.app_name }}. Hướng dẫn thao tác từng bước: <a href="/payment-guide">Hướng dẫn thanh toán</a>.</p>
+    </section>
+
+    <section>
+      <h2>2. Đơn vị cung cấp dịch vụ</h2>
+      <ul>
+        <li><strong>Đơn vị thu tiền:</strong> {{ site.company_name_vi }}</li>
+        <li><strong>Mã số thuế:</strong> {{ site.tax_id }}</li>
+        <li><strong>Email hỗ trợ thanh toán:</strong> <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a></li>
+        <li><strong>Điện thoại:</strong> {{ site.support_phone }}</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Giá và hiển thị</h2>
+      <ul>
+        <li>Giá từng gói (số lượt và số tiền VND) hiển thị công khai tại trang <strong>Gói cước</strong> tại thời điểm bạn tạo hóa đơn.</li>
+        <li>Giá đã bao gồm VAT (nếu có) theo quy định pháp luật hiện hành; chúng tôi có quyền điều chỉnh giá và sẽ áp dụng cho hóa đơn mới.</li>
+        <li>Số tiền trên hóa đơn thanh toán là số tiền bạn <strong>phải chuyển chính xác</strong> để hệ thống đối soát tự động.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Phương thức thanh toán</h2>
+      <ul>
+        <li>Hiện hỗ trợ <strong>chuyển khoản ngân hàng</strong> qua mã <strong>VietQR</strong> do hệ thống tạo cho từng hóa đơn.</li>
+        <li>Chúng tôi <strong>không</strong> thu thẻ tín dụng/ghi nợ trực tiếp trên ứng dụng và <strong>không</strong> lưu số thẻ hay tài khoản ngân hàng của bạn.</li>
+        <li>Bạn cần <strong>đăng nhập</strong> tài khoản {{ site.app_name }} trước khi tạo hóa đơn.</li>
+        <li>Mỗi hóa đơn có <strong>nội dung chuyển khoản riêng</strong> — không tái sử dụng mã cũ.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Thời hạn và trạng thái hóa đơn</h2>
+      <ul>
+        <li>Hóa đơn ở trạng thái <em>pending</em> có thời hạn thanh toán (thường <strong>60 phút</strong> kể từ khi tạo).</li>
+        <li>Quá hạn: hóa đơn chuyển <em>failed</em> hoặc hết hiệu lực — bạn tạo hóa đơn mới từ trang Gói cước.</li>
+        <li>Trạng thái <em>completed</em>: thanh toán đã đối soát thành công, lượt được cộng vào tài khoản.</li>
+        <li>Bạn xem lịch sử tại trang Gói cước hoặc khu vực lịch sử mua gói trong tài khoản.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Đối soát tự động</h2>
+      <ul>
+        <li>Giao dịch được đối soát qua dịch vụ <strong>SePay</strong> (khi máy chủ đã cấu hình).</li>
+        <li>Điều kiện đối soát: <strong>đúng số tiền</strong> và <strong>đúng nội dung chuyển khoản</strong> như hiển thị trên QR.</li>
+        <li>Sau khi đối soát thành công, lượt phân tích được <strong>tự động cộng</strong> — thường trong vài phút.</li>
+        <li>Nếu quá <strong>24 giờ</strong> chưa được cộng lượt, liên hệ <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> kèm mã hóa đơn và ảnh chụp giao dịch.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Hoàn tiền và khiếu nại</h2>
+      <ul>
+        <li><strong>Lượt đã cộng thành công</strong> vào tài khoản: không hoàn tiền, trừ trường hợp lỗi hệ thống được xác nhận bởi chúng tôi.</li>
+        <li>Chuyển <strong>sai số tiền</strong> hoặc <strong>sai nội dung</strong>: có thể không đối soát được; liên hệ hỗ trợ trong 7 ngày với chứng từ giao dịch.</li>
+        <li>Chuyển <strong>thừa</strong>: chúng tôi có thể hoàn phần chênh lệch hoặc quy đổi lượt tương ứng sau khi xác minh.</li>
+        <li>Chuyển <strong>thiếu</strong>: không cộng đủ lượt; bạn cần chuyển bổ sung hoặc tạo hóa đơn mới theo hướng dẫn hỗ trợ.</li>
+        <li>Khiếu nại được xử lý trong tối đa <strong>15 ngày làm việc</strong> kể từ khi nhận đủ thông tin.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. Bảo mật giao dịch</h2>
+      <p>Chúng tôi chỉ lưu mã hóa đơn, số tiền, trạng thái, nội dung chuyển khoản và mã giao dịch đối soát — không lưu thông tin thẻ. Chi tiết: <a href="/privacy">Chính sách bảo mật</a>.</p>
+    </section>
+
+    <section>
+      <h2>9. Thay đổi chính sách</h2>
+      <p>Chúng tôi có thể cập nhật chính sách thanh toán. Phiên bản mới có hiệu lực khi đăng tại URL này. Giao dịch đã hoàn tất trước ngày cập nhật vẫn áp dụng theo chính sách tại thời điểm thanh toán, trừ khi pháp luật yêu cầu khác.</p>
+    </section>
+
+    <section>
+      <h2>10. Liên hệ</h2>
+      <p>Email: <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> · Điện thoại: {{ site.support_phone }}</p>
+    </section>
+  </div>
+
+  <div class="legal-lang legal-lang--en hidden">
+    <h1 id="legal-page-title-en">Payment Policy</h1>
+    <p class="legal-updated">Last updated: June 20, 2026</p>
+    <p class="legal-lead">Pricing, payment methods, reconciliation, and dispute handling for purchasing analysis credits on <strong>{{ site.app_name }}</strong>.</p>
+
+    <section>
+      <h2>1. Scope</h2>
+      <p>This policy applies to purchases of <strong>analysis credit packages</strong> on {{ site.app_name }}. Step-by-step instructions: <a href="/payment-guide">Payment Guide</a>.</p>
+    </section>
+
+    <section>
+      <h2>2. Service provider</h2>
+      <ul>
+        <li><strong>Merchant:</strong> {{ site.company_name_en }}</li>
+        <li><strong>Tax ID:</strong> {{ site.tax_id }}</li>
+        <li><strong>Payment support:</strong> <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a></li>
+        <li><strong>Phone:</strong> {{ site.support_phone }}</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Pricing</h2>
+      <ul>
+        <li>Package prices (credits and VND amount) are shown on the <strong>Plans</strong> page when you create an invoice.</li>
+        <li>Prices may change for new invoices; VAT included where applicable by law.</li>
+        <li>The invoice amount is the exact transfer amount required for automatic reconciliation.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Payment methods</h2>
+      <ul>
+        <li>We support <strong>bank transfer</strong> via per-invoice <strong>VietQR</strong> codes.</li>
+        <li>We do <strong>not</strong> collect or store credit/debit card or bank account numbers in the app.</li>
+        <li>You must be <strong>signed in</strong> before creating an invoice.</li>
+        <li>Each invoice has a <strong>unique transfer memo</strong> — do not reuse old codes.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Invoice validity and status</h2>
+      <ul>
+        <li><em>Pending</em> invoices typically expire after <strong>60 minutes</strong>.</li>
+        <li>Expired invoices become <em>failed</em> — create a new invoice from Plans.</li>
+        <li><em>Completed</em>: payment reconciled; credits added to your account.</li>
+        <li>View history on the Plans page or in your account purchase history.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Automatic reconciliation</h2>
+      <ul>
+        <li>Transactions are reconciled via <strong>SePay</strong> when configured on the server.</li>
+        <li>Requires the <strong>correct amount</strong> and <strong>correct transfer memo</strong> shown on the QR screen.</li>
+        <li>Credits are usually added within minutes after successful reconciliation.</li>
+        <li>If credits are not added within <strong>24 hours</strong>, contact <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> with invoice ID and payment proof.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Refunds and disputes</h2>
+      <ul>
+        <li><strong>Credits successfully added</strong> are generally non-refundable except confirmed system errors.</li>
+        <li><strong>Wrong amount or memo</strong> may fail reconciliation — contact support within 7 days with proof.</li>
+        <li><strong>Overpayment</strong>: we may refund the difference or convert to credits after verification.</li>
+        <li><strong>Underpayment</strong>: credits are not fully granted until the shortfall is resolved.</li>
+        <li>Disputes are handled within <strong>15 business days</strong> after receiving complete information.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. Transaction security</h2>
+      <p>We store invoice IDs, amounts, status, transfer memos, and reconciliation IDs — not card data. See our <a href="/privacy">Privacy &amp; Security Policy</a>.</p>
+    </section>
+
+    <section>
+      <h2>9. Policy changes</h2>
+      <p>We may update this policy. New versions take effect when posted here. Completed transactions remain governed by the policy in effect at payment time, unless law requires otherwise.</p>
+    </section>
+
+    <section>
+      <h2>10. Contact</h2>
+      <p>Email: <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> · Phone: {{ site.support_phone }}</p>
+    </section>
+  </div>
+{% endblock %}

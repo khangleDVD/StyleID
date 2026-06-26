@@ -1,0 +1,39 @@
+      <section id="pageAnalyze" class="page page-analyze-v2" data-i18n-aria="analyze.aria" aria-label="Phân tích ảnh">
+        <div class="analyze-v2-scan-line" id="analyzeScanLine" aria-hidden="true"></div>
+        <div class="analyze-v2-canvas">
+          <p class="analyze-v2-fashion-warning" data-i18n="analyze.fashionWarning">Hệ thống được tối ưu cho ảnh có chứa trang phục và người mẫu. Kết quả với ảnh không liên quan đến thời trang có thể không chính xác.</p>
+          <section class="analyze-v2-upload-section" id="analyzeResultAnchor">
+            <div class="analyze-v2-upload-glow" aria-hidden="true"></div>
+            <div class="analyze-v2-dropzone upload-zone" id="uploadZone">
+              <input type="file" id="fileInput" accept="image/png,image/jpeg,image/jpg,image/webp" multiple hidden>
+              <div class="analyze-v2-drop-inner" id="uploadPlaceholder">
+                <span class="material-symbols-outlined analyze-v2-upload-icon" aria-hidden="true">cloud_upload</span>
+                <h3 class="analyze-v2-upload-title" data-i18n="analyze.uploadTitle">Tải ảnh lên để phân tích</h3>
+                <p class="analyze-v2-upload-lead" data-i18n-html="analyze.dropzoneV2">Kéo thả ảnh vào đây hoặc <strong>chọn ảnh</strong> từ máy tính. Hỗ trợ định dạng PNG, JPG, WEBP (tối đa 10MB).</p>
+                <span id="analyzeBalanceHint" class="analyze-v2-balance-pill" data-i18n="analyze.balanceGuest">Đăng nhập để lưu lịch sử và dùng lượt phân tích.</span>
+              </div>
+              <div class="preview-list analyze-v2-preview-list" id="previewList"></div>
+            </div>
+            <div class="analyze-v2-upload-actions">
+              <button type="button" id="btnAnalyze" class="analyze-v2-btn-primary" disabled>
+                <span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span>
+                <span data-i18n="analyze.btn">Phân tích phong cách</span>
+              </button>
+            </div>
+          </section>
+
+          <div class="analyze-v2-results-panel" id="analyzeResultsPanel">
+            <div id="loading" class="analyze-v2-loading hidden" role="status">
+              <div class="analyze-v2-spinner" aria-hidden="true"></div>
+              <p data-i18n="analyze.loading">Đang phân tích ảnh...</p>
+            </div>
+            <div id="resultEmptyState" class="analyze-v2-empty">
+              <span class="material-symbols-outlined" aria-hidden="true">image</span>
+              <p data-i18n="analyze.empty">Kết quả phân tích sẽ hiển thị tại đây.</p>
+            </div>
+            <div id="result" class="analyze-v2-result hidden">
+              <div id="resultContent"></div>
+            </div>
+          </div>
+        </div>
+      </section>

@@ -1,0 +1,60 @@
+<footer class="landing-v2-footer" role="contentinfo">
+  <div class="landing-v2-footer-grid">
+    <div class="landing-v2-footer-col">
+      <div class="landing-v2-footer-brand">{{ site.app_name }}</div>
+      <div class="landing-v2-footer-brand-block">
+        <p class="landing-v2-footer-company legal-lang legal-lang--vi">{{ site.company_name_vi }}</p>
+        <p class="landing-v2-footer-company legal-lang legal-lang--en hidden">{{ site.company_name_en }}</p>
+        <p class="landing-v2-footer-tagline" data-i18n="intro.footerTagline">Giải pháp công nghệ kỹ thuật cao cho tương lai thời trang.</p>
+      </div>
+    </div>
+    <div class="landing-v2-footer-col">
+      <h4 class="landing-v2-footer-heading" data-i18n="intro.footerQuickLinks">Liên kết nhanh</h4>
+      <ul class="landing-v2-footer-links">
+        <li><a href="/" class="js-footer-intro-anchor" data-section="landing-features" data-i18n="intro.nav.features">Tính năng</a></li>
+        <li><a href="/packages" class="js-landing-nav-page" data-page="packages" data-i18n="intro.footerPricing">Bảng giá</a></li>
+        <li><a href="/analyze" class="js-landing-nav-page" data-page="analyze" data-i18n="intro.footerAnalyze">Phân tích AI</a></li>
+        <li><a href="/history" class="js-landing-nav-page" data-page="history" data-i18n="intro.footerHistory">Lịch sử sử dụng</a></li>
+      </ul>
+    </div>
+    <div class="landing-v2-footer-col landing-v2-footer-col--legal">
+      <h4 class="landing-v2-footer-heading" data-i18n="intro.footerLegal">Hỗ trợ &amp; Pháp lý</h4>
+      <ul class="landing-v2-footer-links landing-v2-footer-links--legal">
+        <li><a href="/privacy" data-i18n="footer.privacy">Chính sách bảo mật</a></li>
+        <li><a href="/ai-terms" data-i18n="footer.aiTerms">Điều khoản AI</a></li>
+        <li><a href="/payment-policy" data-i18n="footer.paymentPolicy">Chính sách thanh toán</a></li>
+        <li><a href="/terms" data-i18n="footer.terms">Điều khoản sử dụng</a></li>
+        <li><a href="/data-deletion" data-i18n="footer.dataDeletion">Chính sách xóa dữ liệu</a></li>
+        <li><a href="/support" data-i18n="footer.support">Trung tâm hỗ trợ</a></li>
+      </ul>
+    </div>
+    <div class="landing-v2-footer-col">
+      <h4 class="landing-v2-footer-heading" data-i18n="intro.footerContact">Thông tin liên hệ</h4>
+      <ul class="landing-v2-footer-contact">
+        <li>
+          <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+          <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined" aria-hidden="true">phone</span>
+          <a href="tel:{{ site.support_phone | replace(' ', '') }}">{{ site.support_phone }}</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+          <span>{{ site.address }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="landing-v2-footer-bottom">
+    <div class="landing-v2-footer-divider" aria-hidden="true">
+      <span></span>
+      <span class="material-symbols-outlined">bolt</span>
+      <span></span>
+    </div>
+    <p class="landing-v2-footer-copy">
+      © {{ site.year }} {{ site.app_name }}. <span data-i18n="footer.rightsReserved">Bảo lưu mọi quyền.</span>
+      <span class="landing-v2-footer-copy-en">TIEN PHONG TECH LTD</span>
+    </p>
+  </div>
+</footer>

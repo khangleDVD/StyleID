@@ -1,0 +1,237 @@
+/* Mobile & small-screen compatibility — landing, modals (QR), app shell */
+
+html {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  max-width: 100vw;
+}
+
+.app,
+.app-main,
+.main,
+.landing-scroll,
+.page-intro.landing-v2 {
+  max-width: 100%;
+}
+
+/* ---------- Landing homepage ---------- */
+.landing-v2-hero-glow::after {
+  width: min(800px, 100%);
+  height: min(800px, 100%);
+}
+
+.landing-v2-main,
+.landing-v2-hero-visual {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .landing-v2-faq-item summary {
+    font-size: 1.05rem;
+    padding: 1rem 1rem;
+  }
+
+  .landing-v2-faq-answer {
+    padding: 0 1rem 1rem;
+  }
+
+  .landing-v2-marker--a {
+    left: 38%;
+    top: 28%;
+  }
+
+  .landing-v2-marker--b {
+    right: 12%;
+    bottom: 18%;
+  }
+
+  .landing-v2-cta-inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .landing-v2-features-grid,
+  .landing-v2-workflow-grid,
+  .landing-v2-tech-grid {
+    gap: 0.85rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .landing-v2-marker-label {
+    white-space: normal;
+    max-width: 9rem;
+    font-size: 0.65rem;
+    line-height: 1.25;
+  }
+}
+
+/* ---------- Payment modal (VietQR) ---------- */
+@media (max-width: 720px) {
+  .modal-payment.modal-content {
+    max-width: min(100%, 28rem);
+  }
+
+  .payment-grid {
+    gap: 0.85rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .modal {
+    align-items: flex-start;
+    justify-content: center;
+    padding: max(0.5rem, env(safe-area-inset-top, 0px))
+      max(0.5rem, env(safe-area-inset-right, 0px))
+      max(0.5rem, env(safe-area-inset-bottom, 0px))
+      max(0.5rem, env(safe-area-inset-left, 0px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-content,
+  .modal-payment.modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    margin: 0.25rem 0 0.75rem;
+    padding: 1rem 0.9rem 1.15rem;
+    overflow: visible;
+  }
+
+  .modal h2 {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    padding-right: 2rem;
+  }
+
+  .modal-payment .hint {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .payment-qr {
+    width: 100%;
+    padding: 0.65rem;
+  }
+
+  .payment-qr img {
+    width: 100%;
+    max-width: min(220px, 70vw);
+    height: auto;
+  }
+
+  .payment-kv {
+    grid-template-columns: 1fr;
+    gap: 0.2rem 0;
+  }
+
+  .payment-kv .k {
+    font-size: 0.78rem;
+    margin-top: 0.55rem;
+    color: var(--text-muted);
+  }
+
+  .payment-kv .k:first-child {
+    margin-top: 0;
+  }
+
+  .payment-kv .v {
+    font-size: 0.92rem;
+  }
+
+  .payment-content {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .payment-content code {
+    white-space: normal;
+    word-break: break-all;
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .payment-actions .btn {
+    font-size: 0.88rem;
+  }
+}
+
+/* ---------- App shell pages ---------- */
+@media (max-width: 480px) {
+  .main {
+    padding: 1rem 0.75rem 1.5rem;
+  }
+
+  .app-shell-v2 .app-topbar {
+    padding: 0 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .app-shell-v2 .shell-v2-guest-link,
+  .app-shell-v2 .shell-v2-guest-cta {
+    padding: 0.4rem 0.55rem;
+    font-size: 0.74rem;
+  }
+
+  .app-shell-v2 .shell-v2-topbar-right {
+    gap: 0.5rem;
+  }
+
+  .pkg-v2-lead,
+  .pkg-v2-info-pill {
+    font-size: 0.9rem;
+  }
+
+  .pkg-v2-card {
+    padding: 1.15rem 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .app-shell-v2 .shell-v2-guest-link span:not(.material-symbols-outlined),
+  .app-shell-v2 .shell-v2-guest-cta span:not(.material-symbols-outlined) {
+    display: none;
+  }
+
+  .app-shell-v2 .shell-v2-guest-link,
+  .app-shell-v2 .shell-v2-guest-cta {
+    padding: 0.45rem;
+  }
+}
+
+/* ---------- Auth (login / register) ---------- */
+@media (max-width: 520px) {
+  .auth-page {
+    padding-top: max(3.25rem, env(safe-area-inset-top, 0px));
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .auth-card {
+    padding: 1.15rem 1.1rem 1rem;
+  }
+
+  .auth-page .app-footer {
+    margin-top: 1.25rem;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .auth-page .app-footer-nav {
+    gap: 0.4rem 0.85rem;
+  }
+
+  .auth-page .app-footer-nav a {
+    font-size: 0.82rem;
+  }
+
+  .auth-page .app-footer-company {
+    font-size: 0.78rem;
+  }
+}

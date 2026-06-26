@@ -1,0 +1,194 @@
+    <div id="modalAdminUser" class="modal hidden">
+      <div class="modal-content modal-admin-user">
+        <button type="button" class="modal-close" data-i18n-aria="common.close" aria-label="Đóng"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <h2 data-i18n="admin.editUser">Sửa người dùng</h2>
+        <p class="hint" id="adminEditUserLabel"></p>
+        <input type="hidden" id="adminEditUserId" value="">
+        <label data-i18n="auth.fullName">Họ tên</label>
+        <input type="text" id="adminEditFullName" autocomplete="name">
+        <label data-i18n="admin.credits">Lượt phân tích ảnh</label>
+        <input type="number" id="adminEditCredits" min="0" step="1">
+        <label data-i18n="admin.role">Vai trò</label>
+        <select id="adminEditRole">
+          <option value="user" data-i18n="admin.roleUser">Người dùng</option>
+          <option value="admin" data-i18n="admin.roleAdmin">Quản trị viên</option>
+        </select>
+        <div id="adminEditDeleteInfo" class="admin-edit-delete-info hidden">
+          <p class="hint" data-i18n="admin.deleteInfoTitle">Yêu cầu xóa tài khoản</p>
+          <dl class="admin-edit-delete-meta">
+            <div><dt data-i18n="admin.colAccountStatus">Trạng thái</dt><dd id="adminEditAccountStatus">—</dd></div>
+            <div><dt data-i18n="admin.deleteRequestedAt">Gửi yêu cầu</dt><dd id="adminEditDeleteRequested">—</dd></div>
+            <div><dt data-i18n="admin.deleteScheduledAt">Ngày xóa dự kiến</dt><dd id="adminEditDeleteScheduled">—</dd></div>
+            <div><dt data-i18n="profile.deleteReason">Lý do xóa</dt><dd id="adminEditDeleteReason">—</dd></div>
+          </dl>
+          <div class="admin-edit-delete-actions">
+            <button type="button" class="btn btn-ghost" id="adminEditRestoreBtn" data-i18n="admin.restoreAccount">Khôi phục tài khoản</button>
+            <button type="button" class="btn btn-danger" id="adminEditApproveDeleteBtn" data-i18n="admin.approveDelete">Duyệt xóa ngay</button>
+          </div>
+        </div>
+        <p id="adminEditError" class="error hidden"></p>
+        <button type="button" class="btn btn-primary btn-block" id="adminEditSave" data-i18n="admin.save">Lưu thay đổi</button>
+      </div>
+    </div>
+
+    <div id="modalAdminCreateUser" class="modal hidden">
+      <div class="modal-content modal-admin-user">
+        <button type="button" class="modal-close" data-i18n-aria="common.close" aria-label="Đóng"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <h2 data-i18n="admin.addUser">Thêm người dùng</h2>
+        <p class="hint" data-i18n="admin.addUserHint">Tạo tài khoản “mật khẩu” (không phải Google). Mật khẩu tối thiểu 6 ký tự.</p>
+        <label data-i18n="auth.username">Username</label>
+        <input type="text" id="adminCreateUsername" autocomplete="username">
+        <label data-i18n="auth.fullName">Họ tên</label>
+        <input type="text" id="adminCreateFullName" autocomplete="name" data-i18n-placeholder="common.optional" placeholder="Tùy chọn">
+        <label data-i18n="auth.password">Mật khẩu</label>
+        <input type="password" id="adminCreatePassword" autocomplete="new-password" minlength="6">
+        <label data-i18n="admin.credits">Lượt phân tích ảnh</label>
+        <input type="number" id="adminCreateCredits" min="0" step="1">
+        <label data-i18n="admin.role">Vai trò</label>
+        <select id="adminCreateRole">
+          <option value="user" data-i18n="admin.roleUser">Người dùng</option>
+          <option value="admin" data-i18n="admin.roleAdmin">Quản trị viên</option>
+        </select>
+        <p id="adminCreateError" class="error hidden"></p>
+        <button type="button" class="btn btn-primary btn-block" id="adminCreateSave" data-i18n="admin.create">Tạo user</button>
+      </div>
+    </div>
+
+    <div id="modalChangePassword" class="modal hidden">
+      <div class="modal-content">
+        <button type="button" class="modal-close" data-i18n-aria="common.close" aria-label="Đóng"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <h2><svg class="icon icon-heading" aria-hidden="true"><use href="#icon-key"/></svg> <span data-i18n="modal.changePwd">Đổi mật khẩu</span></h2>
+        <p class="auth-hint" style="margin-top:-0.75rem" data-i18n="modal.changePwdHint">Mật khẩu mới tối thiểu 6 ký tự. Tài khoản đăng nhập Google không đổi mật khẩu tại đây.</p>
+        <form id="formChangePassword">
+          <input type="text" name="username" autocomplete="username" aria-hidden="true" tabindex="-1" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">
+          <label data-i18n="modal.oldPwd">Mật khẩu hiện tại</label>
+          <input type="password" name="old_password" required autocomplete="current-password">
+          <label data-i18n="modal.newPwd">Mật khẩu mới</label>
+          <input type="password" name="new_password" required autocomplete="new-password" minlength="6">
+          <label data-i18n="modal.confirmPwd">Xác nhận mật khẩu mới</label>
+          <input type="password" name="new_password_confirm" required autocomplete="new-password" minlength="6">
+          <p id="changePasswordError" class="error hidden"></p>
+          <button type="submit" class="btn btn-primary btn-block" data-i18n="modal.changePwd">Đổi mật khẩu</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="modalPayment" class="modal hidden" data-i18n-aria="modal.payment" aria-label="Thanh toán nạp lượt">
+      <div class="modal-content modal-payment">
+        <button type="button" class="modal-close" data-i18n-aria="common.close" aria-label="Đóng"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <h2><svg class="icon icon-heading" aria-hidden="true"><use href="#icon-card"/></svg> <span data-i18n="modal.payment">Thanh toán</span></h2>
+        <p class="hint" id="paymentHint" data-i18n="modal.paymentHint">Quét QR để chuyển khoản. Nội dung chuyển khoản phải đúng để hệ thống tự nạp lượt.</p>
+
+        <div class="payment-grid">
+          <div class="payment-qr">
+            <img id="paymentQrImg" alt="QR chuyển khoản" />
+            <p class="hint payment-qr-note" data-i18n="modal.qrNote">Bạn có thể quét bằng app ngân hàng.</p>
+          </div>
+          <div class="payment-info">
+            <div class="payment-kv">
+              <div class="k" data-i18n="modal.amount">Số tiền</div>
+              <div class="v" id="paymentAmount">—</div>
+              <div class="k" data-i18n="modal.content">Nội dung</div>
+              <div class="v payment-content">
+                <code id="paymentContent">—</code>
+                <button type="button" class="btn btn-ghost btn-sm" id="btnCopyPaymentContent" data-i18n="common.copy">Copy</button>
+              </div>
+              <div class="k" data-i18n="modal.status">Trạng thái</div>
+              <div class="v" id="paymentStatus" data-i18n="modal.waiting">Đang chờ...</div>
+            </div>
+
+            <p class="error hidden" id="paymentError"></p>
+            <div class="payment-actions">
+              <button type="button" class="btn btn-primary btn-block" id="btnPaymentDone" disabled data-i18n="modal.paidChecking">Đã thanh toán (đang kiểm tra...)</button>
+            </div>
+            <p class="hint payment-foot" id="paymentMeta"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalAnalysisTrace" class="modal hidden modal-trace" data-i18n-aria="modal.trace" aria-label="Chi tiết model phân tích">
+      <div class="modal-content modal-trace-content">
+        <button type="button" class="modal-close" data-i18n-aria="common.close" aria-label="Đóng"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <h2><svg class="icon icon-heading" aria-hidden="true"><use href="#icon-analysis"/></svg> <span data-i18n="modal.trace">Model phân tích</span></h2>
+        <p class="hint" id="traceMeta"></p>
+        <div class="trace-tabs" role="tablist" aria-label="Các bước phân tích">
+          <button type="button" class="trace-tab active" data-trace-tab="detect" data-i18n="modal.traceDetect">Model phát hiện</button>
+          <button type="button" class="trace-tab" data-trace-tab="merged" data-i18n="modal.traceMerged">Items cứng (gộp)</button>
+          <button type="button" class="trace-tab" data-trace-tab="final" data-i18n="modal.traceFinal">Kết quả cuối</button>
+        </div>
+        <div id="traceBody" class="trace-body"></div>
+      </div>
+    </div>
+
+    <div id="modalImageLightbox" class="modal modal-lightbox hidden" role="dialog" aria-modal="true" data-i18n-aria="modal.viewImage" aria-label="Xem ảnh">
+      <div id="modalImageLightboxInner" class="modal-lightbox-inner">
+        <button type="button" class="modal-close" data-i18n-aria="common.close" aria-label="Đóng"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <img id="lightboxImage" class="modal-lightbox-img" alt="">
+      </div>
+    </div>
+
+    <div id="modalDeleteAccountConfirm" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="deleteAccountConfirmTitle">
+      <div class="modal-content modal-delete-account">
+        <button type="button" class="modal-close" data-i18n-aria="common.close" aria-label="Đóng"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <h2 id="deleteAccountConfirmTitle"><span class="material-symbols-outlined icon-heading" aria-hidden="true">warning</span> <span data-i18n="profile.deleteConfirmTitle">Xác nhận yêu cầu xóa</span></h2>
+        <p class="hint" data-i18n="profile.deleteConfirmBody">Tài khoản của bạn sẽ được chuyển sang trạng thái chờ xóa trong 30 ngày. Trong thời gian này, bạn có thể đăng nhập lại để khôi phục tài khoản. Sau 30 ngày, tài khoản sẽ bị xóa hoặc vô hiệu hóa vĩnh viễn.</p>
+        <p id="deleteAccountConfirmError" class="error hidden" role="alert"></p>
+        <div class="modal-delete-account-actions">
+          <button type="button" class="btn btn-ghost" id="deleteAccountConfirmCancel" data-i18n="common.cancel">Hủy</button>
+          <button type="button" class="btn btn-danger" id="deleteAccountConfirmProceed" data-i18n="profile.deleteConfirmBtn">Gửi mã OTP xác nhận</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modalDeleteAccountOtp" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="deleteAccountOtpTitle">
+      <div class="modal-content modal-delete-account">
+        <button type="button" class="modal-close" data-i18n-aria="common.close" aria-label="Đóng"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <h2 id="deleteAccountOtpTitle"><span class="material-symbols-outlined icon-heading" aria-hidden="true">mark_email_read</span> <span data-i18n="profile.deleteOtpTitle">Nhập mã OTP</span></h2>
+        <p class="hint" id="deleteAccountOtpHint" data-i18n="profile.deleteOtpHint">Mã OTP đã được gửi đến email của bạn.</p>
+        <input type="hidden" id="deleteAccountSessionToken" value="">
+        <form id="formDeleteAccountOtp">
+          <label for="deleteAccountOtpInput" data-i18n="auth.otpCode">Mã OTP</label>
+          <input type="text" id="deleteAccountOtpInput" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" required>
+          <p id="deleteAccountOtpError" class="error hidden" role="alert"></p>
+          <p id="deleteAccountOtpSuccess" class="success hidden" role="status"></p>
+          <button type="submit" class="btn btn-danger btn-block" data-i18n="profile.deleteOtpSubmit">Xác nhận xóa tài khoản</button>
+        </form>
+        <button type="button" class="btn btn-ghost btn-block" id="deleteAccountResendOtp" data-i18n="auth.resendOtp">Gửi lại mã OTP</button>
+      </div>
+    </div>
+
+    <div id="modalRestoreAccountOtp" class="modal modal-priority-high hidden" role="dialog" aria-modal="true" aria-labelledby="restoreAccountOtpTitle">
+      <div class="modal-content modal-delete-account">
+        <button type="button" class="modal-close" data-i18n-aria="common.close" aria-label="Đóng"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button>
+        <h2 id="restoreAccountOtpTitle"><span class="material-symbols-outlined icon-heading" aria-hidden="true">restore</span> <span data-i18n="profile.restoreOtpTitle">Xác nhận khôi phục</span></h2>
+        <p class="hint" id="restoreAccountOtpHint" data-i18n="profile.restoreOtpHint">Mã OTP khôi phục đã được gửi đến email của bạn.</p>
+        <input type="hidden" id="restoreAccountSessionToken" value="">
+        <form id="formRestoreAccountOtp">
+          <label for="restoreAccountOtpInput" data-i18n="auth.otpCode">Mã OTP</label>
+          <input type="text" id="restoreAccountOtpInput" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" required>
+          <p id="restoreAccountOtpError" class="error hidden" role="alert"></p>
+          <button type="submit" class="btn btn-primary btn-block" data-i18n="profile.restoreConfirm">Khôi phục tài khoản</button>
+        </form>
+        <button type="button" class="btn btn-ghost btn-block" id="restoreAccountResendOtp" data-i18n="auth.resendOtp">Gửi lại mã OTP</button>
+      </div>
+    </div>
+
+    <div id="pendingDeleteOverlay" class="pending-delete-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pendingDeleteTitle">
+      <div class="pending-delete-card profile-v2-glass">
+        <span class="material-symbols-outlined pending-delete-icon" aria-hidden="true">event_busy</span>
+        <h2 id="pendingDeleteTitle" data-i18n="profile.pendingDeleteTitle">Tài khoản đang chờ xóa</h2>
+        <p id="pendingDeleteMessage" class="pending-delete-message"></p>
+        <div class="pending-delete-actions">
+          <button type="button" class="profile-v2-btn profile-v2-btn-primary" id="pendingDeleteRestoreBtn">
+            <span class="material-symbols-outlined" aria-hidden="true">restore</span>
+            <span data-i18n="profile.restoreAccount">Khôi phục tài khoản</span>
+          </button>
+          <button type="button" class="profile-v2-btn profile-v2-btn-outline" id="pendingDeleteLogoutBtn">
+            <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+            <span data-i18n="auth.logout">Đăng xuất</span>
+          </button>
+        </div>
+      </div>
+    </div>
+

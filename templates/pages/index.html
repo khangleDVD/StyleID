@@ -1,0 +1,48 @@
+{% extends 'layouts/base.html' %}
+
+{% block head %}
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Geist:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/landing-v2.css">
+  <link rel="stylesheet" href="/static/css/stats-v2.css">
+  <link rel="stylesheet" href="/static/css/packages-v2.css">
+  <link rel="stylesheet" href="/static/css/admin-v2.css">
+  <link rel="stylesheet" href="/static/css/analyze-v2.css">
+  <link rel="stylesheet" href="/static/css/shell-v2.css">
+  <link rel="stylesheet" href="/static/css/profile-v2.css">
+{% endblock %}
+
+{% block body %}
+  <div class="app app-shell app-shell-v2 app-shell--landing">
+    <div id="navBackdrop" class="nav-backdrop" aria-hidden="true"></div>
+
+    {% include 'partials/sidebar.html' %}
+
+    <div class="app-main">
+      {% include 'partials/topbar.html' %}
+      <main class="main">
+        {% include 'pages/intro.html' %}
+        {% include 'pages/analyze.html' %}
+        {% include 'pages/history.html' %}
+        {% include 'pages/stats.html' %}
+        {% include 'pages/packages.html' %}
+        {% include 'pages/profile.html' %}
+        {% include 'pages/admin.html' %}
+        {% include 'partials/footer.html' %}
+      </main>
+    </div>
+
+    {% include 'partials/modals.html' %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/legal-page.js"></script>
+  <script src="/static/js/core.js"></script>
+  <script src="/static/js/analyze.js"></script>
+  <script src="/static/js/admin.js"></script>
+  <script src="/static/js/landing-v2.js"></script>
+  <script src="/static/js/analyze-v2.js"></script>
+  <script src="/static/js/app.js"></script>
+{% endblock %}
+

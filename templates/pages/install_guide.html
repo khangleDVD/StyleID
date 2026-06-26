@@ -1,0 +1,218 @@
+{% set title_i18n_key = 'meta.titleInstallGuide' %}
+{% extends 'layouts/legal_page.html' %}
+
+{% block legal_content %}
+  <div class="legal-lang legal-lang--vi">
+    <h1 id="legal-page-title">Hướng dẫn cài đặt</h1>
+    <p class="legal-lead">Triển khai <strong>{{ site.app_name }}</strong> trên máy chủ hoặc máy phát triển — Python, MySQL, OpenRouter và cấu hình <code>.env</code>.</p>
+    <p class="legal-updated">Tài liệu đầy đủ: <code>docs/HUONG_DAN_CAI_DAT.md</code> trong repository.</p>
+
+    <section>
+      <h2>1. Yêu cầu hệ thống</h2>
+      <ul>
+        <li><strong>Hệ điều hành:</strong> Windows 10/11, macOS hoặc Linux</li>
+        <li><strong>Python:</strong> 3.10 trở lên</li>
+        <li><strong>MySQL:</strong> 8.0+ (hoặc MariaDB tương thích)</li>
+        <li><strong>RAM:</strong> ≥ 8 GB (khuyến nghị khi chạy benchmark)</li>
+        <li><strong>Mạng:</strong> Internet để gọi OpenRouter API</li>
+        <li><strong>OpenRouter:</strong> tài khoản có credit tại <a href="https://openrouter.ai" rel="noopener noreferrer" target="_blank">openrouter.ai</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>2. Cài đặt môi trường</h2>
+      <h3>Bước 1 — Mã nguồn</h3>
+      <p>Clone hoặc giải nén dự án, mở terminal tại thư mục gốc.</p>
+
+      <h3>Bước 2 — Môi trường ảo Python</h3>
+      <p><strong>Windows (PowerShell):</strong></p>
+      <pre class="legal-code">python -m venv venv
+.\venv\Scripts\Activate.ps1</pre>
+      <p><strong>Linux / macOS:</strong></p>
+      <pre class="legal-code">python3 -m venv venv
+source venv/bin/activate</pre>
+
+      <h3>Bước 3 — Dependency</h3>
+      <pre class="legal-code">pip install -r requirements.txt</pre>
+
+      <h3>Bước 4 — File cấu hình</h3>
+      <p><strong>Windows:</strong> <code>copy .env.example .env</code><br>
+      <strong>Linux / macOS:</strong> <code>cp .env.example .env</code></p>
+    </section>
+
+    <section>
+      <h2>3. Cấu hình <code>.env</code></h2>
+      <h3>Bắt buộc (chạy cơ bản)</h3>
+      <ul>
+        <li><code>FLASK_SECRET_KEY</code> — khóa bí mật Flask + JWT</li>
+        <li><code>MYSQL_HOST</code>, <code>MYSQL_USER</code>, <code>MYSQL_PASSWORD</code>, <code>MYSQL_DATABASE</code></li>
+        <li><code>OPENROUTER_API_KEY</code> — API key OpenRouter (<code>sk-or-v1-...</code>)</li>
+      </ul>
+      <p class="hint">Không có <code>OPENROUTER_API_KEY</code> → hệ thống vẫn chạy nhưng trả <strong>kết quả demo</strong>, không phân tích AI thật.</p>
+
+      <h3>AI — phân tích ảnh (tuỳ chọn)</h3>
+      <ul>
+        <li><code>OPENROUTER_VISION_MODELS</code> — 3 model vision, cách nhau dấu phẩy</li>
+        <li><code>OPENROUTER_MAX_TOKENS</code> — mặc định <code>512</code></li>
+        <li><code>MAX_ANALYZE_IMAGES</code> — tối đa ảnh mỗi lần upload (mặc định <code>5</code>)</li>
+      </ul>
+
+      <h3>Google OAuth &amp; thanh toán (tuỳ chọn)</h3>
+      <p>Xem comment trong <code>.env.example</code> cho <code>GOOGLE_*</code>, <code>VIETQR_*</code>, <code>SEPAY_*</code>.</p>
+    </section>
+
+    <section>
+      <h2>4. Khởi tạo cơ sở dữ liệu</h2>
+      <pre class="legal-code">mysql -u root -p &lt; scripts/init_mysql.sql</pre>
+      <p>Script tạo database, bảng <code>users</code>, <code>history</code>, <code>payments</code>.</p>
+      <p>Sau khi đăng ký tài khoản đầu tiên, gán quyền admin (khuyến nghị):</p>
+      <pre class="legal-code">USE lumistyle_db;
+UPDATE users SET role = 'admin' WHERE id = 1;</pre>
+      <p>Admin không bị trừ lượt phân tích và truy cập trang Quản trị.</p>
+    </section>
+
+    <section>
+      <h2>5. Chạy ứng dụng</h2>
+      <p>Đảm bảo MySQL đang chạy, rồi:</p>
+      <pre class="legal-code">python app.py</pre>
+      <p>Mặc định: <strong><a href="/">http://localhost:5000</a></strong></p>
+      <ul>
+        <li>Trang chủ load được → giao diện StyleID hiển thị</li>
+        <li>Đăng ký / đăng nhập → nhận JWT</li>
+        <li>Upload ảnh (có API key) → kết quả sau ~30–90 giây/ảnh</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Xử lý sự cố thường gặp</h2>
+      <dl class="legal-faq">
+        <dt>MySQL không kết nối được</dt>
+        <dd>Kiểm tra service MySQL, biến <code>MYSQL_*</code> trong <code>.env</code>, chạy lại <code>scripts/init_mysql.sql</code> nếu DB chưa tồn tại.</dd>
+
+        <dt>Phân tích trả kết quả demo</dt>
+        <dd>Thiếu hoặc sai <code>OPENROUTER_API_KEY</code> — sửa <code>.env</code> và restart <code>python app.py</code>.</dd>
+
+        <dt>Lỗi 402 / hết credit OpenRouter</dt>
+        <dd>Nạp credit tại openrouter.ai hoặc giảm <code>OPENROUTER_MAX_TOKENS</code>.</dd>
+
+        <dt>Không đủ lượt phân tích</dt>
+        <dd>Dùng tài khoản admin hoặc nhờ admin cấp thêm lượt trên trang Quản trị.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Tài liệu liên quan</h2>
+      <ul>
+        <li><a href="/user-guide">Hướng dẫn sử dụng</a></li>
+        <li><a href="/support">Hỗ trợ</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="legal-lang legal-lang--en hidden">
+    <h1 id="legal-page-title-en">Installation Guide</h1>
+    <p class="legal-lead">Deploy <strong>{{ site.app_name }}</strong> on a server or dev machine — Python, MySQL, OpenRouter, and <code>.env</code> setup.</p>
+    <p class="legal-updated">Full documentation: <code>docs/HUONG_DAN_CAI_DAT.md</code> in the repository.</p>
+
+    <section>
+      <h2>1. System requirements</h2>
+      <ul>
+        <li><strong>OS:</strong> Windows 10/11, macOS or Linux</li>
+        <li><strong>Python:</strong> 3.10+</li>
+        <li><strong>MySQL:</strong> 8.0+ (or compatible MariaDB)</li>
+        <li><strong>RAM:</strong> ≥ 8 GB (recommended for benchmarks)</li>
+        <li><strong>Network:</strong> Internet for OpenRouter API</li>
+        <li><strong>OpenRouter:</strong> account with credits at <a href="https://openrouter.ai" rel="noopener noreferrer" target="_blank">openrouter.ai</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>2. Environment setup</h2>
+      <h3>Step 1 — Source code</h3>
+      <p>Clone or extract the project, open a terminal at the root folder.</p>
+
+      <h3>Step 2 — Python virtual environment</h3>
+      <p><strong>Windows (PowerShell):</strong></p>
+      <pre class="legal-code">python -m venv venv
+.\venv\Scripts\Activate.ps1</pre>
+      <p><strong>Linux / macOS:</strong></p>
+      <pre class="legal-code">python3 -m venv venv
+source venv/bin/activate</pre>
+
+      <h3>Step 3 — Dependencies</h3>
+      <pre class="legal-code">pip install -r requirements.txt</pre>
+
+      <h3>Step 4 — Configuration file</h3>
+      <p><strong>Windows:</strong> <code>copy .env.example .env</code><br>
+      <strong>Linux / macOS:</strong> <code>cp .env.example .env</code></p>
+    </section>
+
+    <section>
+      <h2>3. <code>.env</code> configuration</h2>
+      <h3>Required (basic run)</h3>
+      <ul>
+        <li><code>FLASK_SECRET_KEY</code> — Flask secret + JWT signing</li>
+        <li><code>MYSQL_HOST</code>, <code>MYSQL_USER</code>, <code>MYSQL_PASSWORD</code>, <code>MYSQL_DATABASE</code></li>
+        <li><code>OPENROUTER_API_KEY</code> — OpenRouter API key</li>
+      </ul>
+      <p class="hint">Without <code>OPENROUTER_API_KEY</code>, the app runs but returns <strong>demo results</strong> only.</p>
+
+      <h3>AI — image analysis (optional)</h3>
+      <ul>
+        <li><code>OPENROUTER_VISION_MODELS</code> — comma-separated vision models</li>
+        <li><code>OPENROUTER_MAX_TOKENS</code> — default <code>512</code></li>
+        <li><code>MAX_ANALYZE_IMAGES</code> — max images per upload (default <code>5</code>)</li>
+      </ul>
+
+      <h3>Google OAuth &amp; payments (optional)</h3>
+      <p>See <code>.env.example</code> for <code>GOOGLE_*</code>, <code>VIETQR_*</code>, <code>SEPAY_*</code>.</p>
+    </section>
+
+    <section>
+      <h2>4. Database initialization</h2>
+      <pre class="legal-code">mysql -u root -p &lt; scripts/init_mysql.sql</pre>
+      <p>Creates database and <code>users</code>, <code>history</code>, <code>payments</code> tables.</p>
+      <p>After first sign-up, grant admin (recommended):</p>
+      <pre class="legal-code">USE lumistyle_db;
+UPDATE users SET role = 'admin' WHERE id = 1;</pre>
+      <p>Admins are not charged analysis credits and can access the Admin page.</p>
+    </section>
+
+    <section>
+      <h2>5. Run the application</h2>
+      <p>Ensure MySQL is running, then:</p>
+      <pre class="legal-code">python app.py</pre>
+      <p>Default URL: <strong><a href="/">http://localhost:5000</a></strong></p>
+      <ul>
+        <li>Home page loads → StyleID UI appears</li>
+        <li>Sign up / sign in → JWT issued</li>
+        <li>Upload images (with API key) → results in ~30–90s per image</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Troubleshooting</h2>
+      <dl class="legal-faq">
+        <dt>Cannot connect to MySQL</dt>
+        <dd>Check MySQL service, <code>MYSQL_*</code> in <code>.env</code>, re-run <code>scripts/init_mysql.sql</code> if DB missing.</dd>
+
+        <dt>Analysis returns demo results</dt>
+        <dd>Missing or invalid <code>OPENROUTER_API_KEY</code> — fix <code>.env</code> and restart <code>python app.py</code>.</dd>
+
+        <dt>402 / out of OpenRouter credits</dt>
+        <dd>Add credits at openrouter.ai or lower <code>OPENROUTER_MAX_TOKENS</code>.</dd>
+
+        <dt>Not enough analysis credits</dt>
+        <dd>Use an admin account or ask an admin to grant credits.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Related docs</h2>
+      <ul>
+        <li><a href="/user-guide">User Guide</a></li>
+        <li><a href="/support">Support</a></li>
+      </ul>
+    </section>
+  </div>
+{% endblock %}

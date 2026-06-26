@@ -1,0 +1,129 @@
+{% set title_i18n_key = 'meta.titleSupport' %}
+{% extends 'layouts/legal_page.html' %}
+
+{% block legal_content %}
+  <div class="legal-lang legal-lang--vi">
+    <h1 id="legal-page-title">Trang hỗ trợ</h1>
+    <p class="legal-lead">Trung tâm hỗ trợ người dùng <strong>{{ site.app_name }}</strong> — liên hệ, hướng dẫn nhanh và câu hỏi thường gặp.</p>
+
+    <section class="legal-contact-card" id="contact">
+      <h2>Liên hệ</h2>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a></li>
+        <li><strong>Điện thoại:</strong> <a href="tel:{{ site.support_phone | replace(' ', '') }}">{{ site.support_phone }}</a></li>
+        <li><strong>Đơn vị:</strong> {{ site.company_name_vi }}</li>
+        <li><strong>Địa chỉ:</strong> {{ site.address }}</li>
+      </ul>
+      <p class="hint">Thời gian phản hồi dự kiến: 1–3 ngày làm việc (email).</p>
+    </section>
+
+    <section>
+      <h2>Hướng dẫn sử dụng nhanh</h2>
+      <ol>
+        <li><strong>Đăng ký / đăng nhập</strong> — tạo tài khoản hoặc dùng Google. Tài khoản mới có lượt phân tích miễn phí.</li>
+        <li><strong>Phân tích ảnh</strong> — vào «Phân tích ảnh», tải PNG/JPG/WEBP, bấm «Phân tích».</li>
+        <li><strong>Xem kết quả</strong> — món đồ, phong cách tổng thể, gợi ý dịp; có thể xem chi tiết model AI.</li>
+        <li><strong>Lịch sử &amp; thống kê</strong> — cần đăng nhập; xem lại các lần phân tích trước.</li>
+        <li><strong>Nạp thêm lượt</strong> — trang «Gói cước», quét QR chuyển khoản; hệ thống tự cộng lượt sau đối soát.</li>
+      </ol>
+      <p>Chi tiết kỹ thuật: xem tài liệu triển khai trong repository dự án (nếu bạn là quản trị viên).</p>
+    </section>
+
+    <section>
+      <h2>FAQ — Câu hỏi thường gặp</h2>
+      <dl class="legal-faq">
+        <dt>Có cần cài ứng dụng riêng không?</dt>
+        <dd>Không — dùng trình duyệt trên điện thoại hoặc máy tính. Bản mobile app (Google Play / App Store) dùng chung tài khoản và chính sách này.</dd>
+
+        <dt>Lượt phân tích là gì?</dt>
+        <dd>Mỗi lần bấm «Phân tích» (một hoặc nhiều ảnh trong cùng một lần gọi) tiêu tốn một lượt, trừ tài khoản admin.</dd>
+
+        <dt>Ảnh có được lưu không?</dt>
+        <dd>Có — ảnh lưu trên máy chủ để hiển thị trong lịch sử. Bạn có thể xóa từng bản ghi trong mục Lịch sử.</dd>
+
+        <dt>Làm sao xóa toàn bộ tài khoản?</dt>
+        <dd>Gửi email tới <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a>. Xem <a href="/data-deletion">Chính sách xóa dữ liệu</a>.</dd>
+
+        <dt>Thanh toán không được cộng lượt?</dt>
+        <dd>Kiểm tra nội dung chuyển khoản đúng mã QR. Nếu quá 24h chưa cộng, gửi email kèm mã hóa đơn và ảnh chụp giao dịch.</dd>
+
+        <dt>Đăng nhập Google lỗi?</dt>
+        <dd>Đảm bảo quản trị viên đã cấu hình Google OAuth. Thử đăng xuất, xóa cache hoặc dùng tài khoản username/password.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Tài liệu pháp lý</h2>
+      <ul>
+        <li><a href="/payment-guide">Hướng dẫn thanh toán</a></li>
+        <li><a href="/install-guide">Hướng dẫn cài đặt</a></li>
+        <li><a href="/user-guide">Hướng dẫn sử dụng</a></li>
+        <li><a href="/privacy">Chính sách quyền riêng tư</a></li>
+        <li><a href="/terms">Điều khoản sử dụng</a></li>
+        <li><a href="/data-deletion">Chính sách xóa dữ liệu</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="legal-lang legal-lang--en hidden">
+    <h1 id="legal-page-title-en">Support</h1>
+    <p class="legal-lead">User support for <strong>{{ site.app_name }}</strong> — contact, quick guide, and FAQ.</p>
+
+    <section class="legal-contact-card" id="contact">
+      <h2>Contact</h2>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a></li>
+        <li><strong>Phone:</strong> <a href="tel:{{ site.support_phone | replace(' ', '') }}">{{ site.support_phone }}</a></li>
+        <li><strong>Company:</strong> {{ site.company_name_en }}</li>
+        <li><strong>Address:</strong> {{ site.address }}</li>
+      </ul>
+      <p class="hint">Typical response time: 1–3 business days (email).</p>
+    </section>
+
+    <section>
+      <h2>Quick start</h2>
+      <ol>
+        <li><strong>Sign up / sign in</strong> — create an account or use Google. New accounts get free analysis credits.</li>
+        <li><strong>Analyze</strong> — open Analyze, upload PNG/JPG/WEBP, tap Analyze.</li>
+        <li><strong>Results</strong> — items, overall style, occasions; optional AI model trace.</li>
+        <li><strong>History &amp; stats</strong> — requires sign-in.</li>
+        <li><strong>Buy credits</strong> — Plans page, bank transfer QR; credits added after reconciliation.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+      <dl class="legal-faq">
+        <dt>Do I need a separate app install?</dt>
+        <dd>Use a browser on phone or desktop. Mobile store apps share the same account and policies.</dd>
+
+        <dt>What is an analysis credit?</dt>
+        <dd>One credit per Analyze action (one API call, possibly multiple images). Admin accounts are not charged.</dd>
+
+        <dt>Are images stored?</dt>
+        <dd>Yes — on the server for history. Delete individual records in History.</dd>
+
+        <dt>How do I delete my entire account?</dt>
+        <dd>Email <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a>. See <a href="/data-deletion">Data Deletion Policy</a>.</dd>
+
+        <dt>Payment not credited?</dt>
+        <dd>Verify the transfer memo matches the QR. If not credited within 24h, email us with invoice ID and proof of payment.</dd>
+
+        <dt>Google sign-in failed?</dt>
+        <dd>Ensure Google OAuth is configured. Try signing out, clearing cache, or username/password login.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Legal &amp; docs</h2>
+      <ul>
+        <li><a href="/payment-guide">Payment Guide</a></li>
+        <li><a href="/install-guide">Installation Guide</a></li>
+        <li><a href="/user-guide">User Guide</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/terms">Terms of Service</a></li>
+        <li><a href="/data-deletion">Data Deletion Policy</a></li>
+      </ul>
+    </section>
+  </div>
+{% endblock %}

@@ -1,0 +1,106 @@
+      <section id="pageAdmin" class="page page-admin-v2" data-i18n-aria="admin.title" aria-label="Quản trị">
+        <div class="admin-v2-glow" aria-hidden="true"></div>
+        <div class="admin-v2-layout">
+          <aside class="admin-v2-sidebar" id="adminSidebar" aria-label="Điều hướng quản trị">
+            <div class="admin-v2-sidebar-head">
+              <div class="admin-v2-brand">
+                <p class="admin-v2-brand-title">StyleID <span data-i18n="admin.brandAdmin">Admin</span></p>
+                <p class="admin-v2-brand-sub" data-i18n="admin.brandSub">AI Fashion Management</p>
+              </div>
+              <button type="button" id="btnAdminNavClose" class="admin-v2-drawer-close" data-i18n-aria="nav.closeMenu" aria-label="Đóng menu">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+              </button>
+            </div>
+            <nav class="admin-v2-nav">
+              <button type="button" class="admin-v2-nav-btn" data-adtab="dash">
+                <span class="material-symbols-outlined" aria-hidden="true">dashboard</span>
+                <span data-i18n="admin.tabDash">Tổng quan</span>
+              </button>
+              <button type="button" class="admin-v2-nav-btn is-active" data-adtab="users">
+                <span class="material-symbols-outlined" aria-hidden="true">group</span>
+                <span data-i18n="admin.tabUsers">Người dùng</span>
+              </button>
+              <button type="button" class="admin-v2-nav-btn" data-adtab="history">
+                <span class="material-symbols-outlined" aria-hidden="true">history</span>
+                <span data-i18n="admin.tabHistory">Lịch sử</span>
+              </button>
+              <button type="button" class="admin-v2-nav-btn" data-adtab="payments">
+                <span class="material-symbols-outlined" aria-hidden="true">payments</span>
+                <span data-i18n="admin.tabPayments">Thanh toán</span>
+              </button>
+              <button type="button" class="admin-v2-nav-btn" data-adtab="policies">
+                <span class="material-symbols-outlined" aria-hidden="true">policy</span>
+                <span data-i18n="admin.tabPolicies">Cấu hình chính sách</span>
+              </button>
+              <button type="button" class="admin-v2-nav-btn" data-adtab="site">
+                <span class="material-symbols-outlined" aria-hidden="true">tune</span>
+                <span data-i18n="admin.tabSite">Cấu hình site</span>
+              </button>
+              <button type="button" class="admin-v2-nav-btn" data-adtab="api">
+                <span class="material-symbols-outlined" aria-hidden="true">key</span>
+                <span data-i18n="admin.tabApi">Cấu hình API</span>
+              </button>
+              <button type="button" class="admin-v2-nav-btn" data-adtab="landing">
+                <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                <span data-i18n="admin.tabLanding">Trang chủ</span>
+              </button>
+            </nav>
+            <div class="admin-v2-sidebar-foot">
+              <a class="admin-v2-btn-support" href="/support" data-i18n="admin.supportTech">Hỗ trợ kỹ thuật</a>
+              <button type="button" class="admin-v2-btn-exit" id="btnAdminExit">
+                <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+                <span data-i18n="admin.exitApp">Về ứng dụng</span>
+              </button>
+            </div>
+          </aside>
+
+          <div class="admin-v2-main-col">
+            <header class="admin-v2-topbar">
+              <button type="button" id="btnAdminNavOpen" class="admin-v2-menu-btn" data-i18n-aria="nav.openMenu" aria-label="Mở menu" aria-expanded="false" aria-controls="adminSidebar">
+                <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+              </button>
+              <div class="admin-v2-topbar-search">
+                <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                <input type="search" id="adminV2QuickSearch" data-i18n-placeholder="admin.quickSearch" placeholder="Tìm kiếm nhanh..." autocomplete="off" aria-label="Tìm kiếm nhanh">
+              </div>
+              <div class="admin-v2-topbar-actions">
+                {% include 'partials/lang_switcher.html' %}
+                <div class="admin-v2-user-chip">
+                  <div class="admin-v2-user-text">
+                    <p id="adminV2DisplayName">Admin</p>
+                    <p id="adminV2Email">—</p>
+                  </div>
+                  <div class="admin-v2-avatar" id="adminV2Avatar" aria-hidden="true">A</div>
+                </div>
+              </div>
+            </header>
+
+            <div class="admin-v2-scroll">
+              <header class="admin-v2-page-head">
+                <div class="admin-v2-page-head-icon" aria-hidden="true">
+                  <span class="material-symbols-outlined">admin_panel_settings</span>
+                </div>
+                <div>
+                  <h2 class="admin-v2-page-title" data-i18n="admin.title">Bảng quản trị</h2>
+                  <p class="admin-v2-page-lead" data-i18n-html="admin.hint">Quản lý người dùng, lịch sử phân tích và hóa đơn nạp gói (payments) toàn hệ thống. Yêu cầu tài khoản <strong>admin</strong>.</p>
+                </div>
+              </header>
+
+              <nav class="admin-v2-tabs" aria-label="Mục quản trị">
+                <button type="button" class="admin-v2-tab" data-adtab="dash" data-i18n="admin.tabDash">Tổng quan</button>
+                <button type="button" class="admin-v2-tab is-active" data-adtab="users" data-i18n="admin.tabUsers">Người dùng</button>
+                <button type="button" class="admin-v2-tab" data-adtab="history" data-i18n="admin.tabHistory">Lịch sử</button>
+                <button type="button" class="admin-v2-tab" data-adtab="payments" data-i18n="admin.tabPayments">Thanh toán</button>
+                <button type="button" class="admin-v2-tab" data-adtab="policies" data-i18n="admin.tabPolicies">Cấu hình chính sách</button>
+                <button type="button" class="admin-v2-tab" data-adtab="site" data-i18n="admin.tabSite">Cấu hình site</button>
+                <button type="button" class="admin-v2-tab" data-adtab="api" data-i18n="admin.tabApi">Cấu hình API</button>
+                <button type="button" class="admin-v2-tab" data-adtab="landing" data-i18n="admin.tabLanding">Trang chủ</button>
+              </nav>
+
+              <p id="adminGlobalError" class="admin-v2-error hidden" role="alert"></p>
+              <div id="adminTabContent" class="admin-v2-tab-content"></div>
+            </div>
+          </div>
+        </div>
+        <div id="adminNavBackdrop" class="admin-v2-backdrop" aria-hidden="true"></div>
+      </section>

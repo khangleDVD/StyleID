@@ -1,0 +1,136 @@
+      <section id="pageProfile" class="page page-profile-v2" data-i18n-aria="profile.aria" aria-label="Thông tin cá nhân">
+        <div class="profile-v2-shell">
+          <header class="profile-v2-header">
+            <div class="profile-v2-kicker">
+              <span class="material-symbols-outlined" aria-hidden="true">account_circle</span>
+              <span data-i18n="profile.kicker">Tài khoản của bạn</span>
+            </div>
+            <h2 class="profile-v2-title" data-i18n="profile.title">Thông tin cá nhân</h2>
+            <p class="profile-v2-lead" data-i18n="profile.lead">Cập nhật ảnh đại diện, họ tên và xem thông tin tài khoản StyleID.</p>
+          </header>
+
+          <div id="profileLoginHint" class="profile-v2-glass profile-v2-guest">
+            <span class="material-symbols-outlined profile-v2-guest-icon" aria-hidden="true">lock</span>
+            <p data-i18n="profile.loginHint">Đăng nhập để xem và chỉnh sửa thông tin cá nhân.</p>
+            <a href="/login?next=profile" class="profile-v2-btn profile-v2-btn-primary">
+              <span class="material-symbols-outlined" aria-hidden="true">login</span>
+              <span data-i18n="profile.loginBtn">Đăng nhập</span>
+            </a>
+          </div>
+
+          <div id="profileContent" class="profile-v2-content hidden">
+            <div class="profile-v2-grid">
+              <aside class="profile-v2-card profile-v2-card--avatar profile-v2-glass">
+                <div class="profile-v2-avatar-wrap">
+                  <button type="button" class="profile-v2-avatar-btn" id="profileAvatarBtn" data-i18n-aria="profile.changeAvatar" aria-label="Đổi ảnh đại diện">
+                    <span class="profile-v2-avatar" id="profileAvatarPreview">
+                      <span class="profile-v2-avatar-initials" id="profileAvatarInitials">?</span>
+                      <img id="profileAvatarImg" class="profile-v2-avatar-img hidden" alt="" decoding="async">
+                    </span>
+                    <span class="profile-v2-avatar-overlay">
+                      <span class="material-symbols-outlined" aria-hidden="true">photo_camera</span>
+                    </span>
+                  </button>
+                  <input type="file" id="profileAvatarInput" class="hidden" accept="image/png,image/jpeg,image/jpg,image/webp" aria-hidden="true">
+                </div>
+                <p class="profile-v2-avatar-name" id="profileDisplayName">—</p>
+                <p class="profile-v2-avatar-role" id="profileRoleLabel">—</p>
+                <div class="profile-v2-avatar-actions">
+                  <button type="button" class="profile-v2-btn profile-v2-btn-outline" id="profileChangeAvatarBtn">
+                    <span class="material-symbols-outlined" aria-hidden="true">upload</span>
+                    <span data-i18n="profile.changeAvatar">Đổi ảnh</span>
+                  </button>
+                  <button type="button" class="profile-v2-btn profile-v2-btn-ghost" id="profileRemoveAvatarBtn">
+                    <span class="material-symbols-outlined" aria-hidden="true">delete</span>
+                    <span data-i18n="profile.removeAvatar">Xóa ảnh</span>
+                  </button>
+                </div>
+                <p class="profile-v2-avatar-hint" data-i18n="profile.avatarHint">PNG, JPG hoặc WEBP · tối đa 2MB</p>
+              </aside>
+
+              <div class="profile-v2-card profile-v2-glass profile-v2-form-card">
+                <h3 class="profile-v2-section-title">
+                  <span class="material-symbols-outlined" aria-hidden="true">badge</span>
+                  <span data-i18n="profile.sectionInfo">Thông tin cơ bản</span>
+                </h3>
+                <form id="profileForm" class="profile-v2-form" novalidate>
+                  <div class="profile-v2-field">
+                    <label for="profileFullName" data-i18n="profile.fullName">Họ và tên</label>
+                    <input type="text" id="profileFullName" name="full_name" maxlength="100" autocomplete="name" required>
+                  </div>
+                  <div class="profile-v2-field">
+                    <label for="profileUsername" data-i18n="profile.username">Tên đăng nhập</label>
+                    <input type="text" id="profileUsername" readonly disabled>
+                  </div>
+                  <div class="profile-v2-field">
+                    <label for="profileEmail" data-i18n="profile.email">Email</label>
+                    <input type="email" id="profileEmail" readonly disabled>
+                    <p class="profile-v2-field-hint" id="profileEmailHint" data-i18n="profile.emailHint">Email từ tài khoản Google không thể đổi tại đây.</p>
+                  </div>
+                  <p id="profileError" class="profile-v2-error hidden" role="alert"></p>
+                  <p id="profileSuccess" class="profile-v2-success hidden" role="status"></p>
+                  <div class="profile-v2-form-actions">
+                    <button type="submit" class="profile-v2-btn profile-v2-btn-primary" id="profileSaveBtn">
+                      <span class="material-symbols-outlined" aria-hidden="true">save</span>
+                      <span data-i18n="profile.save">Lưu thay đổi</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="profile-v2-card profile-v2-glass profile-v2-stats-card">
+                <h3 class="profile-v2-section-title">
+                  <span class="material-symbols-outlined" aria-hidden="true">insights</span>
+                  <span data-i18n="profile.sectionStats">Tổng quan tài khoản</span>
+                </h3>
+                <dl class="profile-v2-meta">
+                  <div class="profile-v2-meta-row">
+                    <dt data-i18n="profile.credits">Lượt phân tích</dt>
+                    <dd id="profileCredits">—</dd>
+                  </div>
+                  <div class="profile-v2-meta-row">
+                    <dt data-i18n="profile.memberSince">Tham gia từ</dt>
+                    <dd id="profileMemberSince">—</dd>
+                  </div>
+                  <div class="profile-v2-meta-row">
+                    <dt data-i18n="profile.accountType">Loại tài khoản</dt>
+                    <dd id="profileAccountType">—</dd>
+                  </div>
+                </dl>
+                <div class="profile-v2-quick-links">
+                  <a href="/change-password" class="profile-v2-link-btn" id="profileChangePwdLink">
+                    <span class="material-symbols-outlined" aria-hidden="true">key</span>
+                    <span data-i18n="auth.changePassword">Đổi mật khẩu</span>
+                  </a>
+                  <button type="button" class="profile-v2-link-btn profile-v2-link-btn--danger" id="profileLogoutBtn">
+                    <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+                    <span data-i18n="auth.logout">Đăng xuất</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="profile-v2-card profile-v2-glass profile-v2-danger-card" id="profileDangerZone">
+                <h3 class="profile-v2-section-title profile-v2-section-title--danger">
+                  <span class="material-symbols-outlined" aria-hidden="true">warning</span>
+                  <span data-i18n="profile.dangerZone">Vùng nguy hiểm</span>
+                </h3>
+                <p class="profile-v2-danger-lead" data-i18n="profile.deleteLead">Yêu cầu xóa tài khoản sẽ chuyển tài khoản sang trạng thái chờ xóa trong 30 ngày. Bạn có thể khôi phục trong thời gian này.</p>
+                <div id="profilePendingDeleteNotice" class="profile-v2-pending-notice hidden" role="status">
+                  <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                  <p id="profilePendingDeleteText"></p>
+                </div>
+                <div class="profile-v2-danger-actions">
+                  <button type="button" class="profile-v2-btn profile-v2-btn-danger" id="profileDeleteAccountBtn">
+                    <span class="material-symbols-outlined" aria-hidden="true">delete_forever</span>
+                    <span data-i18n="profile.requestDelete">Yêu cầu xóa tài khoản</span>
+                  </button>
+                </div>
+                <div class="profile-v2-field profile-v2-field--optional">
+                  <label for="profileDeleteReason" data-i18n="profile.deleteReason">Lý do xóa (tùy chọn)</label>
+                  <textarea id="profileDeleteReason" rows="2" maxlength="500" data-i18n-placeholder="profile.deleteReasonPh" placeholder="Chia sẻ lý do nếu bạn muốn…"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

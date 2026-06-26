@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+
+{% block head %}
+<script>
+  (function () {
+    var t = document.querySelector('title');
+    if (t) t.setAttribute('data-i18n', '{{ title_i18n_key }}');
+    document.documentElement.setAttribute('data-i18n-title-key', '{{ title_i18n_key }}');
+  })();
+</script>
+{% endblock %}
+
+{% block body %}
+  <main class="legal-shell" role="main">
+    <header class="legal-topbar">
+      <a class="legal-brand" href="/" data-i18n-aria="common.home" aria-label="Về trang chủ">{{ site.app_name }}</a>
+      {% include 'partials/lang_switcher.html' %}
+    </header>
+
+    <article class="legal-document" aria-labelledby="legal-page-title">
+      {% block legal_content %}{% endblock %}
+    </article>
+
+    {% include 'partials/footer.html' %}
+  </main>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/legal-page.js"></script>
+{% endblock %}

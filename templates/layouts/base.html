@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title data-i18n="meta.title">{% block title %}Nhận dạng phong cách thời trang{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/mobile-responsive.css">
+  <link rel="stylesheet" href="/static/css/footer-v2.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+  <script>
+    (function(){
+      var l = localStorage.getItem('language') || localStorage.getItem('styleid_lang') || 'vi';
+      if (l === 'en' || l === 'vi') document.documentElement.lang = l;
+      document.documentElement.classList.remove('theme-light');
+    })();
+  </script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  {% include 'partials/svg_sprite.html' %}
+  {% block body %}{% endblock %}
+  <script src="/static/js/i18n.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
+

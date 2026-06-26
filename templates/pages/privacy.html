@@ -1,0 +1,198 @@
+{% set title_i18n_key = 'meta.titlePrivacy' %}
+{% extends 'layouts/legal_page.html' %}
+
+{% block legal_content %}
+  <div class="legal-lang legal-lang--vi">
+    <h1 id="legal-page-title">Chính sách bảo mật &amp; quyền riêng tư</h1>
+    <p class="legal-lead">Chính sách quyền riêng tư và bảo vệ dữ liệu khi sử dụng <strong>{{ site.app_name }}</strong>.</p>
+    <p class="legal-updated">Cập nhật lần cuối: 14/06/2026</p>
+
+    <section>
+      <h2>1. Giới thiệu</h2>
+      <p>Chính sách này mô tả cách <strong>{{ site.app_name }}</strong> (ứng dụng/web) thu thập, sử dụng, lưu trữ và bảo vệ dữ liệu cá nhân khi bạn sử dụng dịch vụ nhận dạng phong cách thời trang bằng AI.</p>
+      <p>Bằng việc đăng ký, đăng nhập hoặc sử dụng dịch vụ, bạn đồng ý với các điều khoản trong chính sách này.</p>
+    </section>
+
+    <section>
+      <h2>2. Nhà phát triển / Đơn vị vận hành</h2>
+      <ul>
+        <li><strong>Đơn vị:</strong> {{ site.company_name_vi }}</li>
+        <li><strong>Mã số thuế:</strong> {{ site.tax_id }}</li>
+        <li><strong>Người đại diện:</strong> {{ site.representative }}</li>
+        <li><strong>Địa chỉ:</strong> {{ site.address }}</li>
+        <li><strong>Email hỗ trợ:</strong> <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a></li>
+        <li><strong>Điện thoại:</strong> <a href="tel:{{ site.support_phone | replace(' ', '') }}">{{ site.support_phone }}</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Dữ liệu được thu thập</h2>
+      <p>Chúng tôi có thể thu thập các loại dữ liệu sau:</p>
+      <ul>
+        <li><strong>Tài khoản:</strong> tên đăng nhập, họ tên (tùy chọn), mật khẩu (đã băm — không lưu dạng văn bản thuần), vai trò tài khoản, số lượt phân tích còn lại.</li>
+        <li><strong>Đăng nhập Google:</strong> mã định danh Google (sub), email và tên hiển thị từ Google khi bạn chọn đăng nhập bằng Google.</li>
+        <li><strong>Ảnh trang phục:</strong> ảnh bạn tải lên để phân tích (PNG, JPG, WEBP), được lưu trên máy chủ để hiển thị lịch sử.</li>
+        <li><strong>Kết quả phân tích:</strong> dữ liệu JSON do AI trả về (món đồ, phong cách, gợi ý…) được lưu kèm lịch sử phân tích.</li>
+        <li><strong>Thanh toán / nạp gói:</strong> mã gói, số lượt, số tiền, trạng thái hóa đơn, nội dung chuyển khoản, mã giao dịch đối soát (SePay) — <em>không</em> lưu số thẻ ngân hàng hay thông tin thẻ tín dụng.</li>
+        <li><strong>Kỹ thuật (tối thiểu):</strong> token phiên đăng nhập (JWT) trên thiết bị của bạn; tùy chọn ngôn ngữ và giao diện trong <code>localStorage</code> trình duyệt.</li>
+      </ul>
+      <p>Chúng tôi <strong>không</strong> sử dụng Firebase Analytics, Facebook Pixel hay công cụ quảng cáo theo dõi hành vi trong phiên bản hiện tại.</p>
+    </section>
+
+    <section>
+      <h2>4. Mục đích sử dụng dữ liệu</h2>
+      <ul>
+        <li>Cung cấp và vận hành dịch vụ phân tích ảnh, lịch sử, thống kê cá nhân.</li>
+        <li>Xác thực tài khoản, quản lý phiên đăng nhập và phân quyền (người dùng / quản trị).</li>
+        <li>Trừ lượt phân tích, nạp gói và đối soát thanh toán chuyển khoản.</li>
+        <li>Hỗ trợ kỹ thuật, xử lý khiếu nại và yêu cầu xóa dữ liệu.</li>
+        <li>Cải thiện chất lượng dịch vụ (ví dụ: chuẩn hóa nhãn thời trang trong phạm vi hệ thống).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Chia sẻ với bên thứ ba</h2>
+      <p>Chúng tôi <strong>không bán</strong> dữ liệu cá nhân. Dữ liệu có thể được xử lý bởi các bên sau chỉ khi cần thiết cho dịch vụ:</p>
+      <ul>
+        <li><strong>Google:</strong> OAuth đăng nhập (theo chính sách của Google).</li>
+        <li><strong>OpenRouter:</strong> gửi ảnh và prompt để mô hình AI vision phân tích trang phục; gửi ngữ cảnh text khi bạn yêu cầu gợi ý mix.</li>
+        <li><strong>SePay:</strong> đối soát giao dịch chuyển khoản nạp gói (không nhận ảnh hay mật khẩu tài khoản).</li>
+        <li><strong>Nhà cung cấp hạ tầng:</strong> máy chủ / cơ sở dữ liệu MySQL nơi bạn triển khai ứng dụng.</li>
+      </ul>
+      <p>Chúng tôi có thể tiết lộ dữ liệu khi pháp luật yêu cầu hoặc để bảo vệ quyền lợi hợp pháp của đơn vị vận hành.</p>
+    </section>
+
+    <section>
+      <h2>6. Lưu trữ và bảo mật</h2>
+      <p>Ảnh và lịch sử được lưu trên máy chủ do đơn vị vận hành kiểm soát. Mật khẩu được băm bằng thuật toán tiêu chuẩn. Kết nối API nên dùng HTTPS khi triển khai production.</p>
+      <p>Thời gian lưu trữ: cho đến khi bạn xóa bản ghi lịch sử, yêu cầu xóa tài khoản, hoặc chúng tôi xóa theo chính sách lưu trữ nội bộ.</p>
+    </section>
+
+    <section>
+      <h2>7. Cookie và bộ nhớ cục bộ</h2>
+      <p>Ứng dụng chủ yếu dùng <code>localStorage</code> để lưu ngôn ngữ (<code>styleid_lang</code>), giao diện (<code>styleid_theme</code>), token đăng nhập và thông tin phiên. Không dùng cookie quảng cáo.</p>
+    </section>
+
+    <section>
+      <h2>8. Quyền của người dùng</h2>
+      <p>Bạn có quyền:</p>
+      <ul>
+        <li>Truy cập, xem lịch sử phân tích và thống kê trong tài khoản.</li>
+        <li>Xóa từng bản ghi lịch sử trong ứng dụng.</li>
+        <li>Đổi mật khẩu (tài khoản username/password).</li>
+        <li>Yêu cầu xóa toàn bộ tài khoản và dữ liệu liên quan — xem <a href="/data-deletion">Chính sách xóa dữ liệu</a>.</li>
+        <li>Rút lại sự đồng ý bằng cách ngừng sử dụng và yêu cầu xóa tài khoản.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>9. Trẻ em</h2>
+      <p>Dịch vụ không hướng tới người dưới 13 tuổi. Chúng tôi không cố ý thu thập dữ liệu trẻ em. Nếu phát hiện, vui lòng liên hệ để xóa.</p>
+    </section>
+
+    <section>
+      <h2>10. Thay đổi chính sách</h2>
+      <p>Chúng tôi có thể cập nhật chính sách này. Phiên bản mới sẽ đăng tại URL này kèm ngày cập nhật. Tiếp tục sử dụng dịch vụ sau khi cập nhật đồng nghĩa bạn chấp nhận thay đổi.</p>
+    </section>
+
+    <section>
+      <h2>11. Liên hệ</h2>
+      <p>Mọi câu hỏi về quyền riêng tư, gửi email tới <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> hoặc gọi {{ site.support_phone }}.</p>
+    </section>
+  </div>
+
+  <div class="legal-lang legal-lang--en hidden">
+    <h1 id="legal-page-title-en">Privacy &amp; Security Policy</h1>
+    <p class="legal-lead">Privacy and data protection when using <strong>{{ site.app_name }}</strong>.</p>
+    <p class="legal-updated">Last updated: June 14, 2026</p>
+
+    <section>
+      <h2>1. Introduction</h2>
+      <p>This policy describes how <strong>{{ site.app_name }}</strong> collects, uses, stores, and protects personal data when you use our AI-powered fashion style recognition service.</p>
+      <p>By registering, signing in, or using the service, you agree to this policy.</p>
+    </section>
+
+    <section>
+      <h2>2. Developer / Operator</h2>
+      <ul>
+        <li><strong>Company:</strong> {{ site.company_name_en }}</li>
+        <li><strong>Tax ID:</strong> {{ site.tax_id }}</li>
+        <li><strong>Representative:</strong> {{ site.representative }}</li>
+        <li><strong>Address:</strong> {{ site.address }}</li>
+        <li><strong>Support email:</strong> <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a></li>
+        <li><strong>Phone:</strong> <a href="tel:{{ site.support_phone | replace(' ', '') }}">{{ site.support_phone }}</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Data we collect</h2>
+      <ul>
+        <li><strong>Account:</strong> username, optional full name, hashed password (never stored in plain text), role, analysis credit balance.</li>
+        <li><strong>Google Sign-In:</strong> Google user ID (sub), email and display name when you choose Google login.</li>
+        <li><strong>Outfit images:</strong> photos you upload for analysis (PNG, JPG, WEBP), stored on the server for history display.</li>
+        <li><strong>Analysis results:</strong> AI JSON output (items, styles, suggestions) saved with your history.</li>
+        <li><strong>Payments:</strong> package key, credits, amount, invoice status, transfer memo, SePay reconciliation ID — <em>no</em> card or PAN data.</li>
+        <li><strong>Technical (minimal):</strong> login token (JWT) on your device; language and theme preferences in browser <code>localStorage</code>.</li>
+      </ul>
+      <p>We do <strong>not</strong> use Firebase Analytics, Facebook Pixel, or behavioral ad trackers in the current version.</p>
+    </section>
+
+    <section>
+      <h2>4. How we use data</h2>
+      <ul>
+        <li>Provide image analysis, history, and personal statistics.</li>
+        <li>Authenticate accounts, manage sessions, and roles (user / admin).</li>
+        <li>Deduct credits, sell plans, and reconcile bank transfers.</li>
+        <li>Technical support, complaints, and data deletion requests.</li>
+        <li>Improve service quality within the deployed system.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Third-party sharing</h2>
+      <p>We do <strong>not sell</strong> personal data. Data may be processed by:</p>
+      <ul>
+        <li><strong>Google:</strong> OAuth sign-in (subject to Google's policies).</li>
+        <li><strong>OpenRouter:</strong> images and prompts for vision AI analysis; text context for mix suggestions.</li>
+        <li><strong>SePay:</strong> payment reconciliation (no images or account passwords).</li>
+        <li><strong>Infrastructure providers:</strong> server and MySQL where you host the app.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Storage and security</h2>
+      <p>Images and history are stored on operator-controlled servers. Passwords are hashed. Use HTTPS in production.</p>
+      <p>Retention: until you delete history records, request account deletion, or we delete per internal policy.</p>
+    </section>
+
+    <section>
+      <h2>7. Cookies and local storage</h2>
+      <p>We mainly use <code>localStorage</code> for language (<code>styleid_lang</code>), theme (<code>styleid_theme</code>), tokens, and session info. No advertising cookies.</p>
+    </section>
+
+    <section>
+      <h2>8. Your rights</h2>
+      <ul>
+        <li>Access your analysis history and statistics.</li>
+        <li>Delete individual history records in the app.</li>
+        <li>Change password (username/password accounts).</li>
+        <li>Request full account deletion — see our <a href="/data-deletion">Data Deletion Policy</a>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>9. Children</h2>
+      <p>The service is not directed at children under 13. Contact us to remove any child data discovered.</p>
+    </section>
+
+    <section>
+      <h2>10. Policy changes</h2>
+      <p>We may update this policy. The latest version will be posted here with the update date.</p>
+    </section>
+
+    <section>
+      <h2>11. Contact</h2>
+      <p>Privacy questions: <a href="mailto:{{ site.support_email }}">{{ site.support_email }}</a> or {{ site.support_phone }}.</p>
+    </section>
+  </div>
+{% endblock %}
