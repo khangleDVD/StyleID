@@ -16,7 +16,7 @@ try:
     import mysql.connector
     from mysql.connector import Error as _MySQLError
     from mysql.connector import IntegrityError as _MySQLIntegrityError
-except ImportError:  # pragma: no cover
+except Exception:  # pragma: no cover
     mysql = None
     _MySQLError = Exception
     _MySQLIntegrityError = Exception

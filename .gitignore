@@ -34,7 +34,8 @@ eval_results/
 # --- Benchmark ảnh AI (Excel local) ---
 Benchmark Anh AI.xlsx
 
-# --- Flutter mobile app (moble) ---
+# --- Flutter mobile app (không deploy lên Vercel) ---
+app_web_view/
 moble/.dart_tool/
 moble/build/
 moble/android/.gradle/
