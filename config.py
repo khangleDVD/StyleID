@@ -30,6 +30,48 @@ def _env_int(key: str, default: int, *, base: int = 10) -> int:
         return default
 
 
+_MYSQL_PLACEHOLDER_HOSTS = frozenset({
+    'host', 'your-host', 'your_host', 'database-host', 'db-host', 'db_host',
+    'mysql', 'changeme', 'example.com', 'hostname',
+})
+
+
+def _mysql_host_is_valid(host: str) -> bool:
+    h = (host or '').strip()
+    if not h:
+        return False
+    hl = h.lower()
+    if hl in _MYSQL_PLACEHOLDER_HOSTS:
+        return False
+    # Trên Vercel không thể kết nối MySQL local/XAMPP
+    if _ON_VERCEL and hl in ('localhost', '127.0.0.1'):
+        return False
+    return True
+
+
+def mysql_configured() -> bool:
+    return (
+        _mysql_host_is_valid(_env_str('MYSQL_HOST'))
+        and bool(_env_str('MYSQL_USER'))
+        and bool(_env_str('MYSQL_DATABASE'))
+    )
+
+
+def _resolve_db_engine() -> str:
+    requested = (_env_str('DB_ENGINE') or ('sqlite' if _ON_VERCEL else 'mysql')).lower()
+    if requested == 'sqlite':
+        return 'sqlite'
+    if requested == 'mysql':
+        if mysql_configured():
+            return 'mysql'
+        print(
+            '[DB] DB_ENGINE=mysql but MYSQL_HOST/USER/DATABASE invalid '
+            f'(MYSQL_HOST={_env_str("MYSQL_HOST")!r}) — using SQLite.'
+        )
+        return 'sqlite'
+    return requested
+
+
 class Config:
     SECRET_KEY = _env_str('FLASK_SECRET_KEY', 'dev-secret-key-change-in-production')
     UPLOAD_FOLDER = (
@@ -57,7 +99,7 @@ class Config:
     OPENROUTER_VISION_MODEL_WEIGHTS = _env_str('OPENROUTER_VISION_MODEL_WEIGHTS')
     #  bước hợp nhất món hiện thực hiện hoàn toàn bằng code (xem ai_service._code_merge_detection_outputs).
     # Database: mysql (production) | sqlite (local, không cần XAMPP)
-    DB_ENGINE = (_env_str('DB_ENGINE') or ('sqlite' if _ON_VERCEL else 'mysql')).lower()
+    DB_ENGINE = _resolve_db_engine()
     SQLITE_PATH = (
         _env_str('SQLITE_PATH')
         or (_vercel_tmp_path('styleid.db') if _ON_VERCEL else 'data/styleid.db')
