@@ -216,9 +216,85 @@ def _init_sqlite(conn):
     conn.commit()
 
 
-def _ensure_mysql_payments_table(conn):
+def _mysql_table_exists(cur, table: str) -> bool:
+    cur.execute(
+        """
+        SELECT 1 FROM information_schema.TABLES
+        WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = %s
+        LIMIT 1
+        """,
+        (table,),
+    )
+    return cur.fetchone() is not None
+
+
+def _init_mysql(conn):
+    """Tao schema day du tren MySQL (Railway / cloud) neu chua co bang."""
     cur = conn.cursor()
     try:
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS users (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                username VARCHAR(50) NOT NULL UNIQUE,
+                password VARCHAR(255) NULL,
+                full_name VARCHAR(100) NULL,
+                role VARCHAR(20) NOT NULL DEFAULT 'user',
+                account_status VARCHAR(20) NOT NULL DEFAULT 'active',
+                delete_requested_at DATETIME NULL,
+                delete_scheduled_at DATETIME NULL,
+                delete_reason TEXT NULL,
+                delete_cancelled_at DATETIME NULL,
+                deleted_at DATETIME NULL,
+                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                google_id VARCHAR(255) NULL UNIQUE,
+                email VARCHAR(255) NULL,
+                email_verified TINYINT NOT NULL DEFAULT 0,
+                force_change_password TINYINT NOT NULL DEFAULT 0,
+                analysis_credits INT NOT NULL DEFAULT 5,
+                avatar_path VARCHAR(255) NULL,
+                INDEX idx_users_account_status (account_status),
+                INDEX idx_users_delete_scheduled (delete_scheduled_at)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+            """
+        )
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS auth_otp_sessions (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                session_token VARCHAR(64) NOT NULL UNIQUE,
+                purpose VARCHAR(32) NOT NULL,
+                email VARCHAR(255) NOT NULL,
+                username VARCHAR(50) NULL,
+                full_name VARCHAR(100) NULL,
+                password_hash VARCHAR(255) NULL,
+                user_id INT NULL,
+                otp_hash VARCHAR(255) NOT NULL,
+                wrong_attempts INT NOT NULL DEFAULT 0,
+                resend_count INT NOT NULL DEFAULT 0,
+                resend_window_start DATETIME NULL,
+                expires_at DATETIME NOT NULL,
+                created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                INDEX idx_auth_otp_token (session_token),
+                INDEX idx_auth_otp_email (email)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+            """
+        )
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS history (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                user_id INT NULL,
+                image_path TEXT NULL,
+                analysis_result JSON NULL,
+                timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                INDEX idx_history_user (user_id),
+                INDEX idx_history_timestamp (timestamp),
+                CONSTRAINT fk_history_user FOREIGN KEY (user_id) REFERENCES users(id)
+                    ON DELETE CASCADE ON UPDATE CASCADE
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+            """
+        )
         cur.execute(
             """
             CREATE TABLE IF NOT EXISTS payments (
@@ -235,11 +311,21 @@ def _ensure_mysql_payments_table(conn):
                 completed_at DATETIME NULL,
                 INDEX idx_payments_user (user_id),
                 INDEX idx_payments_status (status),
-                INDEX idx_payments_expires (expires_at)
-            )
+                INDEX idx_payments_expires (expires_at),
+                CONSTRAINT fk_payments_user FOREIGN KEY (user_id) REFERENCES users(id)
+                    ON DELETE CASCADE ON UPDATE CASCADE
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+            """
+        )
+        cur.execute(
+            """
+            UPDATE users SET email_verified = 1
+            WHERE email_verified = 0 AND (password IS NOT NULL OR google_id IS NOT NULL)
             """
         )
         conn.commit()
+        if _mysql_table_exists(cur, 'users'):
+            print('[DB] MySQL schema ready (users, auth_otp_sessions, history, payments).')
     finally:
         cur.close()
 
@@ -348,7 +434,7 @@ def _ensure_mysql_auth_schema(conn):
 
 
 def init_database():
-    """Khởi tạo schema (SQLite) hoặc đảm bảo bảng payments + auth (MySQL)."""
+    """Khoi tao schema (SQLite) hoac tao/migrate bang (MySQL)."""
     conn = get_db()
     try:
         if is_sqlite():
@@ -367,7 +453,7 @@ def init_database():
             finally:
                 cur.close()
         else:
-            _ensure_mysql_payments_table(conn)
+            _init_mysql(conn)
             _ensure_mysql_auth_schema(conn)
             _ensure_account_deletion_schema(conn)
     finally:
