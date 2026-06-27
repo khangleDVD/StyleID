@@ -188,29 +188,55 @@ def _apply_history_media_urls(row: dict) -> dict:
     return row
 
 
-def _google_redirect_uri():
-    """URI callback gửi Google — phải khớp 100% mục Authorized redirect URIs trên Google Cloud Console."""
-    configured = (Config.GOOGLE_REDIRECT_URI or '').strip()
-    if configured:
-        low = configured.lower()
-        if ('localhost' in low or '127.0.0.1' in low):
-            scheme = (request.headers.get('X-Forwarded-Proto') or request.scheme or 'https').split(',')[0].strip()
-            host = (request.headers.get('X-Forwarded-Host') or request.host or '').split(',')[0].strip()
-            if host and 'localhost' not in host and '127.0.0.1' not in host:
-                return f'{scheme}://{host}/api/auth/google/callback'
-        return configured
+def _request_base_url() -> str:
     scheme = (request.headers.get('X-Forwarded-Proto') or request.scheme or 'https').split(',')[0].strip()
     host = (request.headers.get('X-Forwarded-Host') or request.host or '').split(',')[0].strip()
     if host:
-        return f'{scheme}://{host}/api/auth/google/callback'
+        return f'{scheme}://{host}'.rstrip('/')
+    return ''
+
+
+def _is_dev_tunnel_url(url: str) -> bool:
+    low = (url or '').lower()
+    return any(x in low for x in ('ngrok', 'ngrok-free.dev', 'localhost', '127.0.0.1'))
+
+
+def _on_vercel() -> bool:
+    return bool(os.getenv('VERCEL') or os.getenv('VERCEL_ENV'))
+
+
+def _google_redirect_uri():
+    """URI callback gửi Google — phải khớp 100% mục Authorized redirect URIs trên Google Cloud Console."""
+    dynamic = f'{_request_base_url()}/api/auth/google/callback' if _request_base_url() else ''
+    configured = (Config.GOOGLE_REDIRECT_URI or '').strip()
+
+    # Production (Vercel): không dùng ngrok/localhost cũ trong .env
+    if configured and (_on_vercel() or (_request_base_url() and _is_dev_tunnel_url(configured))):
+        cfg_host = (urlparse(configured).netloc or '').lower()
+        req_host = (urlparse(_request_base_url()).netloc or '').lower()
+        if _is_dev_tunnel_url(configured) or (req_host and cfg_host and cfg_host != req_host):
+            if dynamic:
+                return dynamic
+
+    if configured:
+        low = configured.lower()
+        if ('localhost' in low or '127.0.0.1' in low):
+            if dynamic and 'localhost' not in dynamic.lower() and '127.0.0.1' not in dynamic.lower():
+                return dynamic
+        return configured
+    if dynamic:
+        return dynamic
     return url_for('auth_google_callback', _external=True)
 
 
 def _frontend_base_url():
-    """URL giao diện sau OAuth — ưu tiên host thực tế của request (ngrok/LAN), tránh localhost trên điện thoại."""
-    root = (request.url_root or '').rstrip('/')
+    """URL giao diện sau OAuth — ưu tiên host thực tế của request (Vercel / LAN)."""
+    root = _request_base_url()
     configured = (Config.FRONTEND_URL or '').strip().rstrip('/')
     if configured:
+        if (_on_vercel() or (root and _is_dev_tunnel_url(configured))) and root:
+            if _is_dev_tunnel_url(configured) or urlparse(configured).netloc != urlparse(root).netloc:
+                return root
         low = configured.lower()
         if ('localhost' in low or '127.0.0.1' in low) and root:
             root_low = root.lower()
