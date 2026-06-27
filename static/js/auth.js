@@ -65,8 +65,8 @@ function initPasswordToggles(root) {
     if (btn.dataset.pwdToggleBound) return;
     btn.dataset.pwdToggleBound = '1';
     btn.addEventListener('click', () => {
-      const wrap = btn.closest('.auth-input-wrap');
-      const input = wrap && wrap.querySelector('input');
+      const wrap = btn.closest('.auth-input-wrap, .register-v2-input-wrap, .login-v2-input-wrap');
+      const input = wrap?.querySelector('input');
       if (!input) return;
       const visible = input.type === 'password';
       input.type = visible ? 'text' : 'password';
