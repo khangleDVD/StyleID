@@ -49,11 +49,26 @@ def _mysql_host_is_valid(host: str) -> bool:
     return True
 
 
+def mysql_connection_settings() -> dict:
+    """Doc cau hinh MySQL tu DB_* (Railway / Vercel)."""
+    port_raw = _env_str('DB_PORT')
+    return {
+        'host': _env_str('DB_HOST'),
+        'port': int(port_raw) if port_raw else 3306,
+        'user': _env_str('DB_USER'),
+        'password': _env_str('DB_PASSWORD'),
+        'database': _env_str('DB_NAME'),
+    }
+
+
 def mysql_configured() -> bool:
-    host = _env_str('DB_HOST') or _env_str('MYSQL_HOST')
-    user = _env_str('DB_USER') or _env_str('MYSQL_USER')
-    database = _env_str('DB_NAME') or _env_str('MYSQL_DATABASE')
-    return _mysql_host_is_valid(host) and bool(user) and bool(database)
+    cfg = mysql_connection_settings()
+    return (
+        _mysql_host_is_valid(cfg['host'])
+        and bool(cfg['user'])
+        and bool(cfg['database'])
+        and bool(cfg['password'])
+    )
 
 
 def _resolve_db_engine() -> str:
@@ -64,8 +79,8 @@ def _resolve_db_engine() -> str:
         if mysql_configured():
             return 'mysql'
         print(
-            '[DB] DB_ENGINE=mysql but DB_HOST/DB_USER/DB_NAME invalid '
-            f'(DB_HOST={_env_str("DB_HOST") or _env_str("MYSQL_HOST")!r}) — using SQLite.'
+            '[DB] DB_ENGINE=mysql but MySQL config incomplete '
+            f'(host={mysql_connection_settings().get("host")!r}) — using SQLite.'
         )
         return 'sqlite'
     return requested
@@ -103,12 +118,13 @@ class Config:
         _env_str('SQLITE_PATH')
         or (_vercel_tmp_path('styleid.db') if _ON_VERCEL else 'data/styleid.db')
     )
-    # MySQL — khi DB_ENGINE=mysql (Vercel / production dùng DB_*)
-    DB_HOST = _env_str('DB_HOST') or _env_str('MYSQL_HOST', 'localhost')
-    DB_PORT = _env_int('DB_PORT', 3306)
-    DB_USER = _env_str('DB_USER') or _env_str('MYSQL_USER', 'root')
-    DB_PASSWORD = _env_str('DB_PASSWORD') or _env_str('MYSQL_PASSWORD')
-    DB_NAME = _env_str('DB_NAME') or _env_str('MYSQL_DATABASE', 'lumistyle_db')
+    # MySQL — DB_* (Railway / Vercel)
+    _MYSQL = mysql_connection_settings()
+    DB_HOST = _MYSQL['host']
+    DB_PORT = _MYSQL['port']
+    DB_USER = _MYSQL['user']
+    DB_PASSWORD = _MYSQL['password']
+    DB_NAME = _MYSQL['database']
     # Alias cũ (tương thích README / template)
     MYSQL_HOST = DB_HOST
     MYSQL_USER = DB_USER

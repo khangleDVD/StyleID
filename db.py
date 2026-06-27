@@ -189,14 +189,13 @@ def get_db():
     if mysql is None:
         raise DatabaseError('mysql-connector-python chua cai. Chay: pip install mysql-connector-python')
     try:
-        port_raw = os.getenv('DB_PORT') or os.getenv('MYSQL_PORT') or '3306'
-        port = int(port_raw) if port_raw and str(port_raw).strip() else 3306
+        port_raw = (os.getenv('DB_PORT') or '3306').strip()
         return mysql.connector.connect(
-            host=os.getenv('DB_HOST') or os.getenv('MYSQL_HOST'),
-            port=port,
-            user=os.getenv('DB_USER') or os.getenv('MYSQL_USER'),
-            password=os.getenv('DB_PASSWORD') or os.getenv('MYSQL_PASSWORD'),
-            database=os.getenv('DB_NAME') or os.getenv('MYSQL_DATABASE'),
+            host=(os.getenv('DB_HOST') or '').strip(),
+            port=int(port_raw),
+            user=(os.getenv('DB_USER') or '').strip(),
+            password=os.getenv('DB_PASSWORD') or '',
+            database=(os.getenv('DB_NAME') or '').strip(),
         )
     except _MySQLError as e:
         raise DatabaseError(str(e)) from e
