@@ -347,9 +347,19 @@ def _sqlite_column_exists(cur, table: str, column: str) -> bool:
     return any(row[1] == column for row in cur.fetchall())
 
 
+def _sqlite_table_exists(cur, table: str) -> bool:
+    cur.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=? LIMIT 1",
+        (table,),
+    )
+    return cur.fetchone() is not None
+
+
 def _ensure_sqlite_avatar_column(conn):
     cur = conn.cursor()
     try:
+        if not _sqlite_table_exists(cur, 'users'):
+            return
         if not _sqlite_column_exists(cur, 'users', 'avatar_path'):
             cur.execute('ALTER TABLE users ADD COLUMN avatar_path TEXT NULL')
         conn.commit()
@@ -361,6 +371,8 @@ def _ensure_account_deletion_schema(conn):
     cur = conn.cursor()
     try:
         if is_sqlite():
+            if not _sqlite_table_exists(cur, 'users'):
+                return
             cols = [
                 ('account_status', "TEXT NOT NULL DEFAULT 'active'"),
                 ('delete_requested_at', 'TEXT NULL'),
@@ -438,6 +450,14 @@ def init_database():
     conn = get_db()
     try:
         if is_sqlite():
+            cur = conn.cursor()
+            try:
+                users_exists = _sqlite_table_exists(cur, 'users')
+            finally:
+                cur.close()
+            if users_exists:
+                _ensure_account_deletion_schema(conn)
+                _ensure_sqlite_avatar_column(conn)
             _init_sqlite(conn)
             _ensure_sqlite_avatar_column(conn)
             _ensure_account_deletion_schema(conn)

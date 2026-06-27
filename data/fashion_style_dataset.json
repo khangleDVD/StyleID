@@ -133,7 +133,8 @@
       "Khan Dong",
       "Eyeglasses",
       "Police Cap – cotton, regular, solid",
-      "None – solid"
+      "None – solid",
+      "None - solid – nylon, regular, solid"
     ],
     "Topwear_Inner": [
       "Tank Top",
@@ -332,7 +333,8 @@
       "Bomber Jacket",
       "Windbreaker",
       "Baseball Jacket – wool, oversize, solid",
-      "Basketball Jersey – mesh, oversize, graphic"
+      "Basketball Jersey – mesh, oversize, graphic",
+      "Jackets_Coats – wool, slim, solid"
     ],
     "Jackets_Coats": [
       "Blazer",
@@ -592,7 +594,8 @@
       "Ao Dai Trousers",
       "School Uniform Trousers",
       "Scrubs Pants",
-      "Loose-Fit Pants – linen, relaxed, solid"
+      "Loose-Fit Pants – linen, relaxed, solid",
+      "Uniform Pants – cotton, regular, solid"
     ],
     "Skirts": [
       "Skirt",

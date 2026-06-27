@@ -63,11 +63,11 @@ def mysql_connection_settings() -> dict:
 
 def mysql_configured() -> bool:
     cfg = mysql_connection_settings()
+    # Mật khẩu có thể rỗng (XAMPP root mặc định); Railway/Vercel vẫn đặt DB_PASSWORD bình thường.
     return (
         _mysql_host_is_valid(cfg['host'])
         and bool(cfg['user'])
         and bool(cfg['database'])
-        and bool(cfg['password'])
     )
 
 
