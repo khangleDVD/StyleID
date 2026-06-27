@@ -50,11 +50,10 @@ def _mysql_host_is_valid(host: str) -> bool:
 
 
 def mysql_configured() -> bool:
-    return (
-        _mysql_host_is_valid(_env_str('MYSQL_HOST'))
-        and bool(_env_str('MYSQL_USER'))
-        and bool(_env_str('MYSQL_DATABASE'))
-    )
+    host = _env_str('DB_HOST') or _env_str('MYSQL_HOST')
+    user = _env_str('DB_USER') or _env_str('MYSQL_USER')
+    database = _env_str('DB_NAME') or _env_str('MYSQL_DATABASE')
+    return _mysql_host_is_valid(host) and bool(user) and bool(database)
 
 
 def _resolve_db_engine() -> str:
@@ -65,8 +64,8 @@ def _resolve_db_engine() -> str:
         if mysql_configured():
             return 'mysql'
         print(
-            '[DB] DB_ENGINE=mysql but MYSQL_HOST/USER/DATABASE invalid '
-            f'(MYSQL_HOST={_env_str("MYSQL_HOST")!r}) — using SQLite.'
+            '[DB] DB_ENGINE=mysql but DB_HOST/DB_USER/DB_NAME invalid '
+            f'(DB_HOST={_env_str("DB_HOST") or _env_str("MYSQL_HOST")!r}) — using SQLite.'
         )
         return 'sqlite'
     return requested
@@ -104,11 +103,17 @@ class Config:
         _env_str('SQLITE_PATH')
         or (_vercel_tmp_path('styleid.db') if _ON_VERCEL else 'data/styleid.db')
     )
-    # MySQL (lumistyle_db) — khi DB_ENGINE=mysql
-    MYSQL_HOST = _env_str('MYSQL_HOST', 'localhost')
-    MYSQL_USER = _env_str('MYSQL_USER', 'root')
-    MYSQL_PASSWORD = _env_str('MYSQL_PASSWORD')
-    MYSQL_DATABASE = _env_str('MYSQL_DATABASE', 'lumistyle_db')
+    # MySQL — khi DB_ENGINE=mysql (Vercel / production dùng DB_*)
+    DB_HOST = _env_str('DB_HOST') or _env_str('MYSQL_HOST', 'localhost')
+    DB_PORT = _env_int('DB_PORT', 3306)
+    DB_USER = _env_str('DB_USER') or _env_str('MYSQL_USER', 'root')
+    DB_PASSWORD = _env_str('DB_PASSWORD') or _env_str('MYSQL_PASSWORD')
+    DB_NAME = _env_str('DB_NAME') or _env_str('MYSQL_DATABASE', 'lumistyle_db')
+    # Alias cũ (tương thích README / template)
+    MYSQL_HOST = DB_HOST
+    MYSQL_USER = DB_USER
+    MYSQL_PASSWORD = DB_PASSWORD
+    MYSQL_DATABASE = DB_NAME
     # Google OAuth (đăng nhập Google)
     GOOGLE_CLIENT_ID = _env_str('GOOGLE_CLIENT_ID')
     GOOGLE_CLIENT_SECRET = _env_str('GOOGLE_CLIENT_SECRET')

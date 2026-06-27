@@ -4,6 +4,7 @@ Database layer — MySQL (production) hoặc SQLite (local, không cần XAMPP).
 Cấu hình .env:
   DB_ENGINE=sqlite          # mặc định mysql nếu không đặt
   SQLITE_PATH=data/styleid.db
+  DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME   # MySQL
 """
 from __future__ import annotations
 
@@ -186,13 +187,16 @@ def get_db():
         conn.execute('PRAGMA foreign_keys = ON')
         return conn
     if mysql is None:
-        raise DatabaseError('mysql-connector-python chưa cài. Chạy: pip install mysql-connector-python')
+        raise DatabaseError('mysql-connector-python chua cai. Chay: pip install mysql-connector-python')
     try:
+        port_raw = os.getenv('DB_PORT') or os.getenv('MYSQL_PORT') or '3306'
+        port = int(port_raw) if port_raw and str(port_raw).strip() else 3306
         return mysql.connector.connect(
-            host=Config.MYSQL_HOST,
-            user=Config.MYSQL_USER,
-            password=Config.MYSQL_PASSWORD,
-            database=Config.MYSQL_DATABASE,
+            host=os.getenv('DB_HOST') or os.getenv('MYSQL_HOST'),
+            port=port,
+            user=os.getenv('DB_USER') or os.getenv('MYSQL_USER'),
+            password=os.getenv('DB_PASSWORD') or os.getenv('MYSQL_PASSWORD'),
+            database=os.getenv('DB_NAME') or os.getenv('MYSQL_DATABASE'),
         )
     except _MySQLError as e:
         raise DatabaseError(str(e)) from e
