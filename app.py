@@ -3208,7 +3208,7 @@ def _policy_template_path(slug):
     meta = POLICY_PAGES.get(slug)
     if not meta:
         return None
-    base = os.path.abspath(os.path.join(app.root_path, 'templates', 'pages'))
+    base = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates', 'pages'))
     path = os.path.abspath(os.path.join(base, meta['filename']))
     if not path.startswith(base + os.sep):
         return None
@@ -3603,8 +3603,8 @@ def admin_policy_get(slug):
         return err
     if slug not in POLICY_PAGES:
         return jsonify({'error': 'Trang chính sách không tồn tại.'}), 404
-    raw, content = _read_policy_block(slug)
-    if raw is None:
+    _, content = _read_policy_block(slug)
+    if not content:
         return jsonify({'error': 'Không đọc được nội dung trang.'}), 500
     vi_content, en_content = _split_policy_lang_blocks(content)
     meta = POLICY_PAGES[slug]
