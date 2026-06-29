@@ -10,8 +10,8 @@
     {
       "key": "30",
       "name": "Cơ bản",
-      "credits": 30,
-      "price_vnd": 2000,
+      "credits": 15,
+      "price_vnd": 5000,
       "popular": true
     },
     {

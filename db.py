@@ -121,6 +121,7 @@ CREATE TABLE IF NOT EXISTS payments (
   amount_vnd INTEGER NOT NULL,
   status TEXT NOT NULL DEFAULT 'pending',
   sepay_tx_id TEXT NULL,
+  reconcile_token TEXT NULL,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   expires_at TEXT NULL,
@@ -131,6 +132,7 @@ CREATE TABLE IF NOT EXISTS payments (
 CREATE INDEX IF NOT EXISTS idx_payments_user ON payments (user_id);
 CREATE INDEX IF NOT EXISTS idx_payments_status ON payments (status);
 CREATE INDEX IF NOT EXISTS idx_payments_expires ON payments (expires_at);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_payments_reconcile_token ON payments (reconcile_token);
 """
 
 
@@ -305,6 +307,7 @@ def _init_mysql(conn):
                 amount_vnd INT NOT NULL,
                 status VARCHAR(16) NOT NULL DEFAULT 'pending',
                 sepay_tx_id VARCHAR(128) NULL,
+                reconcile_token VARCHAR(32) NULL,
                 created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 expires_at DATETIME NULL,
@@ -312,6 +315,7 @@ def _init_mysql(conn):
                 INDEX idx_payments_user (user_id),
                 INDEX idx_payments_status (status),
                 INDEX idx_payments_expires (expires_at),
+                UNIQUE INDEX idx_payments_reconcile_token (reconcile_token),
                 CONSTRAINT fk_payments_user FOREIGN KEY (user_id) REFERENCES users(id)
                     ON DELETE CASCADE ON UPDATE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
@@ -445,6 +449,40 @@ def _ensure_mysql_auth_schema(conn):
         cur.close()
 
 
+def _ensure_payments_reconcile_token_schema(conn):
+    cur = conn.cursor()
+    try:
+        if is_sqlite():
+            if not _sqlite_table_exists(cur, 'payments'):
+                return
+            if not _sqlite_column_exists(cur, 'payments', 'reconcile_token'):
+                cur.execute('ALTER TABLE payments ADD COLUMN reconcile_token TEXT NULL')
+            cur.execute(
+                'CREATE UNIQUE INDEX IF NOT EXISTS idx_payments_reconcile_token ON payments (reconcile_token)'
+            )
+        else:
+            if not _mysql_table_exists(cur, 'payments'):
+                return
+            if not _mysql_column_exists(cur, 'payments', 'reconcile_token'):
+                cur.execute('ALTER TABLE payments ADD COLUMN reconcile_token VARCHAR(32) NULL')
+            cur.execute(
+                """
+                SELECT 1 FROM information_schema.STATISTICS
+                WHERE TABLE_SCHEMA = DATABASE()
+                  AND TABLE_NAME = 'payments'
+                  AND INDEX_NAME = 'idx_payments_reconcile_token'
+                LIMIT 1
+                """
+            )
+            if not cur.fetchone():
+                cur.execute(
+                    'CREATE UNIQUE INDEX idx_payments_reconcile_token ON payments (reconcile_token)'
+                )
+        conn.commit()
+    finally:
+        cur.close()
+
+
 def init_database():
     """Khoi tao schema (SQLite) hoac tao/migrate bang (MySQL)."""
     conn = get_db()
@@ -461,6 +499,7 @@ def init_database():
             _init_sqlite(conn)
             _ensure_sqlite_avatar_column(conn)
             _ensure_account_deletion_schema(conn)
+            _ensure_payments_reconcile_token_schema(conn)
             cur = conn.cursor()
             try:
                 cur.execute(
@@ -476,6 +515,7 @@ def init_database():
             _init_mysql(conn)
             _ensure_mysql_auth_schema(conn)
             _ensure_account_deletion_schema(conn)
+            _ensure_payments_reconcile_token_schema(conn)
     finally:
         conn.close()
 

@@ -86,6 +86,7 @@ CREATE TABLE IF NOT EXISTS payments (
   amount_vnd INT NOT NULL,
   status VARCHAR(16) NOT NULL DEFAULT 'pending' COMMENT 'pending | completed | failed',
   sepay_tx_id VARCHAR(128) NULL,
+  reconcile_token VARCHAR(32) NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   expires_at DATETIME NULL,
@@ -93,6 +94,7 @@ CREATE TABLE IF NOT EXISTS payments (
   INDEX idx_payments_user (user_id),
   INDEX idx_payments_status (status),
   INDEX idx_payments_expires (expires_at),
+  UNIQUE INDEX idx_payments_reconcile_token (reconcile_token),
   CONSTRAINT fk_payments_user FOREIGN KEY (user_id) REFERENCES users(id)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -82,6 +82,7 @@ CREATE TABLE IF NOT EXISTS payments (
   amount_vnd INTEGER NOT NULL,
   status TEXT NOT NULL DEFAULT 'pending',
   sepay_tx_id TEXT NULL,
+  reconcile_token TEXT NULL,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   expires_at TEXT NULL,
@@ -92,3 +93,4 @@ CREATE TABLE IF NOT EXISTS payments (
 CREATE INDEX IF NOT EXISTS idx_payments_user ON payments (user_id);
 CREATE INDEX IF NOT EXISTS idx_payments_status ON payments (status);
 CREATE INDEX IF NOT EXISTS idx_payments_expires ON payments (expires_at);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_payments_reconcile_token ON payments (reconcile_token);

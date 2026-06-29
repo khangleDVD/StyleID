@@ -1,6 +1,7 @@
 import os
 import json
 import uuid
+import secrets
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode, urlparse, unquote
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -358,6 +359,61 @@ def decode_payment_id(hex_str: str) -> int:
     return int(str(hex_str).strip(), 16) ^ int(Config.SECRET_XOR_KEY)
 
 
+def _generate_reconcile_token() -> str:
+    return secrets.token_hex(16).upper()
+
+
+def _payment_public_token(payment_row: dict) -> str:
+    tok = (payment_row.get('reconcile_token') or '').strip().upper()
+    if tok:
+        return tok
+    return encode_payment_id(int(payment_row['id']))
+
+
+def _payment_transfer_content(payment_row: dict) -> str:
+    return f"{_payment_transfer_prefix()}{_payment_public_token(payment_row)}"
+
+
+def _fetch_payment_by_ref(cur, raw: str):
+    raw = (raw or '').strip()
+    if not raw:
+        return None
+    if raw.isdigit():
+        cur.execute('SELECT * FROM payments WHERE id = %s', (int(raw),))
+        row = cur.fetchone()
+        if row:
+            return row
+    token = raw.upper()
+    cur.execute('SELECT * FROM payments WHERE reconcile_token = %s', (token,))
+    row = cur.fetchone()
+    if row:
+        return row
+    try:
+        payment_id = int(decode_payment_id(raw))
+    except Exception:
+        return None
+    cur.execute('SELECT * FROM payments WHERE id = %s', (payment_id,))
+    return cur.fetchone()
+
+
+def _load_used_sepay_tx_ids(cur) -> set[str]:
+    cur.execute(
+        "SELECT sepay_tx_id FROM payments WHERE status = %s AND sepay_tx_id IS NOT NULL AND sepay_tx_id != ''",
+        ('completed',),
+    )
+    return {
+        str(r.get('sepay_tx_id'))
+        for r in (cur.fetchall() or [])
+        if r.get('sepay_tx_id') not in (None, '')
+    }
+
+
+def _amount_matches_invoice(parsed_amount: float | None, amount_vnd: int) -> bool:
+    if parsed_amount is None or parsed_amount <= 0:
+        return False
+    return int(round(parsed_amount)) == int(amount_vnd)
+
+
 def _payment_transfer_prefix() -> str:
     # Bắt buộc bắt đầu bằng SEVQR theo yêu cầu, sau đó đến NAME_WEB + NAPTOKEN
     pfx = (Config.PAYMENT_TRANSFER_PREFIX or 'SEVQR').strip().upper()
@@ -496,7 +552,7 @@ def _sepay_get_last_20_transactions():
     return txs[:50]
 
 
-def _match_sepay_transaction_for_payment(payment_row: dict):
+def _match_sepay_transaction_for_payment(payment_row: dict, *, used_sepay_tx_ids: set[str] | None = None):
     """Return (matched: bool, sepay_tx_id: str|None)."""
 
     def pick(tx: dict, keys: list[str]):
@@ -512,48 +568,42 @@ def _match_sepay_transaction_for_payment(payment_row: dict):
                     return v
         return None
 
-    target_hex = encode_payment_id(int(payment_row['id']))
+    used = used_sepay_tx_ids or set()
+    target_token = _payment_public_token(payment_row)
     prefix = _payment_transfer_prefix()
-    # Cho phép nội dung ngân hàng có prefix khác (vd "CT DEN:...") rồi mới tới chuỗi mã.
     pattern = rf"{re.escape(prefix)}([A-Fa-f0-9]+)"
-    name_web = (Config.NAME_WEB or '').strip().upper()
-    sevqr = (Config.PAYMENT_TRANSFER_PREFIX or 'SEVQR').strip().upper()
 
     history = _sepay_get_last_20_transactions()
     for tx in history:
         if not isinstance(tx, dict):
             continue
 
-        # SePay có thể trả key tiếng Anh hoặc tiếng Việt (tùy endpoint/dashboard)
-        # Với userapi SePay: nội dung thường nằm ở transaction_content
         content = pick(tx, ['transaction_content', 'content', 'noi_dung', 'description', 'memo', 'message', 'note'])
         if content is None:
             content = ''
         content = str(content).strip()
-
-        raw_amount = pick(tx, ['amount_in', 'amount', 'so_tien', 'amountIn', 'credit', 'credit_amount'])
-        amount = _parse_money_vn_to_float(raw_amount) or 0.0
-
-        # Nếu amount parse được thì so khớp; nếu parse không được nhưng đã match đúng HEX thì vẫn cho qua
-        # (tránh false negative do format tiền lạ), chấp nhận rủi ro chuyển thiếu tiền thấp hơn trong demo.
-        amount_ok = (amount >= float(payment_row['amount_vnd'])) if amount > 0 else True
-
-        m = re.search(pattern, content, flags=re.IGNORECASE)
-        if m:
-            found_hex = (m.group(1) or '').strip().upper()
-            if found_hex == target_hex and amount_ok:
-                tx_id = pick(tx, ['reference_number', 'id', 'code', 'tx_id', 'transaction_id', 'ma_tham_chieu', 'reference', 'ref', 'ma_giao_dich'])
-                return True, str(tx_id) if tx_id is not None else None
+        if not content:
             continue
 
-        # Fallback: một số ngân hàng cắt nội dung QR (ellipsis) khiến mất "NAPTOKEN..." đầy đủ.
-        # Khi đó vẫn cố gắng khớp theo: có SEVQR + NAME_WEB + đúng HEX (không phân biệt hoa thường),
-        # và (nếu parse được tiền) amount >= hóa đơn.
-        c_up = content.upper()
-        th = target_hex.upper()
-        if th and th in c_up and sevqr in c_up and name_web and (name_web in c_up) and amount_ok:
-            tx_id = pick(tx, ['reference_number', 'id', 'code', 'tx_id', 'transaction_id', 'ma_tham_chieu', 'reference', 'ref', 'ma_giao_dich'])
-            return True, str(tx_id) if tx_id is not None else None
+        raw_amount = pick(tx, ['amount_in', 'amount', 'so_tien', 'amountIn', 'credit', 'credit_amount'])
+        amount = _parse_money_vn_to_float(raw_amount)
+        if not _amount_matches_invoice(amount, int(payment_row['amount_vnd'])):
+            continue
+
+        m = re.search(pattern, content, flags=re.IGNORECASE)
+        if not m:
+            continue
+
+        found_token = (m.group(1) or '').strip().upper()
+        if found_token != target_token:
+            continue
+
+        tx_id = pick(tx, ['reference_number', 'id', 'code', 'tx_id', 'transaction_id', 'ma_tham_chieu', 'reference', 'ref', 'ma_giao_dich'])
+        if tx_id is not None and str(tx_id) in used:
+            continue
+        if tx_id is not None:
+            print(f'[SePay] matched payment_id={payment_row.get("id")} tx_id={tx_id} amount={amount}')
+        return True, str(tx_id) if tx_id is not None else None
 
     return False, None
 
@@ -1550,6 +1600,7 @@ def payment_create():
 
     now = datetime.now(timezone.utc)
     expires_at = now + timedelta(minutes=max(1, int(Config.PAYMENT_EXPIRES_MINUTES)))
+    reconcile_token = _generate_reconcile_token()
 
     db = get_db()
     cur = dict_cursor(db)
@@ -1560,14 +1611,15 @@ def payment_create():
             return jsonify({'error': 'Không tìm thấy tài khoản'}), 404
 
         cur.execute(
-            'INSERT INTO payments (user_id, package_key, credits, amount_vnd, status, expires_at) '
-            'VALUES (%s, %s, %s, %s, %s, %s)',
-            (user_id, package_id, credits, amount_vnd, 'pending', expires_at.replace(tzinfo=None)),
+            'INSERT INTO payments (user_id, package_key, credits, amount_vnd, status, expires_at, reconcile_token) '
+            'VALUES (%s, %s, %s, %s, %s, %s, %s)',
+            (user_id, package_id, credits, amount_vnd, 'pending', expires_at.replace(tzinfo=None), reconcile_token),
         )
         db.commit()
         payment_id = cur.lastrowid
-        hex_id = encode_payment_id(int(payment_id))
-        transfer_content = f"{_payment_transfer_prefix()}{hex_id}"
+        pay_row = {'id': int(payment_id), 'reconcile_token': reconcile_token}
+        hex_id = _payment_public_token(pay_row)
+        transfer_content = _payment_transfer_content(pay_row)
         qr_url = _build_vietqr_image_url(amount_vnd=amount_vnd, add_info=transfer_content)
 
         return jsonify({
@@ -1598,24 +1650,13 @@ def payment_create():
 def payment_status(id_or_hex):
     _ensure_payments_table()
 
-    raw = (id_or_hex or '').strip()
-    payment_id = None
-    if raw.isdigit():
-        payment_id = int(raw)
-    else:
-        # hex obfuscation id
-        try:
-            payment_id = int(decode_payment_id(raw))
-        except Exception:
-            return jsonify({'error': 'id không hợp lệ'}), 400
-
     db = get_db()
     cur = dict_cursor(db)
     try:
-        cur.execute('SELECT * FROM payments WHERE id = %s', (payment_id,))
-        pay = cur.fetchone()
+        pay = _fetch_payment_by_ref(cur, id_or_hex)
         if not pay:
             return jsonify({'error': 'Không tìm thấy hóa đơn'}), 404
+        payment_id = int(pay['id'])
 
         # Expire logic (soft fail) — vẫn có thể completed nếu tiền về sau
         now = datetime.now(timezone.utc).replace(tzinfo=None)
@@ -1628,7 +1669,8 @@ def payment_status(id_or_hex):
 
         # Reconcile with SePay if not completed yet
         if pay.get('status') != 'completed':
-            matched, tx_id = _match_sepay_transaction_for_payment(pay)
+            used_tx_ids = _load_used_sepay_tx_ids(cur)
+            matched, tx_id = _match_sepay_transaction_for_payment(pay, used_sepay_tx_ids=used_tx_ids)
             if matched:
                 # Idempotent crediting
                 cur.execute('SELECT status FROM payments WHERE id = %s', (payment_id,))
@@ -1647,8 +1689,8 @@ def payment_status(id_or_hex):
                     pay['sepay_tx_id'] = tx_id
                     pay['completed_at'] = now
 
-        hex_id = encode_payment_id(int(pay['id']))
-        transfer_content = f"{_payment_transfer_prefix()}{hex_id}"
+        hex_id = _payment_public_token(pay)
+        transfer_content = _payment_transfer_content(pay)
         qr_url = _build_vietqr_image_url(amount_vnd=int(pay['amount_vnd']), add_info=transfer_content)
 
         return jsonify({
@@ -2765,7 +2807,7 @@ def user_payments_list():
     cur = dict_cursor(db)
     try:
         cur.execute(
-            'SELECT id, user_id, package_key, credits, amount_vnd, status, sepay_tx_id, '
+            'SELECT id, user_id, package_key, credits, amount_vnd, status, sepay_tx_id, reconcile_token, '
             'created_at, updated_at, expires_at, completed_at '
             'FROM payments WHERE user_id = %s ORDER BY id DESC LIMIT %s',
             (user_id, limit),
@@ -2774,8 +2816,8 @@ def user_payments_list():
         out = []
         for r in rows:
             rid = int(r['id'])
-            hex_id = encode_payment_id(rid)
-            transfer_content = f"{_payment_transfer_prefix()}{hex_id}"
+            hex_id = _payment_public_token(r)
+            transfer_content = _payment_transfer_content(r)
             out.append({
                 'id': rid,
                 'hex_id': hex_id,
@@ -2838,7 +2880,7 @@ def admin_payments_list():
 
         sql = (
             'SELECT p.id, p.user_id, p.package_key, p.credits, p.amount_vnd, p.status, p.sepay_tx_id, '
-            'p.created_at, p.updated_at, p.expires_at, p.completed_at, '
+            'p.reconcile_token, p.created_at, p.updated_at, p.expires_at, p.completed_at, '
             'u.username, u.full_name, u.email '
             f'FROM payments p LEFT JOIN users u ON u.id = p.user_id {where_sql} '
             'ORDER BY p.id DESC LIMIT %s OFFSET %s'
@@ -2849,8 +2891,8 @@ def admin_payments_list():
         items = []
         for r in rows:
             rid = int(r['id'])
-            hex_id = encode_payment_id(rid)
-            transfer_content = f"{_payment_transfer_prefix()}{hex_id}"
+            hex_id = _payment_public_token(r)
+            transfer_content = _payment_transfer_content(r)
             items.append({
                 'id': rid,
                 'hex_id': hex_id,
