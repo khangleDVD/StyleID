@@ -650,7 +650,48 @@ def allowed_file(filename):
     return ext in Config.ALLOWED_EXTENSIONS
 
 
-def _avatar_public_url(avatar_path):
+def _user_avatar_setting_key(user_id):
+    return f'user_avatar:{int(user_id)}'
+
+
+def _user_avatar_from_db(user_id):
+    data = get_app_setting(_user_avatar_setting_key(user_id))
+    if isinstance(data, dict) and data.get('data_b64'):
+        return data
+    return None
+
+
+def _delete_user_avatar_db(user_id):
+    try:
+        delete_app_setting(_user_avatar_setting_key(user_id))
+    except Exception:
+        pass
+
+
+def _avatar_mime_for_ext(ext):
+    ext = (ext or 'png').lower()
+    if ext == 'jpeg':
+        ext = 'jpg'
+    return {
+        'png': 'image/png',
+        'jpg': 'image/jpeg',
+        'webp': 'image/webp',
+    }.get(ext, 'application/octet-stream')
+
+
+def _avatar_public_url(user_id, avatar_path=None):
+    try:
+        uid = int(user_id)
+    except (TypeError, ValueError):
+        uid = None
+    if uid:
+        data = _user_avatar_from_db(uid)
+        if data:
+            v = (data.get('updated_at') or '').strip()
+            q = f'user_id={uid}'
+            if v:
+                q += f'&v={v}'
+            return f'/api/user/avatar/image?{q}'
     if not avatar_path:
         return ''
     name = os.path.basename(str(avatar_path).strip().replace('\\', '/'))
@@ -690,7 +731,7 @@ def _serialize_user_profile(row):
         ),
         'force_change_password': bool(int(row.get('force_change_password') or 0)),
         'email_verified': bool(int(row.get('email_verified') or 0)),
-        'avatar_url': _avatar_public_url(row.get('avatar_path')),
+        'avatar_url': _avatar_public_url(row['id'], row.get('avatar_path')),
         'created_at': row.get('created_at'),
         'is_google_only': _is_google_only_user(row),
         'account_status': status,
@@ -1163,6 +1204,52 @@ def user_profile_update():
         db.close()
 
 
+@app.route('/api/user/avatar/image')
+def user_avatar_image():
+    user_id = request.args.get('user_id', type=int)
+    if not user_id:
+        return '', 404
+    data = _user_avatar_from_db(user_id)
+    if data:
+        try:
+            raw = base64.b64decode(data.get('data_b64') or '')
+        except (ValueError, TypeError):
+            raw = b''
+        if raw:
+            return Response(raw, mimetype=_avatar_mime_for_ext(data.get('ext')))
+    db = get_db()
+    cur = dict_cursor(db)
+    try:
+        cur.execute('SELECT avatar_path FROM users WHERE id = %s', (user_id,))
+        row = cur.fetchone()
+    finally:
+        cur.close()
+        db.close()
+    if not row:
+        return '', 404
+    avatar_path = row.get('avatar_path')
+    if not avatar_path:
+        return '', 404
+    name = os.path.basename(str(avatar_path).strip().replace('\\', '/'))
+    if not name or '..' in name or not name.startswith('avatar_'):
+        return '', 404
+    path = os.path.join(Config.UPLOAD_FOLDER, name)
+    if not os.path.isfile(path):
+        return '', 404
+    try:
+        with open(path, 'rb') as fp:
+            file_raw = fp.read()
+        ext = name.rsplit('.', 1)[-1].lower() if '.' in name else 'png'
+        set_app_setting(_user_avatar_setting_key(user_id), {
+            'ext': ext,
+            'data_b64': base64.b64encode(file_raw).decode('ascii'),
+            'updated_at': datetime.now(timezone.utc).isoformat(),
+        })
+    except Exception as e:
+        print(f'[Avatar DB seed {user_id}]', e)
+    return send_from_directory(Config.UPLOAD_FOLDER, name)
+
+
 @app.route('/api/user/avatar', methods=['POST', 'DELETE'])
 def user_avatar():
     if request.method == 'DELETE':
@@ -1184,6 +1271,7 @@ def user_avatar():
         if not row:
             return jsonify({'error': 'Không tìm thấy tài khoản'}), 404
         if request.method == 'DELETE':
+            _delete_user_avatar_db(user_id)
             _delete_avatar_file(row.get('avatar_path'))
             cur.execute('UPDATE users SET avatar_path = NULL WHERE id = %s', (user_id,))
             db.commit()
@@ -1199,13 +1287,29 @@ def user_avatar():
         if size > 2 * 1024 * 1024:
             return jsonify({'error': 'Ảnh đại diện tối đa 2MB'}), 400
         ext = f.filename.rsplit('.', 1)[-1].lower()
+        if ext == 'jpeg':
+            ext = 'jpg'
         filename = f'avatar_{user_id}_{uuid.uuid4().hex[:12]}.{ext}'
         path = os.path.join(Config.UPLOAD_FOLDER, filename)
+        raw = f.read()
+        set_app_setting(_user_avatar_setting_key(user_id), {
+            'ext': ext,
+            'data_b64': base64.b64encode(raw).decode('ascii'),
+            'updated_at': datetime.now(timezone.utc).isoformat(),
+        })
         _delete_avatar_file(row.get('avatar_path'))
-        f.save(path)
+        try:
+            os.makedirs(Config.UPLOAD_FOLDER, exist_ok=True)
+            with open(path, 'wb') as out:
+                out.write(raw)
+        except OSError as e:
+            print(f'[Avatar file mirror {user_id}]', e)
         cur.execute('UPDATE users SET avatar_path = %s WHERE id = %s', (filename, user_id))
         db.commit()
-        return jsonify({'message': 'Cập nhật ảnh đại diện thành công', 'avatar_url': _avatar_public_url(filename)})
+        return jsonify({
+            'message': 'Cập nhật ảnh đại diện thành công',
+            'avatar_url': _avatar_public_url(user_id, filename),
+        })
     except DatabaseError:
         db.rollback()
         return jsonify({'error': 'Lỗi CSDL'}), 500
