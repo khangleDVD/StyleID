@@ -105,3 +105,12 @@ WHERE email_verified = 0 AND (password IS NOT NULL OR google_id IS NOT NULL);
 
 -- Gán admin (tuỳ chọn, sau khi đăng ký user đầu tiên):
 -- UPDATE users SET role = 'admin' WHERE id = 1;
+
+-- ------------------------------------------------------------
+-- app_settings — cấu hình admin (Vercel / production)
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS app_settings (
+  setting_key VARCHAR(64) PRIMARY KEY,
+  value_json LONGTEXT NOT NULL,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

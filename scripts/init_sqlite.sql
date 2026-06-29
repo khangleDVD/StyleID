@@ -94,3 +94,10 @@ CREATE INDEX IF NOT EXISTS idx_payments_user ON payments (user_id);
 CREATE INDEX IF NOT EXISTS idx_payments_status ON payments (status);
 CREATE INDEX IF NOT EXISTS idx_payments_expires ON payments (expires_at);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_payments_reconcile_token ON payments (reconcile_token);
+
+-- app_settings — cấu hình admin (Vercel / production)
+CREATE TABLE IF NOT EXISTS app_settings (
+  setting_key TEXT PRIMARY KEY,
+  value_json TEXT NOT NULL,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

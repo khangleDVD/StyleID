@@ -2,6 +2,7 @@ import os
 import json
 import uuid
 import secrets
+import base64
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode, urlparse, unquote
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -9,7 +10,7 @@ import jwt as pyjwt
 import re
 import html
 import requests
-from flask import Flask, request, jsonify, send_from_directory, redirect, url_for, render_template
+from flask import Flask, request, jsonify, send_from_directory, redirect, url_for, render_template, render_template_string, Response
 from flask_cors import CORS
 from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -36,6 +37,7 @@ from account_deletion import (
 )
 from config import Config
 from db import get_db, dict_cursor, plain_cursor, IntegrityError, DatabaseError, init_database
+from settings_store import get_app_setting, set_app_setting, delete_app_setting
 from translate_service import translate_text, translate_policy_html
 from ai_service import (
     analyze_image,
@@ -116,6 +118,10 @@ def _site_logo_path():
 
 
 def _site_logo_url():
+    db_logo = _site_logo_from_db()
+    if db_logo:
+        v = (db_logo.get('updated_at') or db_logo.get('v') or '').strip()
+        return '/api/site/logo' + (f'?v={v}' if v else '')
     path = _site_logo_path()
     if os.path.isfile(path):
         try:
@@ -126,7 +132,20 @@ def _site_logo_url():
     return ''
 
 
-def _delete_site_logo_files():
+def _site_logo_from_db():
+    data = get_app_setting('site_logo')
+    if isinstance(data, dict) and data.get('data_b64'):
+        return data
+    return None
+
+
+def _site_has_logo() -> bool:
+    if _site_logo_from_db():
+        return True
+    return os.path.isfile(_site_logo_path())
+
+
+def _delete_site_logo_file_assets():
     base = os.path.join(app.static_folder, 'img')
     for name in ('site-logo.png', 'site-logo.jpg', 'site-logo.jpeg', 'site-logo.webp'):
         p = os.path.join(base, name)
@@ -135,6 +154,24 @@ def _delete_site_logo_files():
                 os.remove(p)
             except OSError:
                 pass
+
+
+def _delete_site_logo_files():
+    _delete_site_logo_file_assets()
+    try:
+        delete_app_setting('site_logo')
+    except Exception:
+        pass
+
+
+def _can_write_project_files() -> bool:
+    if _on_vercel():
+        return False
+    try:
+        base = os.path.dirname(os.path.abspath(__file__))
+        return os.access(base, os.W_OK)
+    except OSError:
+        return False
 
 
 def _upload_basename_from_url_or_path(s: str) -> str:
@@ -1387,34 +1424,50 @@ def _normalize_landing_lang_block(raw, fallback):
 
 
 def _load_landing_config():
-    path = _landing_json_path()
     defaults = _default_landing_config()
-    if not os.path.isfile(path):
-        _save_landing_config(defaults)
-        return defaults
-    try:
-        with open(path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-    except (OSError, json.JSONDecodeError) as e:
-        print('[Landing JSON read]', e)
-        return defaults
-    if not isinstance(data, dict):
-        return defaults
-    return {
-        'vi': _normalize_landing_lang_block(data.get('vi'), defaults['vi']),
-        'en': _normalize_landing_lang_block(data.get('en'), defaults['en']),
-        'hero_image_url': str(data.get('hero_image_url') or defaults['hero_image_url']).strip(),
-        'hero_marker_a': str(data.get('hero_marker_a') or defaults['hero_marker_a']).strip(),
-        'hero_marker_b': str(data.get('hero_marker_b') or defaults['hero_marker_b']).strip(),
-        'hero_marker_a_en': str(data.get('hero_marker_a_en') or '').strip(),
-        'hero_marker_b_en': str(data.get('hero_marker_b_en') or '').strip(),
-    }
-
-
-def _save_landing_config(cfg):
+    stored = get_app_setting('landing')
+    if isinstance(stored, dict) and stored.get('vi'):
+        return {
+            'vi': _normalize_landing_lang_block(stored.get('vi'), defaults['vi']),
+            'en': _normalize_landing_lang_block(stored.get('en'), defaults['en']),
+            'hero_image_url': str(stored.get('hero_image_url') or defaults['hero_image_url']).strip(),
+            'hero_marker_a': str(stored.get('hero_marker_a') or defaults['hero_marker_a']).strip(),
+            'hero_marker_b': str(stored.get('hero_marker_b') or defaults['hero_marker_b']).strip(),
+            'hero_marker_a_en': str(stored.get('hero_marker_a_en') or '').strip(),
+            'hero_marker_b_en': str(stored.get('hero_marker_b_en') or '').strip(),
+        }
     path = _landing_json_path()
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    payload = {
+    if os.path.isfile(path):
+        try:
+            with open(path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except (OSError, json.JSONDecodeError) as e:
+            print('[Landing JSON read]', e)
+            return defaults
+        if isinstance(data, dict):
+            cfg = {
+                'vi': _normalize_landing_lang_block(data.get('vi'), defaults['vi']),
+                'en': _normalize_landing_lang_block(data.get('en'), defaults['en']),
+                'hero_image_url': str(data.get('hero_image_url') or defaults['hero_image_url']).strip(),
+                'hero_marker_a': str(data.get('hero_marker_a') or defaults['hero_marker_a']).strip(),
+                'hero_marker_b': str(data.get('hero_marker_b') or defaults['hero_marker_b']).strip(),
+                'hero_marker_a_en': str(data.get('hero_marker_a_en') or '').strip(),
+                'hero_marker_b_en': str(data.get('hero_marker_b_en') or '').strip(),
+            }
+            try:
+                set_app_setting('landing', cfg)
+            except Exception as e:
+                print('[Landing DB seed]', e)
+            return cfg
+    try:
+        saved = _save_landing_config(defaults)
+        return saved
+    except Exception:
+        return defaults
+
+
+def _landing_payload_from_cfg(cfg):
+    return {
         'vi': {k: str(cfg.get('vi', {}).get(k) or '') for k in LANDING_INTRO_KEYS},
         'en': {k: str(cfg.get('en', {}).get(k) or '') for k in LANDING_INTRO_KEYS},
         'hero_image_url': str(cfg.get('hero_image_url') or '').strip(),
@@ -1423,8 +1476,23 @@ def _save_landing_config(cfg):
         'hero_marker_a_en': str(cfg.get('hero_marker_a_en') or '').strip(),
         'hero_marker_b_en': str(cfg.get('hero_marker_b_en') or '').strip(),
     }
+
+
+def _save_landing_to_file(payload):
+    path = _landing_json_path()
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
+
+
+def _save_landing_config(cfg):
+    payload = _landing_payload_from_cfg(cfg)
+    set_app_setting('landing', payload)
+    if _can_write_project_files():
+        try:
+            _save_landing_to_file(payload)
+        except OSError as e:
+            print('[Landing file mirror]', e)
     return payload
 
 
@@ -1501,33 +1569,65 @@ def _normalize_package_item(raw):
 
 
 def _load_packages_raw():
+    stored = get_app_setting('packages')
+    if isinstance(stored, dict):
+        pkgs = stored.get('packages')
+        if isinstance(pkgs, list) and pkgs:
+            out = []
+            for item in pkgs:
+                norm = _normalize_package_item(item)
+                if norm:
+                    out.append(norm)
+            if out:
+                return out
     path = _packages_json_path()
-    if not os.path.isfile(path):
-        pkgs = _default_packages_list()
-        _save_packages_raw(pkgs)
-        return pkgs
+    if os.path.isfile(path):
+        try:
+            with open(path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except (OSError, json.JSONDecodeError) as e:
+            print('[Packages JSON read]', e)
+            return _default_packages_list()
+        pkgs = data.get('packages') if isinstance(data, dict) else data
+        if isinstance(pkgs, list) and pkgs:
+            out = []
+            for item in pkgs:
+                norm = _normalize_package_item(item)
+                if norm:
+                    out.append(norm)
+            if out:
+                try:
+                    set_app_setting('packages', {'packages': out})
+                except Exception as e:
+                    print('[Packages DB seed]', e)
+                return out
+    pkgs = _default_packages_list()
     try:
-        with open(path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-    except (OSError, json.JSONDecodeError) as e:
-        print('[Packages JSON read]', e)
-        return _default_packages_list()
-    pkgs = data.get('packages') if isinstance(data, dict) else data
-    if not isinstance(pkgs, list) or not pkgs:
-        return _default_packages_list()
-    out = []
-    for item in pkgs:
-        norm = _normalize_package_item(item)
-        if norm:
-            out.append(norm)
-    return out or _default_packages_list()
+        set_app_setting('packages', {'packages': pkgs})
+    except Exception as e:
+        print('[Packages DB seed default]', e)
+    if _can_write_project_files():
+        try:
+            _save_packages_to_file(pkgs)
+        except OSError:
+            pass
+    return pkgs
 
 
-def _save_packages_raw(packages):
+def _save_packages_to_file(packages):
     path = _packages_json_path()
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, 'w', encoding='utf-8', newline='\n') as f:
         json.dump({'packages': packages}, f, ensure_ascii=False, indent=2)
+
+
+def _save_packages_raw(packages):
+    set_app_setting('packages', {'packages': packages})
+    if _can_write_project_files():
+        try:
+            _save_packages_to_file(packages)
+        except OSError as e:
+            print('[Packages file mirror]', e)
 
 
 def _validate_packages_list(packages):
@@ -2978,6 +3078,18 @@ POLICY_PAGES = {
     },
 }
 
+POLICY_TITLE_I18N = {
+    'privacy': 'meta.titlePrivacy',
+    'terms': 'meta.titleTerms',
+    'data_deletion': 'meta.titleDataDeletion',
+    'payment_policy': 'meta.titlePaymentPolicy',
+    'ai_terms': 'meta.titleAiTerms',
+    'support': 'meta.titleSupport',
+    'payment_guide': 'meta.titlePaymentGuide',
+    'user_guide': 'meta.titleUserGuide',
+    'install_guide': 'meta.titleInstallGuide',
+}
+
 SITE_CONTACT_FIELDS = {
     'app_display_name': ('APP_DISPLAY_NAME', 'APP_DISPLAY_NAME'),
     'company_name_vi': ('COMPANY_NAME_VI', 'COMPANY_NAME_VI'),
@@ -3103,7 +3215,7 @@ def _policy_template_path(slug):
     return path
 
 
-def _read_policy_block(slug):
+def _read_policy_block_from_file(slug):
     path = _policy_template_path(slug)
     if not path or not os.path.isfile(path):
         return None, None
@@ -3115,7 +3227,22 @@ def _read_policy_block(slug):
     return raw, m.group(2)
 
 
-def _write_policy_block(slug, new_block_content):
+def _read_policy_block(slug):
+    stored = get_app_setting(f'policy:{slug}')
+    if isinstance(stored, dict):
+        content = stored.get('content')
+        if isinstance(content, str) and content.strip():
+            return None, content
+    raw, content = _read_policy_block_from_file(slug)
+    if content:
+        try:
+            set_app_setting(f'policy:{slug}', {'content': content})
+        except Exception as e:
+            print(f'[Policy DB seed {slug}]', e)
+    return raw, content
+
+
+def _write_policy_block_to_file(slug, new_block_content):
     path = _policy_template_path(slug)
     if not path or not os.path.isfile(path):
         return False, 'Không tìm thấy file trang chính sách.'
@@ -3124,12 +3251,42 @@ def _write_policy_block(slug, new_block_content):
     m = _POLICY_BLOCK_RE.search(raw)
     if not m:
         return False, 'Không tìm thấy khối legal_content trong file HTML.'
-    if not isinstance(new_block_content, str):
-        return False, 'Nội dung không hợp lệ.'
     updated = raw[:m.start(2)] + new_block_content + raw[m.end(2):]
     with open(path, 'w', encoding='utf-8', newline='\n') as f:
         f.write(updated)
     return True, None
+
+
+def _write_policy_block(slug, new_block_content):
+    if not isinstance(new_block_content, str):
+        return False, 'Nội dung không hợp lệ.'
+    try:
+        set_app_setting(f'policy:{slug}', {'content': new_block_content})
+    except Exception as e:
+        print(f'[Policy save DB {slug}]', e)
+        return False, 'Không lưu được cấu hình chính sách.'
+    if _can_write_project_files():
+        try:
+            _write_policy_block_to_file(slug, new_block_content)
+        except OSError as e:
+            print(f'[Policy file mirror {slug}]', e)
+    return True, None
+
+
+def _render_policy_page(slug: str):
+    if slug not in POLICY_PAGES:
+        return jsonify({'error': 'Not Found'}), 404
+    _, content = _read_policy_block(slug)
+    if not content:
+        meta = POLICY_PAGES[slug]
+        return render_template(f'pages/{meta["filename"]}')
+    title_key = POLICY_TITLE_I18N.get(slug, 'meta.title')
+    tpl = (
+        f"{{% set title_i18n_key = '{title_key}' %}}\n"
+        f"{{% extends 'layouts/legal_page.html' %}}\n"
+        f"{{% block legal_content %}}{content}{{% endblock %}}"
+    )
+    return render_template_string(tpl)
 
 
 def _env_file_path():
@@ -3262,7 +3419,7 @@ def _read_site_config():
     return {
         'app_display_name': Config.APP_DISPLAY_NAME,
         'logo_url': _site_logo_url(),
-        'has_logo': os.path.isfile(_site_logo_path()),
+        'has_logo': _site_has_logo(),
         'packages': _load_packages_raw(),
     }
 
@@ -3274,6 +3431,44 @@ def _apply_site_config_runtime(values):
         val = str(values[api_key] or '').strip()
         os.environ[env_key] = val
         setattr(Config, config_attr, val)
+
+
+def _hydrate_runtime_settings_from_db():
+    """Nạp cấu hình admin từ DB vào Config khi khởi động (Vercel / production)."""
+    try:
+        contact = get_app_setting('contact')
+        if isinstance(contact, dict) and contact:
+            _apply_contact_runtime(contact)
+        api_cfg = get_app_setting('api_config')
+        if isinstance(api_cfg, dict) and api_cfg:
+            _apply_api_config_runtime(api_cfg)
+        site_meta = get_app_setting('site_meta')
+        if isinstance(site_meta, dict) and site_meta:
+            _apply_site_config_runtime(site_meta)
+    except Exception as e:
+        print('[Settings] hydrate:', e)
+
+
+_hydrate_runtime_settings_from_db()
+
+
+@app.route('/api/site/logo')
+def api_site_logo():
+    data = _site_logo_from_db()
+    if not data:
+        return '', 404
+    try:
+        raw = base64.b64decode(data.get('data_b64') or '')
+    except (ValueError, TypeError):
+        return '', 404
+    ext = (data.get('ext') or 'png').lower()
+    mime = {
+        'png': 'image/png',
+        'jpg': 'image/jpeg',
+        'jpeg': 'image/jpeg',
+        'webp': 'image/webp',
+    }.get(ext, 'application/octet-stream')
+    return Response(raw, mimetype=mime)
 
 
 @app.route('/api/site/config', methods=['GET'])
@@ -3311,20 +3506,24 @@ def admin_site_config_save():
             return jsonify({'error': result}), 400
         try:
             _save_packages_raw(result)
-        except OSError as e:
+        except Exception as e:
             print('[Admin site-config packages]', e)
-            return jsonify({'error': 'Không ghi được file gói cước.'}), 500
+            return jsonify({'error': 'Không lưu được gói cước.'}), 500
     if not values and not has_packages:
         return jsonify({'error': 'Không có dữ liệu để lưu.'}), 400
     try:
-        for api_key, val in values.items():
-            env_key, _ = SITE_CONFIG_STR_FIELDS[api_key]
-            _write_env_key(env_key, val)
+        if has_packages:
+            pass  # already saved via _save_packages_raw
         if values:
+            set_app_setting('site_meta', values)
             _apply_site_config_runtime(values)
-    except OSError as e:
+            if _can_write_project_files():
+                for api_key, val in values.items():
+                    env_key, _ = SITE_CONFIG_STR_FIELDS[api_key]
+                    _write_env_key(env_key, val)
+    except Exception as e:
         print('[Admin site-config]', e)
-        return jsonify({'error': 'Không ghi được file .env'}), 500
+        return jsonify({'error': 'Không lưu được cấu hình site.'}), 500
     return jsonify({'ok': True, 'config': _read_site_config()})
 
 
@@ -3336,7 +3535,7 @@ def admin_site_config_logo():
     if request.method == 'DELETE':
         try:
             _delete_site_logo_files()
-        except OSError as e:
+        except Exception as e:
             print('[Admin site logo delete]', e)
             return jsonify({'error': 'Không xóa được logo.'}), 500
         return jsonify({'ok': True, 'logo_url': '', 'has_logo': False})
@@ -3355,10 +3554,18 @@ def admin_site_config_logo():
         ext = 'jpg'
     dest = os.path.join(app.static_folder, 'img', f'site-logo.{ext}')
     try:
-        os.makedirs(os.path.dirname(dest), exist_ok=True)
-        _delete_site_logo_files()
-        f.save(dest)
-    except OSError as e:
+        raw = f.read()
+        set_app_setting('site_logo', {
+            'ext': ext,
+            'data_b64': base64.b64encode(raw).decode('ascii'),
+            'updated_at': datetime.now(timezone.utc).isoformat(),
+        })
+        if _can_write_project_files():
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            _delete_site_logo_file_assets()
+            with open(dest, 'wb') as out:
+                out.write(raw)
+    except Exception as e:
         print('[Admin site logo upload]', e)
         return jsonify({'error': 'Không lưu được logo.'}), 500
     return jsonify({'ok': True, 'logo_url': _site_logo_url(), 'has_logo': True})
@@ -3478,9 +3685,9 @@ def admin_landing_config_save():
         result['en'] = _auto_translate_landing_en(result['vi'], app.config)
         result.update(_auto_translate_landing_marker_en(result, app.config))
         saved = _save_landing_config(result)
-    except OSError as e:
+    except Exception as e:
         print('[Admin landing-config]', e)
-        return jsonify({'error': 'Không ghi được file landing.json'}), 500
+        return jsonify({'error': 'Không lưu được cấu hình trang chủ.'}), 500
     return jsonify({'ok': True, 'config': saved, 'en_auto_translated': True})
 
 
@@ -3524,21 +3731,27 @@ def admin_api_config_save():
     if not values:
         return jsonify({'error': 'Không có dữ liệu để lưu.'}), 400
     try:
-        if 'openrouter_api_key' in values:
-            _write_env_key('OPENROUTER_API_KEY', values['openrouter_api_key'])
-        for api_key, val in values.items():
-            if api_key == 'openrouter_api_key':
-                continue
-            if api_key in API_CONFIG_STR_FIELDS:
-                env_key, _ = API_CONFIG_STR_FIELDS[api_key]
-                _write_env_key(env_key, val)
-            elif api_key in API_CONFIG_INT_FIELDS:
-                env_key, _ = API_CONFIG_INT_FIELDS[api_key]
-                _write_env_key(env_key, str(val))
+        stored = get_app_setting('api_config') or {}
+        if not isinstance(stored, dict):
+            stored = {}
+        stored.update(values)
+        set_app_setting('api_config', stored)
         _apply_api_config_runtime(values)
-    except OSError as e:
+        if _can_write_project_files():
+            if 'openrouter_api_key' in values:
+                _write_env_key('OPENROUTER_API_KEY', values['openrouter_api_key'])
+            for api_key, val in values.items():
+                if api_key == 'openrouter_api_key':
+                    continue
+                if api_key in API_CONFIG_STR_FIELDS:
+                    env_key, _ = API_CONFIG_STR_FIELDS[api_key]
+                    _write_env_key(env_key, val)
+                elif api_key in API_CONFIG_INT_FIELDS:
+                    env_key, _ = API_CONFIG_INT_FIELDS[api_key]
+                    _write_env_key(env_key, str(val))
+    except Exception as e:
         print('[Admin api-config]', e)
-        return jsonify({'error': 'Không ghi được file .env'}), 500
+        return jsonify({'error': 'Không lưu được cấu hình API.'}), 500
     return jsonify({'ok': True, 'config': _read_api_config()})
 
 
@@ -3566,13 +3779,19 @@ def admin_site_contact_save():
     if 'support_email' in values and values['support_email'] and '@' not in values['support_email']:
         return jsonify({'error': 'Email hỗ trợ không hợp lệ.'}), 400
     try:
-        for api_key, val in values.items():
-            env_key, _ = SITE_CONTACT_FIELDS[api_key]
-            _write_env_key(env_key, val)
+        stored = get_app_setting('contact') or {}
+        if not isinstance(stored, dict):
+            stored = {}
+        stored.update(values)
+        set_app_setting('contact', stored)
         _apply_contact_runtime(values)
-    except OSError as e:
+        if _can_write_project_files():
+            for api_key, val in values.items():
+                env_key, _ = SITE_CONTACT_FIELDS[api_key]
+                _write_env_key(env_key, val)
+    except Exception as e:
         print('[Admin site-contact]', e)
-        return jsonify({'error': 'Không ghi được file .env'}), 500
+        return jsonify({'error': 'Không lưu được thông tin liên hệ.'}), 500
     return jsonify({'ok': True, 'values': _read_contact_settings()})
 
 
@@ -3646,47 +3865,47 @@ def profile_page():
 
 @app.route('/privacy')
 def privacy_page():
-    return render_template('pages/privacy.html')
+    return _render_policy_page('privacy')
 
 
 @app.route('/terms')
 def terms_page():
-    return render_template('pages/terms.html')
+    return _render_policy_page('terms')
 
 
 @app.route('/data-deletion')
 def data_deletion_page():
-    return render_template('pages/data_deletion.html')
+    return _render_policy_page('data_deletion')
 
 
 @app.route('/support')
 def support_page():
-    return render_template('pages/support.html')
+    return _render_policy_page('support')
 
 
 @app.route('/install-guide')
 def install_guide_page():
-    return render_template('pages/install_guide.html')
+    return _render_policy_page('install_guide')
 
 
 @app.route('/user-guide')
 def user_guide_page():
-    return render_template('pages/user_guide.html')
+    return _render_policy_page('user_guide')
 
 
 @app.route('/payment-guide')
 def payment_guide_page():
-    return render_template('pages/payment_guide.html')
+    return _render_policy_page('payment_guide')
 
 
 @app.route('/payment-policy')
 def payment_policy_page():
-    return render_template('pages/payment_policy.html')
+    return _render_policy_page('payment_policy')
 
 
 @app.route('/ai-terms')
 def ai_terms_page():
-    return render_template('pages/ai_terms.html')
+    return _render_policy_page('ai_terms')
 
 
 @app.route('/<path:path>')

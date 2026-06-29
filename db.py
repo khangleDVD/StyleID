@@ -133,6 +133,12 @@ CREATE INDEX IF NOT EXISTS idx_payments_user ON payments (user_id);
 CREATE INDEX IF NOT EXISTS idx_payments_status ON payments (status);
 CREATE INDEX IF NOT EXISTS idx_payments_expires ON payments (expires_at);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_payments_reconcile_token ON payments (reconcile_token);
+
+CREATE TABLE IF NOT EXISTS app_settings (
+  setting_key TEXT PRIMARY KEY,
+  value_json TEXT NOT NULL,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 """
 
 
@@ -323,13 +329,22 @@ def _init_mysql(conn):
         )
         cur.execute(
             """
+            CREATE TABLE IF NOT EXISTS app_settings (
+                setting_key VARCHAR(64) PRIMARY KEY,
+                value_json LONGTEXT NOT NULL,
+                updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+            """
+        )
+        cur.execute(
+            """
             UPDATE users SET email_verified = 1
             WHERE email_verified = 0 AND (password IS NOT NULL OR google_id IS NOT NULL)
             """
         )
         conn.commit()
         if _mysql_table_exists(cur, 'users'):
-            print('[DB] MySQL schema ready (users, auth_otp_sessions, history, payments).')
+            print('[DB] MySQL schema ready (users, auth_otp_sessions, history, payments, app_settings).')
     finally:
         cur.close()
 
@@ -483,6 +498,37 @@ def _ensure_payments_reconcile_token_schema(conn):
         cur.close()
 
 
+def _ensure_app_settings_schema(conn):
+    cur = conn.cursor()
+    try:
+        if is_sqlite():
+            if not _sqlite_table_exists(cur, 'app_settings'):
+                cur.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS app_settings (
+                        setting_key TEXT PRIMARY KEY,
+                        value_json TEXT NOT NULL,
+                        updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+                    )
+                    """
+                )
+        else:
+            if not _mysql_table_exists(cur, 'app_settings'):
+                cur.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS app_settings (
+                        setting_key VARCHAR(64) PRIMARY KEY,
+                        value_json LONGTEXT NOT NULL,
+                        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                            ON UPDATE CURRENT_TIMESTAMP
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+                    """
+                )
+        conn.commit()
+    finally:
+        cur.close()
+
+
 def init_database():
     """Khoi tao schema (SQLite) hoac tao/migrate bang (MySQL)."""
     conn = get_db()
@@ -500,6 +546,7 @@ def init_database():
             _ensure_sqlite_avatar_column(conn)
             _ensure_account_deletion_schema(conn)
             _ensure_payments_reconcile_token_schema(conn)
+            _ensure_app_settings_schema(conn)
             cur = conn.cursor()
             try:
                 cur.execute(
@@ -516,6 +563,7 @@ def init_database():
             _ensure_mysql_auth_schema(conn)
             _ensure_account_deletion_schema(conn)
             _ensure_payments_reconcile_token_schema(conn)
+            _ensure_app_settings_schema(conn)
     finally:
         conn.close()
 
