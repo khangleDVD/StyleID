@@ -9,23 +9,25 @@
           <div class="shell-v2-topbar-icons">
             {% include 'partials/lang_switcher.html' %}
           </div>
-          <div class="topbar-guest shell-v2-guest" id="topbarGuest">
-            <a href="/login" id="btnLogin" class="shell-v2-guest-link">
-              <span class="material-symbols-outlined" aria-hidden="true">login</span>
-              <span data-i18n="auth.login">Đăng nhập</span>
-            </a>
-            <a href="/register" id="btnRegister" class="shell-v2-guest-cta">
-              <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
-              <span data-i18n="auth.register">Đăng ký</span>
-            </a>
-          </div>
-          <button type="button" class="user-badge shell-v2-user-chip hidden" id="userBadge" data-i18n-aria="profile.open" aria-label="Thông tin cá nhân">
-            <div class="shell-v2-user-text">
-              <p class="topbar-display-name" id="topbarDisplayName"></p>
-              <p class="shell-v2-user-role" id="topbarUserRole"></p>
-              <span class="topbar-email hidden" id="topbarEmail" aria-hidden="true"></span>
+          <div class="topbar-auth shell-v2-topbar-auth" id="topbarAuthBlock">
+            <div class="topbar-guest shell-v2-guest" id="topbarGuest">
+              <a href="/login" id="btnLogin" class="shell-v2-guest-link">
+                <span class="material-symbols-outlined" aria-hidden="true">login</span>
+                <span data-i18n="auth.login">Đăng nhập</span>
+              </a>
+              <a href="/register" id="btnRegister" class="shell-v2-guest-cta">
+                <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+                <span data-i18n="auth.register">Đăng ký</span>
+              </a>
             </div>
-            <span class="topbar-avatar shell-v2-avatar is-clickable" id="topbarAvatar" aria-hidden="true">?</span>
-          </button>
+            <button type="button" class="user-badge shell-v2-user-chip hidden" id="userBadge" data-i18n-aria="profile.open" aria-label="Thông tin cá nhân">
+              <div class="shell-v2-user-text">
+                <p class="topbar-display-name" id="topbarDisplayName"></p>
+                <p class="shell-v2-user-role" id="topbarUserRole"></p>
+                <span class="topbar-email hidden" id="topbarEmail" aria-hidden="true"></span>
+              </div>
+              <span class="topbar-avatar shell-v2-avatar is-clickable" id="topbarAvatar" aria-hidden="true">?</span>
+            </button>
+          </div>
         </div>
       </header>

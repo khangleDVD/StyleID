@@ -395,6 +395,73 @@ html.theme-light .app-shell-v2 .shell-v2-theme-light {
   background: var(--shell-surface);
 }
 
+.app-shell-v2 .shell-v2-sidebar-auth {
+  display: none;
+  padding: 0 0.25rem 0.65rem;
+  margin-bottom: 0.15rem;
+}
+
+.app-shell--landing .shell-v2-sidebar-auth:not(:empty) {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .app-shell--landing .shell-v2-sidebar-auth:not(:empty) {
+    display: block;
+  }
+
+  .app-shell--landing .shell-v2-sidebar-auth .shell-v2-topbar-auth {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    width: 100%;
+  }
+
+  .app-shell--landing .shell-v2-sidebar-auth .shell-v2-guest {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.45rem;
+  }
+
+  .app-shell--landing .shell-v2-sidebar-auth .shell-v2-guest-link,
+  .app-shell--landing .shell-v2-sidebar-auth .shell-v2-guest-cta {
+    width: 100%;
+    justify-content: center;
+    min-height: 42px;
+  }
+
+  .app-shell--landing .shell-v2-sidebar-auth .shell-v2-guest-link .material-symbols-outlined,
+  .app-shell--landing .shell-v2-sidebar-auth .shell-v2-guest-cta .material-symbols-outlined {
+    display: inline-flex;
+    font-size: 1.1rem;
+  }
+
+  .app-shell--landing .shell-v2-sidebar-auth .shell-v2-user-chip {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+    border-left: none;
+  }
+
+  .app-shell--landing .shell-v2-sidebar-auth .shell-v2-user-text {
+    display: block;
+    text-align: left;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .app-shell--landing .shell-v2-sidebar-auth .topbar-email:not(.hidden) {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    color: var(--shell-on-surface-variant);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 /* Mobile drawer */
 @media (max-width: 900px) {
   .app-shell-v2 .shell-v2-hamburger {

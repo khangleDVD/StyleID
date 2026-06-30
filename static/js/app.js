@@ -558,18 +558,51 @@ function navigateToPage(page, opts) {
   return true;
 }
 
+function isLandingMobileLayout() {
+  return window.matchMedia('(max-width: 640px)').matches;
+}
+
+function restoreTopbarRightStructure() {
+  const right = qs('.topbar-right');
+  const langIcons = qs('.shell-v2-topbar-icons');
+  const authBlock = el('topbarAuthBlock');
+  if (!right) return;
+  if (langIcons && langIcons.parentElement !== right) {
+    right.insertBefore(langIcons, right.firstChild);
+  }
+  if (authBlock && authBlock.parentElement !== right) {
+    right.appendChild(authBlock);
+  }
+}
+
 function syncLandingAuthSlot() {
   const shell = qs('.app-shell');
   const slot = el('landingNavAuthSlot');
+  const langSlot = el('landingNavLangSlot');
+  const sidebarAuthSlot = el('sidebarAuthSlot');
   const topbar = qs('.app-topbar');
   const right = qs('.topbar-right');
-  if (!slot || !topbar || !right) return;
+  const langIcons = qs('.shell-v2-topbar-icons');
+  const authBlock = el('topbarAuthBlock');
+  if (!topbar || !right) return;
+
+  restoreTopbarRightStructure();
+
   const onLanding = shell && shell.classList.contains('app-shell--landing');
-  if (onLanding) {
-    slot.appendChild(right);
-  } else {
-    topbar.appendChild(right);
+  const mobileLanding = onLanding && isLandingMobileLayout();
+
+  if (mobileLanding) {
+    if (langSlot && langIcons) langSlot.appendChild(langIcons);
+    if (sidebarAuthSlot && authBlock) sidebarAuthSlot.appendChild(authBlock);
+    return;
   }
+
+  if (onLanding) {
+    if (slot) slot.appendChild(right);
+    return;
+  }
+
+  topbar.appendChild(right);
 }
 
 function showPage(page, opts) {
@@ -732,6 +765,7 @@ bindLandingDashboardClicks();
 bindGlobalFooterLinks();
 syncLandingAuthSlot();
 syncLandingCta();
+window.matchMedia('(max-width: 640px)').addEventListener('change', () => syncLandingAuthSlot());
 el('btnLandingMenu')?.addEventListener('click', (e) => {
   e.stopPropagation();
   openMobileNav();

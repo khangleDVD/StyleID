@@ -86,6 +86,11 @@
 
 .landing-v2-logo {
   grid-area: logo;
+  justify-self: start;
+  align-self: center;
+  width: auto;
+  max-width: max-content;
+  text-align: left;
   border: none;
   background: none;
   padding: 0;
@@ -98,7 +103,6 @@
 
 .landing-v2-menu {
   display: none;
-  grid-area: menu;
   align-items: center;
   justify-content: center;
   width: 42px;
@@ -108,6 +112,51 @@
   background: var(--lv2-surface-container);
   color: var(--lv2-on-surface);
   cursor: pointer;
+}
+
+.landing-v2-nav-tools {
+  display: none;
+  grid-area: tools;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.landing-v2-lang-slot {
+  display: flex;
+  align-items: center;
+}
+
+.landing-v2-lang-slot .lang-switcher-codes,
+.landing-v2-lang-slot .lang-switcher-chevron {
+  display: none;
+}
+
+.landing-v2-lang-slot .lang-switcher-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  justify-content: center;
+  border-color: color-mix(in srgb, var(--lv2-outline-variant) 45%, transparent);
+  color: var(--lv2-on-surface-variant);
+  background: transparent;
+}
+
+.landing-v2-lang-slot .lang-switcher-menu {
+  background: var(--lv2-surface-container-high, #1a1a1a);
+  border-color: color-mix(in srgb, var(--lv2-outline-variant) 45%, transparent);
+}
+
+.landing-v2-lang-slot .lang-switcher {
+  position: relative;
+  z-index: 80;
+}
+
+.landing-v2-lang-slot .lang-switcher-menu {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  min-width: 10.5rem;
 }
 
 .landing-v2-links {
@@ -201,18 +250,23 @@
 
 @media (max-width: 900px) {
   .landing-v2-nav {
-    grid-template-columns: 1fr auto auto;
-    grid-template-areas: "logo menu actions";
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: "logo . tools actions";
     padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
+  }
+
+  .landing-v2-nav-tools {
+    display: flex;
+    justify-self: end;
   }
 
   .landing-v2-menu {
     display: inline-flex;
-    justify-self: end;
   }
 
   .landing-v2-nav-actions {
     gap: 0.35rem;
+    justify-self: end;
   }
 
   .landing-v2-auth .shell-v2-guest-link {
@@ -226,17 +280,15 @@
   }
 }
 
-/* Điện thoại: header 2 hàng (logo + menu / auth full width), hero gọn hơn */
+/* Điện thoại: logo + (ngôn ngữ | menu); tài khoản trong sidebar */
 @media (max-width: 640px) {
   .app-shell--landing .landing-scroll {
-    scroll-padding-top: 6.25rem;
+    scroll-padding-top: 4.5rem;
   }
 
   .landing-v2-nav {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "logo menu"
-      "actions actions";
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo . tools";
     gap: 0.55rem 0.75rem;
     padding-left: max(0.85rem, env(safe-area-inset-left, 0px));
     padding-right: max(0.85rem, env(safe-area-inset-right, 0px));
@@ -248,175 +300,23 @@
     justify-self: start;
   }
 
+  .landing-v2-nav-tools {
+    gap: 0.3rem;
+    justify-self: end;
+  }
+
   .landing-v2-menu {
     width: 40px;
     height: 40px;
   }
 
-  .landing-v2-nav-actions {
-    grid-column: 1 / -1;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.45rem 0.65rem;
-    padding-bottom: 0.1rem;
-    overflow: visible;
-  }
-
-  .landing-v2-auth {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .landing-v2-auth .topbar-right {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.4rem 0.55rem;
-  }
-
-  .landing-v2-nav-actions .lang-switcher-codes,
-  .landing-v2-nav-actions .lang-switcher-chevron {
-    display: none;
-  }
-
-  .landing-v2-nav-actions .lang-switcher-btn {
+  .landing-v2-lang-slot .lang-switcher-btn {
     width: 40px;
     height: 40px;
-    padding: 0;
-    justify-content: center;
   }
 
-  /* Menu mặc định căn phải (right:0) → trên mobile bị tràn ra mép trái màn hình */
-  .landing-v2-nav-actions .lang-switcher {
-    position: relative;
-    z-index: 80;
-  }
-
-  .landing-v2-nav-actions .lang-switcher-menu {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    min-width: 10.5rem;
-  }
-
-  .landing-v2-auth .shell-v2-guest {
-    gap: 0.4rem;
-  }
-
-  .landing-v2-auth .shell-v2-guest-link,
-  .landing-v2-auth .shell-v2-guest-cta {
-    min-height: 40px;
-    padding: 0.4rem 0.85rem;
-    font-size: 0.8rem;
-  }
-
-  .landing-v2-hero {
-    min-height: auto;
-    padding: 1.25rem 1rem 2rem;
-    align-items: stretch;
-    text-align: center;
-  }
-
-  .landing-v2-hero-inner {
-    width: 100%;
-    max-width: none;
-  }
-
-  .landing-v2-kicker {
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    line-height: 1.35;
-    padding: 0.35rem 0.75rem;
-    max-width: 100%;
-    text-align: center;
-  }
-
-  .landing-v2-hero-title {
-    font-size: clamp(1.65rem, 8vw, 2.25rem);
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .landing-v2-hero-lead {
-    font-size: 0.92rem;
-    line-height: 1.5;
-    margin-bottom: 1.25rem;
-  }
-
-  .landing-v2-hero-actions {
-    width: 100%;
-    max-width: 20rem;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 0.65rem;
-  }
-
-  .landing-v2-btn {
-    width: 100%;
-    max-width: none;
-    padding: 0.8rem 1.25rem;
-  }
-
-  .landing-v2-hero-note {
-    font-size: 0.7rem;
-    line-height: 1.45;
-    padding: 0 0.25rem;
-  }
-
-  .landing-v2-hero-visual {
-    margin-top: 1.5rem;
-    aspect-ratio: 4 / 5;
-    max-height: min(50vh, 380px);
-    border-radius: 10px;
-  }
-
-  .landing-v2-marker-label {
+  .landing-v2-nav-actions {
     display: none;
-  }
-
-  .landing-v2-marker-dot {
-    width: 14px;
-    height: 14px;
-  }
-
-  .landing-v2-marker-dot span {
-    width: 8px;
-    height: 8px;
-  }
-
-  .landing-v2-section {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
-
-  .landing-v2-section-head {
-    margin-bottom: 1.75rem;
-  }
-
-  .landing-v2-section-title {
-    font-size: clamp(1.45rem, 6.5vw, 1.85rem);
-  }
-
-  .landing-v2-glass-card {
-    padding: 1.2rem;
-  }
-
-  .landing-v2-cta {
-    padding: 2.5rem 1rem;
-  }
-
-  .landing-v2-cta-title {
-    font-size: clamp(1.35rem, 6vw, 1.75rem);
-  }
-
-  .landing-v2-cta-actions {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .landing-v2-cta-btn {
-    width: 100%;
-    max-width: 20rem;
-    justify-content: center;
   }
 }
 
@@ -437,6 +337,10 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
+  }
+
+  .landing-v2-nav-tools {
+    display: none !important;
   }
 
   .landing-v2-menu {
@@ -508,12 +412,12 @@
 /* Hero */
 .landing-v2-hero {
   position: relative;
-  min-height: min(92vh, 920px);
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 6.5rem clamp(1rem, 4vw, 3rem) 3rem;
+  justify-content: flex-start;
+  padding: 1rem clamp(1rem, 4vw, 3rem) 3rem;
   overflow: hidden;
   text-align: center;
 }
@@ -549,6 +453,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.35rem 1rem;
+  margin-top: 0;
   margin-bottom: 1rem;
   border-radius: 999px;
   background: var(--lv2-surface-container);
@@ -677,6 +582,112 @@
 .landing-v2-hero-visual:hover .landing-v2-hero-img {
   filter: grayscale(0);
   opacity: 0.85;
+}
+
+/* Hero responsive — phải đặt sau block .landing-v2-hero gốc (tránh bị ghi đè) */
+@media (max-width: 900px) {
+  .landing-v2-hero {
+    min-height: auto;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0.5rem clamp(1rem, 4vw, 2rem) 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-v2-nav {
+    padding-top: max(0.4rem, env(safe-area-inset-top, 0px));
+    padding-bottom: 0.4rem;
+  }
+
+  .landing-v2-hero {
+    padding: 0.15rem 1rem 2rem;
+    text-align: center;
+  }
+
+  .landing-v2-hero-inner {
+    width: 100%;
+    max-width: none;
+  }
+
+  .landing-v2-kicker {
+    margin-top: 0;
+    margin-bottom: 0.85rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    padding: 0.35rem 0.75rem;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .landing-v2-hero-title {
+    font-size: clamp(1.65rem, 8vw, 2.25rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .landing-v2-hero-lead {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .landing-v2-hero-actions {
+    width: 100%;
+    max-width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 0.65rem;
+  }
+
+  .landing-v2-btn {
+    width: 100%;
+    max-width: none;
+    padding: 0.8rem 1.25rem;
+  }
+
+  .landing-v2-hero-note {
+    font-size: 0.7rem;
+    line-height: 1.45;
+    padding: 0 0.25rem;
+  }
+
+  .landing-v2-hero-visual {
+    margin-top: 1.5rem;
+    aspect-ratio: 4 / 5;
+    max-height: min(50vh, 380px);
+    border-radius: 10px;
+  }
+
+  .landing-v2-marker-label {
+    display: none;
+  }
+
+  .landing-v2-marker-dot {
+    width: 14px;
+    height: 14px;
+  }
+
+  .landing-v2-marker-dot span {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (min-width: 901px) {
+  .landing-v2-nav {
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+  }
+
+  .landing-v2-hero {
+    padding: 1.15rem clamp(1rem, 4vw, 3rem) 3rem;
+  }
+
+  .landing-v2-hero-visual {
+    margin-top: 2.25rem;
+  }
 }
 
 .landing-v2-marker {
@@ -1100,6 +1111,45 @@
 
 .lv2-reveal-delay {
   transition-delay: 0.15s;
+}
+
+/* Landing responsive — section/cta (đặt cuối file, sau định nghĩa gốc) */
+@media (max-width: 640px) {
+  .landing-v2-section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .landing-v2-section-head {
+    margin-bottom: 1.75rem;
+  }
+
+  .landing-v2-section-title {
+    font-size: clamp(1.45rem, 6.5vw, 1.85rem);
+  }
+
+  .landing-v2-glass-card {
+    padding: 1.2rem;
+  }
+
+  .landing-v2-cta {
+    padding: 2.5rem 1rem;
+  }
+
+  .landing-v2-cta-title {
+    font-size: clamp(1.35rem, 6vw, 1.75rem);
+  }
+
+  .landing-v2-cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .landing-v2-cta-btn {
+    width: 100%;
+    max-width: 20rem;
+    justify-content: center;
+  }
 }
 
 /* Light theme: keep landing dark editorial */

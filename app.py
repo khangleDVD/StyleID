@@ -679,6 +679,76 @@ def _avatar_mime_for_ext(ext):
     }.get(ext, 'application/octet-stream')
 
 
+def _history_image_setting_key(filename: str) -> str:
+    name = _upload_basename_from_url_or_path(filename)
+    if not name or '..' in name:
+        return ''
+    return f'history_upload:{name}'
+
+
+def _should_persist_history_images_db() -> bool:
+    """Vercel serverless: /tmp/uploads mất sau cold start — ảnh phải lưu DB."""
+    return _on_vercel()
+
+
+def _save_history_images_to_db(names_or_paths) -> None:
+    if not _should_persist_history_images_db():
+        return
+    seen = set()
+    for item in names_or_paths or []:
+        name = _upload_basename_from_url_or_path(str(item))
+        if not name or name in seen:
+            continue
+        seen.add(name)
+        path = os.path.join(Config.UPLOAD_FOLDER, name)
+        if not os.path.isfile(path):
+            continue
+        try:
+            with open(path, 'rb') as fp:
+                raw = fp.read()
+            if not raw:
+                continue
+            ext = name.rsplit('.', 1)[-1].lower() if '.' in name else 'jpg'
+            set_app_setting(_history_image_setting_key(name), {
+                'ext': ext,
+                'data_b64': base64.b64encode(raw).decode('ascii'),
+                'updated_at': datetime.now(timezone.utc).isoformat(),
+            })
+        except Exception as e:
+            print(f'[History image DB save {name}]', e)
+
+
+def _history_image_from_db(filename: str):
+    key = _history_image_setting_key(filename)
+    if not key:
+        return None
+    data = get_app_setting(key)
+    if isinstance(data, dict) and data.get('data_b64'):
+        return data
+    return None
+
+
+def _delete_history_images_db(names_or_paths) -> None:
+    seen = set()
+    for item in names_or_paths or []:
+        name = _upload_basename_from_url_or_path(str(item))
+        if not name or name in seen:
+            continue
+        seen.add(name)
+        try:
+            delete_app_setting(_history_image_setting_key(name))
+        except Exception:
+            pass
+
+
+def _history_image_names_from_row(image_path, analysis_result) -> list:
+    return [
+        _upload_basename_from_url_or_path(u)
+        for u in _history_upload_urls(image_path, analysis_result)
+        if _upload_basename_from_url_or_path(u)
+    ]
+
+
 def _avatar_public_url(user_id, avatar_path=None):
     try:
         uid = int(user_id)
@@ -2176,6 +2246,7 @@ def analyze():
     skip_history = (request.form.get('skip_history') or '').strip().lower() in ('1', 'true', 'yes', 'on')
     if user_id and saved_paths and not skip_history:
         image_path_value = rel_paths[0]  # Tên file ảnh đầu (phục vụ qua /uploads/<filename>)
+        _save_history_images_to_db(rel_paths)
         try:
             db = get_db()
             cursor = plain_cursor(db)
@@ -2206,7 +2277,23 @@ def mix_suggestions():
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(Config.UPLOAD_FOLDER, filename)
+    name = os.path.basename((filename or '').strip().replace('\\', '/'))
+    if not name or '..' in name:
+        return '', 404
+    path = os.path.join(Config.UPLOAD_FOLDER, name)
+    if os.path.isfile(path):
+        if _should_persist_history_images_db() and not _history_image_from_db(name):
+            _save_history_images_to_db([name])
+        return send_from_directory(Config.UPLOAD_FOLDER, name)
+    data = _history_image_from_db(name)
+    if data:
+        try:
+            raw = base64.b64decode(data.get('data_b64') or '')
+        except (ValueError, TypeError):
+            raw = b''
+        if raw:
+            return Response(raw, mimetype=_avatar_mime_for_ext(data.get('ext')))
+    return '', 404
 
 
 # ---------- API Lịch sử phân tích ----------
@@ -2536,12 +2623,24 @@ def delete_history(history_id):
     if not user_id:
         return jsonify({'error': 'Thiếu user_id'}), 400
     db = get_db()
-    cursor = plain_cursor(db)
+    cursor = dict_cursor(db)
     try:
-        cursor.execute('SELECT id FROM history WHERE id = %s AND user_id = %s', (history_id, user_id))
+        cursor.execute(
+            'SELECT id, image_path, analysis_result FROM history WHERE id = %s AND user_id = %s',
+            (history_id, user_id),
+        )
         row = cursor.fetchone()
         if not row:
             return jsonify({'error': 'Không tìm thấy bản ghi hoặc không có quyền xóa'}), 404
+        ar = row.get('analysis_result')
+        if isinstance(ar, str):
+            try:
+                ar = json.loads(ar)
+            except (TypeError, json.JSONDecodeError):
+                ar = {}
+        elif not isinstance(ar, dict):
+            ar = {}
+        _delete_history_images_db(_history_image_names_from_row(row.get('image_path'), ar))
         cursor.execute('DELETE FROM history WHERE id = %s AND user_id = %s', (history_id, user_id))
         db.commit()
         return jsonify({'message': 'Đã xóa'})
@@ -2982,8 +3081,21 @@ def admin_history_delete(history_id):
     if err:
         return err[0], err[1]
     db = get_db()
-    cur = plain_cursor(db)
+    cur = dict_cursor(db)
     try:
+        cur.execute('SELECT image_path, analysis_result FROM history WHERE id = %s', (history_id,))
+        row = cur.fetchone()
+        if not row:
+            return jsonify({'error': 'Không tìm thấy bản ghi'}), 404
+        ar = row.get('analysis_result')
+        if isinstance(ar, str):
+            try:
+                ar = json.loads(ar)
+            except (TypeError, json.JSONDecodeError):
+                ar = {}
+        elif not isinstance(ar, dict):
+            ar = {}
+        _delete_history_images_db(_history_image_names_from_row(row.get('image_path'), ar))
         cur.execute('DELETE FROM history WHERE id = %s', (history_id,))
         db.commit()
         if cur.rowcount != 1:
