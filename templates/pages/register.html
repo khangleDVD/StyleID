@@ -10,11 +10,13 @@
     var t = document.querySelector('title');
     if (t) t.setAttribute('data-i18n', 'meta.titleRegister');
     document.documentElement.classList.remove('theme-light');
+    document.documentElement.classList.add('page-register-v2');
   })();
 </script>
 {% endblock %}
 
 {% block body %}
+  <script>document.body.classList.add('page-register-v2');</script>
   <main class="register-v2-page" data-i18n-aria="authPage.registerTitle" aria-label="Đăng ký">
     <div class="register-v2-split">
       <aside class="register-v2-hero" aria-hidden="true">

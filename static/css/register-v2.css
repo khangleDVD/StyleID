@@ -1,13 +1,17 @@
 /* Register v2 — responsive split layout (mockup-aligned) */
+html.page-register-v2,
 html:has(.register-v2-page),
+body.page-register-v2,
 body:has(.register-v2-page) {
-  height: auto;
+  height: auto !important;
   min-height: 100%;
+  max-height: none !important;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
+body.page-register-v2,
 body:has(.register-v2-page) {
   margin: 0;
   background: #121414;
@@ -33,6 +37,7 @@ body:has(.register-v2-page) {
   font-size: 1rem;
   line-height: 1.5;
   overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .register-v2-page .material-symbols-outlined {
@@ -239,6 +244,7 @@ body:has(.register-v2-page) {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--rv2-on-surface-variant);
+  overflow-wrap: anywhere;
 }
 
 .register-v2-form {
@@ -620,14 +626,22 @@ body:has(.register-v2-page) {
   }
 
   .register-v2-panel {
-    margin-left: 50%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-left: 0;
     width: 50%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    max-height: 100dvh;
     margin-top: 0;
     padding: max(3rem, env(safe-area-inset-top, 0px)) 3rem max(2.5rem, env(safe-area-inset-bottom, 0px));
     border-radius: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
     box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .register-v2-header {
