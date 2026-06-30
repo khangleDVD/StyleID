@@ -390,9 +390,8 @@ class _ErrorView extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'Kiểm tra Flask đang chạy (python app.py) và URL trong lib/config.dart.\n'
-              'Emulator: http://10.0.2.2:5000\n'
-              'Điện thoại thật: http://<IP-máy-tính>:5000',
+              'Kiểm tra kết nối mạng và URL trong lib/config.dart.\n'
+              'Production: https://224817-styleid.vercel.app',
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: colorScheme.onSurfaceVariant,
