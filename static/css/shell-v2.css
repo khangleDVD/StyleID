@@ -464,6 +464,32 @@ html.theme-light .app-shell-v2 .shell-v2-theme-light {
 
 /* Mobile drawer */
 @media (max-width: 900px) {
+  .app-shell-v2 .app-sidebar {
+    height: 100vh;
+    max-height: 100vh;
+    min-height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+    min-height: 100dvh;
+    box-sizing: border-box;
+    padding-top: max(1rem, env(safe-area-inset-top, 0px));
+    padding-bottom: max(1.25rem, calc(env(safe-area-inset-bottom, 0px) + 3.5rem));
+    padding-left: max(0.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.5rem, env(safe-area-inset-right, 0px));
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .app-shell-v2 .shell-v2-sidebar-foot {
+    padding-bottom: 0.35rem;
+  }
+
+  .app-shell-v2 .shell-v2-admin-slot {
+    padding-bottom: 0.35rem;
+  }
+
   .app-shell-v2 .shell-v2-hamburger {
     display: inline-flex;
     align-items: center;
