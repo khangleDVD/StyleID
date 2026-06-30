@@ -380,11 +380,6 @@ el('btnSidebarLogout')?.addEventListener('click', () => {
   logoutAndGoHome();
 });
 
-el('btnSidebarChangePassword')?.addEventListener('click', () => {
-  closeUserMenu();
-  openModal('modalChangePassword');
-});
-
 qsAll('.modal-close').forEach(btn => {
   btn.addEventListener('click', () => {
     const m = btn.closest('.modal');

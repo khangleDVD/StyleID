@@ -574,7 +574,6 @@ function updateAuthUI() {
   const topbarDisplayName = el('topbarDisplayName');
   const topbarEmail = el('topbarEmail');
   const topbarAvatar = el('topbarAvatar');
-  const btnSidebarChangePassword = el('btnSidebarChangePassword');
   const btnSidebarLogout = el('btnSidebarLogout');
   const btnSidebarAdmin = el('btnSidebarAdmin');
   const topbarUserRole = el('topbarUserRole');
@@ -612,7 +611,6 @@ function updateAuthUI() {
         analyzeBalanceHint.textContent = t('analyze.balancePending');
       }
     }
-    if (btnSidebarChangePassword) show(btnSidebarChangePassword);
     if (btnSidebarLogout) show(btnSidebarLogout);
     if (btnSidebarAdmin) btnSidebarAdmin.classList.toggle('hidden', !isAdmin());
     closeUserMenu();
@@ -624,7 +622,6 @@ function updateAuthUI() {
     if (analyzeBalanceHint) {
       analyzeBalanceHint.textContent = t('analyze.balanceGuest');
     }
-    if (btnSidebarChangePassword) hide(btnSidebarChangePassword);
     if (btnSidebarLogout) hide(btnSidebarLogout);
     if (btnSidebarAdmin) btnSidebarAdmin.classList.add('hidden');
     closeUserMenu();
@@ -750,6 +747,10 @@ function openMobileNav() {
   const landingMenu = el('btnLandingMenu');
   if (landingMenu) landingMenu.setAttribute('aria-expanded', 'true');
   document.body.classList.add('nav-drawer-no-scroll');
+  const sidebar = el('appSidebar');
+  if (sidebar) sidebar.scrollTop = 0;
+  const nav = qs('.shell-v2-nav');
+  if (nav) nav.scrollTop = 0;
 }
 function escapeHtml(s) {
   const div = document.createElement('div');

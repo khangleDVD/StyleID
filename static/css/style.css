@@ -1595,6 +1595,34 @@ html.theme-light .theme-icon-dark { display: none; }
     box-shadow: none;
     border-right: 1px solid var(--border);
     border-bottom: none;
+    /* Mobile drawer: brand + nav (cuộn) + foot (cố định đáy) */
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    overflow: hidden;
+  }
+
+  .app-sidebar .shell-v2-brand-row,
+  .app-sidebar .sidebar-brand-row {
+    grid-row: 1;
+    min-height: 0;
+  }
+
+  .app-sidebar .shell-v2-nav,
+  .app-sidebar .sidebar-nav {
+    grid-row: 2;
+    flex: unset;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .app-sidebar .shell-v2-sidebar-foot,
+  .app-sidebar .sidebar-bottom {
+    grid-row: 3;
+    margin-top: 0;
+    min-height: 0;
   }
 
   .app-shell.nav-drawer-open .app-sidebar {
@@ -1625,6 +1653,98 @@ html.theme-light .theme-icon-dark { display: none; }
 
   body.nav-drawer-no-scroll {
     overflow: hidden;
+  }
+}
+
+/* Điện thoại xoay ngang — menu gọn, nav luôn cuộn được */
+@media (max-width: 900px) and (orientation: landscape),
+       (max-width: 900px) and (max-height: 520px) {
+  .app-sidebar {
+    width: min(78vw, 320px);
+    padding-top: max(0.35rem, env(safe-area-inset-top, 0px));
+    padding-bottom: max(0.35rem, env(safe-area-inset-bottom, 0px));
+    padding-left: max(0.45rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.45rem, env(safe-area-inset-right, 0px));
+  }
+
+  .app-shell-v2 .shell-v2-brand-row {
+    margin-bottom: 0.25rem;
+  }
+
+  .app-shell-v2 .shell-v2-brand-sub {
+    display: none;
+  }
+
+  .app-shell-v2 .shell-v2-logo-text {
+    font-size: 1.05rem;
+  }
+
+  .app-shell-v2 .shell-v2-nav {
+    gap: 0.05rem;
+    padding: 0 0.15rem;
+  }
+
+  .app-shell-v2 .shell-v2-nav-btn {
+    padding: 0.42rem 0.65rem;
+    font-size: 0.78rem;
+    gap: 0.55rem;
+  }
+
+  .app-shell-v2 .shell-v2-nav-btn .shell-v2-nav-icon {
+    font-size: 1.05rem;
+  }
+
+  .app-shell-v2 .shell-v2-sidebar-foot {
+    padding-top: 0.45rem;
+    gap: 0.08rem;
+  }
+
+  .app-shell-v2 .shell-v2-sidebar-auth {
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.05rem;
+  }
+
+  .app-shell-v2 .shell-v2-sidebar-auth .shell-v2-user-role,
+  .app-shell-v2 .shell-v2-sidebar-auth .topbar-email {
+    display: none !important;
+  }
+
+  .app-shell-v2 .shell-v2-sidebar-auth .shell-v2-user-chip {
+    padding: 0.15rem 0;
+    gap: 0.45rem;
+  }
+
+  .app-shell-v2 .shell-v2-sidebar-auth .shell-v2-avatar {
+    width: 1.85rem;
+    height: 1.85rem;
+    font-size: 0.72rem;
+  }
+
+  .app-shell-v2 .shell-v2-sidebar-auth .topbar-display-name {
+    font-size: 0.78rem;
+  }
+
+  .app-shell-v2 .shell-v2-foot-btn {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.78rem;
+  }
+
+  .app-shell-v2 .shell-v2-foot-btn .material-symbols-outlined {
+    font-size: 1.05rem;
+  }
+
+  .app-shell-v2 .shell-v2-admin-slot {
+    padding: 0.35rem 0.35rem 0.15rem;
+  }
+
+  .app-shell-v2 .shell-v2-admin-btn {
+    padding: 0.42rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .nav-drawer-close {
+    width: 2rem;
+    height: 2rem;
   }
 }
 
