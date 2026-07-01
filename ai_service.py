@@ -941,6 +941,7 @@ def _merge_oneshot_ensemble_outputs(
             )
             if not item_t:
                 continue
+            cat = _correct_category_for_item_type(cat, item_t, dataset)
             row = dict(it)
             row['category'] = cat
             row['item_type'] = item_t
@@ -975,6 +976,7 @@ def _merge_oneshot_ensemble_outputs(
         cat_vals = [str(m.get('category') or '').strip() for _, m in members if str(m.get('category') or '').strip()]
         rep_cat = Counter(cat_vals).most_common(1)[0][0] if cat_vals else members[0][1]['category']
         rep_item = members[0][1]['item_type']
+        rep_cat = _correct_category_for_item_type(rep_cat, rep_item, dataset)
 
         merged_item: Dict[str, Any] = {
             'category': rep_cat,
@@ -1045,6 +1047,7 @@ def _fallback_oneshot_first_model(
         )
         if not item_t:
             continue
+        cat = _correct_category_for_item_type(cat, item_t, dataset)
         row = dict(row)
         row['category'] = cat
         row['item_type'] = item_t
@@ -1231,6 +1234,35 @@ def _correct_category_hosiery_vs_footwear(category: str, item_type: str, dataset
     if any(str(x).strip() == 'Accessories_Soft' for x in cats):
         return 'Accessories_Soft'
     return category
+
+
+_EYEWEAR_ITEM_KEYS = frozenset({'eyeglasses', 'sunglasses', 'goggles'})
+
+
+def _is_eyewear_item_type(item_type: str) -> bool:
+    t = _norm_key(item_type)
+    if not t:
+        return False
+    if t in _EYEWEAR_ITEM_KEYS:
+        return True
+    return any(k in t for k in ('eyeglass', 'sunglass', 'goggle'))
+
+
+def _correct_category_eyewear_vs_headwear(category: str, item_type: str, dataset: Dict) -> str:
+    """Kính mắt/kính râm thuộc Accessories_Hard, không phải Headwear."""
+    if not _is_eyewear_item_type(item_type):
+        return category
+    cats = dataset.get('categories') or []
+    if any(str(x).strip() == 'Accessories_Hard' for x in cats):
+        return 'Accessories_Hard'
+    return category
+
+
+def _correct_category_for_item_type(category: str, item_type: str, dataset: Dict) -> str:
+    """Chuẩn hóa category theo loại món (vớ, kính mắt…)."""
+    cat = _correct_category_hosiery_vs_footwear(category, item_type, dataset)
+    cat = _correct_category_eyewear_vs_headwear(cat, item_type, dataset)
+    return cat
 
 
 def _normalize_style_name_to_dataset(style_name: str, dataset: Dict) -> str:
@@ -1836,7 +1868,7 @@ def normalize_ai_response_to_dataset(out: Dict, dataset: Dict) -> None:
             it['item'] = normalized
             if 'item_type' in it:
                 it['item_type'] = normalized
-            fixed_cat = _correct_category_hosiery_vs_footwear(it.get('category', ''), normalized, dataset)
+            fixed_cat = _correct_category_for_item_type(it.get('category', ''), normalized, dataset)
             if fixed_cat != it.get('category'):
                 it['category'] = _normalize_category_to_dataset(fixed_cat, dataset)
                 normalized2 = _normalize_item_type_to_dataset(
@@ -1986,6 +2018,8 @@ ITEM_EN_TO_VI = {
     'cargo pants': 'Quần cargo', 'joggers': 'Quần jogger', 'shorts': 'Quần đùi',
     'sneakers': 'Giày sneaker', 'loafers': 'Giày loafer', 'oxford shoes': 'Giày oxford',
     'chelsea boots': 'Ủng chelsea', 'combat boots': 'Ủng combat',
+    'eyeglasses': 'Mắt kính', 'sunglasses': 'Kính râm', 'goggles': 'Kính bảo hộ',
+    'chinos': 'Quần chinos', 'socks': 'Vớ', 'crew socks': 'Vớ cổ',
     'baseball cap': 'Mũ lưỡi trai', 'bucket hat': 'Mũ bucket', 'beanie': 'Mũ len',
     'durag': 'Khăn Durag', 'flower crown': 'Vòng hoa đội đầu', 'platform sneakers': 'Giày sneaker đế cao',
     'chunky sneakers': 'Giày sneaker chunky', 'chest rig bag': 'Túi chest rig', 'noragi jacket': 'Áo Noragi',
@@ -2105,6 +2139,8 @@ _ITEM_SUFFIX_VI_RAW = [
     ('flip-flops', 'Dép tông'),
     ('mules', 'Guốc mules'),
     ('belt', 'Thắt lưng'),
+    ('chinos', 'Quần chinos'),
+    ('eyeglasses', 'Mắt kính'),
     ('necklace', 'Vòng cổ'),
     ('bracelet', 'Vòng tay'),
     ('earrings', 'Khuyên tai'),
@@ -2216,7 +2252,7 @@ def _heuristic_item_vi(en: str) -> str:
         if not head_vi:
             head_vi = head_raw
         return f'{label_vi} {head_vi}'.strip()
-    return f'Món / phụ kiện thời trang — {en}'
+    return en
 
 
 def get_item_bilingual(item_name: str, dataset: Optional[Dict] = None) -> Tuple[str, str]:
@@ -2496,6 +2532,122 @@ def _is_connection_error(exc: Exception) -> bool:
     if 'Connection' in exc_name or 'Timeout' in exc_name or 'Connect' in exc_name:
         return True
     return False
+
+
+# -----------------------------------------------------------------------------
+# §7b — Cổng kiểm tra ảnh đầu vào (người mẫu / OOTD / mannequin + trang phục thời trang)
+# -----------------------------------------------------------------------------
+
+_FASHION_GATE_PROMPT = (
+    'Bạn là bộ lọc ảnh đầu vào cho hệ thống phân tích TRANG PHỤC THỜI TRANG.\n'
+    'CHẤP NHẬN (accepted=true) CHỈ KHI ảnh có ĐÚNG MỘT chủ thể: một người HOẶC một ma-nơ-canh (mannequin) '
+    'đang MẶC hoặc TRƯNG BÀY trang phục thời trang rõ ràng — gồm: người mẫu lookbook, người thật chụp OOTD/outfit, '
+    'một ma-nơ-canh cửa hàng/studio. Chủ thể phụ ở xa/mờ không tính nếu không mặc trang phục nổi bật.\n'
+    'TỪ CHỐI (accepted=false) khi: có từ HAI người/người mẫu trở lên (ảnh nhóm, runway nhiều người, street style đông người...); '
+    'có từ hai ma-nơ-canh trở lên; vừa người vừa ma-nơ-canh cùng là chủ thể outfit; '
+    'không có người/mannequin mặc đồ; chỉ phong cảnh/đồ vật/thức ăn/meme/screenshot; '
+    'chỉ sản phẩm trải phẳng hoặc treo móc không có người/mannequin; chỉ cận mặt không thấy trang phục; '
+    'ảnh không liên quan thời trang.\n'
+    'subject_count: số người + ma-nơ-canh đang mặc/trưng bày trang phục thời trang (phải = 1 để accepted=true).\n'
+    'confidence: 0..1 — độ chắc chắn vào quyết định accepted.\n'
+    'reason_vi: 1 câu tiếng Việt ngắn giải thích (nếu từ chối, nêu vì sao không phù hợp).\n'
+    'Trả ĐÚNG MỘT JSON, KHÔNG markdown:\n'
+    '{"accepted":true,"subject_count":1,"confidence":0.92,"reason_vi":"..."}'
+)
+
+
+def _gate_model_from_config(config) -> str:
+    explicit = (
+        getattr(config, 'OPENROUTER_GATE_MODEL', None)
+        or os.environ.get('OPENROUTER_GATE_MODEL')
+        or ''
+    ).strip()
+    if explicit:
+        return explicit
+    models = _vision_models_from_config(config)
+    return models[0] if models else 'google/gemini-2.5-flash'
+
+
+def _fashion_gate_enabled(config) -> bool:
+    if config is not None and hasattr(config, 'ENABLE_FASHION_IMAGE_GATE'):
+        return bool(getattr(config, 'ENABLE_FASHION_IMAGE_GATE', True))
+    raw = os.environ.get('ENABLE_FASHION_IMAGE_GATE')
+    if raw is None or not str(raw).strip():
+        return True
+    return str(raw).strip().lower() in ('1', 'true', 'yes', 'on')
+
+
+def validate_fashion_input_image(image_path: str, config) -> dict:
+    """
+    Kiểm tra ảnh có phù hợp phân tích outfit thời trang không (một chủ thể duy nhất).
+    Trả {'accepted': bool, 'reason_vi': str, 'confidence': float|None, 'skipped': bool?}.
+    Không có API key hoặc gate tắt → accepted=True (skipped).
+    Lỗi mạng/API sau retry → fail-open (accepted=True) để không chặn nhầm user.
+    """
+    if not _fashion_gate_enabled(config):
+        return {'accepted': True, 'reason_vi': '', 'confidence': None, 'skipped': True}
+
+    api_key = (getattr(config, 'OPENROUTER_API_KEY', None) or os.environ.get('OPENROUTER_API_KEY') or '').strip()
+    if not api_key:
+        return {'accepted': True, 'reason_vi': '', 'confidence': None, 'skipped': True}
+
+    image_url = _read_image_base64(image_path)
+    base_url = 'https://openrouter.ai/api/v1'
+    timeout = getattr(config, 'OPENROUTER_TIMEOUT', 90) or 90
+    model = _gate_model_from_config(config)
+    max_retries = 2
+    last_error = None
+
+    for attempt in range(max_retries):
+        try:
+            content = _call_vision_api(
+                base_url, api_key, model, image_url, _FASHION_GATE_PROMPT,
+                max_tokens=256, timeout=min(timeout, 45),
+            )
+            parsed = extract_json_from_response(content)
+            if not isinstance(parsed, dict):
+                last_error = 'parse_failed'
+                continue
+            accepted = parsed.get('accepted')
+            if isinstance(accepted, str):
+                accepted = accepted.strip().lower() in ('1', 'true', 'yes', 'on')
+            else:
+                accepted = bool(accepted)
+            reason_vi = (parsed.get('reason_vi') or parsed.get('reason') or '').strip()
+            conf_raw = parsed.get('confidence')
+            try:
+                confidence = float(conf_raw) if conf_raw is not None else None
+            except (TypeError, ValueError):
+                confidence = None
+            if not accepted and not reason_vi:
+                reason_vi = (
+                    'Ảnh không phù hợp: cần ảnh một người mẫu, một người thật (OOTD) hoặc một ma-nơ-canh '
+                    'đang mặc/trưng bày trang phục thời trang (không chấp nhận ảnh nhiều người).'
+                )
+            # Ép từ chối nếu model báo subject_count > 1 (phòng model trả accepted nhầm)
+            try:
+                subject_count = int(parsed.get('subject_count'))
+            except (TypeError, ValueError):
+                subject_count = None
+            if subject_count is not None and subject_count > 1:
+                accepted = False
+                if not reason_vi:
+                    reason_vi = (
+                        f'Ảnh có {subject_count} người/ma-nơ-canh — chỉ chấp nhận ảnh một chủ thể duy nhất.'
+                    )
+            return {
+                'accepted': accepted,
+                'reason_vi': reason_vi,
+                'confidence': confidence,
+            }
+        except Exception as e:
+            last_error = str(e)
+            if _is_connection_error(e) and attempt < max_retries - 1:
+                continue
+            break
+
+    print('[Fashion gate] Bỏ qua gate do lỗi API:', last_error)
+    return {'accepted': True, 'reason_vi': '', 'confidence': None, 'skipped': True, 'gate_error': last_error}
 
 
 # -----------------------------------------------------------------------------

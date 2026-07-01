@@ -30,6 +30,13 @@ def _env_int(key: str, default: int, *, base: int = 10) -> int:
         return default
 
 
+def _env_bool(key: str, default: bool = False) -> bool:
+    raw = os.getenv(key)
+    if raw is None or not str(raw).strip():
+        return default
+    return str(raw).strip().lower() in ('1', 'true', 'yes', 'on')
+
+
 _MYSQL_PLACEHOLDER_HOSTS = frozenset({
     'host', 'your-host', 'your_host', 'database-host', 'db-host', 'db_host',
     'mysql', 'changeme', 'example.com', 'hostname',
@@ -111,6 +118,10 @@ class Config:
     )
     # Trọng số bỏ phiếu phong cách theo thứ tự model (cùng số lượng với OPENROUTER_VISION_MODELS; thiếu → 1.0)
     OPENROUTER_VISION_MODEL_WEIGHTS = _env_str('OPENROUTER_VISION_MODEL_WEIGHTS')
+    # Cổng kiểm tra ảnh đầu vào: chỉ chấp nhận người mẫu / OOTD / mannequin mặc trang phục thời trang
+    ENABLE_FASHION_IMAGE_GATE = _env_bool('ENABLE_FASHION_IMAGE_GATE', True)
+    # Model vision nhẹ cho bước gate (để trống = model vision đầu tiên trong OPENROUTER_VISION_MODELS)
+    OPENROUTER_GATE_MODEL = _env_str('OPENROUTER_GATE_MODEL')
     #  bước hợp nhất món hiện thực hiện hoàn toàn bằng code (xem ai_service._code_merge_detection_outputs).
     # Database: mysql (production) | sqlite (local, không cần XAMPP)
     DB_ENGINE = _resolve_db_engine()

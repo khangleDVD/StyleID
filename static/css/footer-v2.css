@@ -12,7 +12,9 @@
   flex-shrink: 0;
   background: var(--lv2-surface);
   border-top: 2px solid color-mix(in srgb, var(--lv2-primary) 20%, transparent);
-  padding: 4rem clamp(1rem, 4vw, 3rem) 2rem;
+  padding: 4rem clamp(1rem, 4vw, 3rem) max(2rem, calc(env(safe-area-inset-bottom, 0px) + 0.75rem));
+  padding-left: max(clamp(1rem, 4vw, 3rem), env(safe-area-inset-left, 0px));
+  padding-right: max(clamp(1rem, 4vw, 3rem), env(safe-area-inset-right, 0px));
   color: var(--lv2-on-surface);
   font-family: var(--lv2-font);
 }

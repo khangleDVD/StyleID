@@ -130,11 +130,7 @@
       "Boonie Hat",
       "Fisherman Beanie",
       "Non La",
-      "Khan Dong",
-      "Eyeglasses",
-      "Police Cap – cotton, regular, solid",
-      "None – solid",
-      "None - solid – nylon, regular, solid"
+      "Khan Dong"
     ],
     "Topwear_Inner": [
       "Tank Top",
@@ -259,10 +255,7 @@
       "Ao Dai Tunic",
       "Dress Shirt",
       "Polo Shirt",
-      "Blouse",
-      "Plaid Shirt – cotton, regular, plaid",
-      "Topwear_Inner – cotton, slim, solid",
-      "Long-Sleeve Shirt – linen, relaxed, solid"
+      "Blouse"
     ],
     "Topwear_Outer": [
       "T-Shirt",
@@ -331,10 +324,7 @@
       "Leather Jacket",
       "Denim Jacket",
       "Bomber Jacket",
-      "Windbreaker",
-      "Baseball Jacket – wool, oversize, solid",
-      "Basketball Jersey – mesh, oversize, graphic",
-      "Jackets_Coats – wool, slim, solid"
+      "Windbreaker"
     ],
     "Jackets_Coats": [
       "Blazer",
@@ -422,8 +412,8 @@
       "Canvas Jacket",
       "Overshirt Jacket",
       "Hooded Jacket",
-      "Hooded Coat",
-      "Chef Jacket – cotton, slim, solid"
+      "Hooded Coat"
+      
     ],
     "Bottomwear": [
       "Jeans",
@@ -593,9 +583,7 @@
       "Athletic Skort",
       "Ao Dai Trousers",
       "School Uniform Trousers",
-      "Scrubs Pants",
-      "Loose-Fit Pants – linen, relaxed, solid",
-      "Uniform Pants – cotton, regular, solid"
+      "Scrubs Pants"
     ],
     "Skirts": [
       "Skirt",
@@ -1047,10 +1035,7 @@
       "Barefoot Shoes",
       "Orthopedic Shoes",
       "Comfort Shoes",
-      "Diabetic Shoes",
-      "Oxfords – leather, regular, solid",
-      "Work Shoes – leather, regular, solid",
-      "Flat Shoes – leather, regular, solid"
+      "Diabetic Shoes"
     ],
     "Footwear_Sandals": [
       "Sandals",
@@ -1181,7 +1166,6 @@
       "Backpack",
       "Shoulder Bag",
       "Clutch",
-      "Arm Sleeves – mesh, slim, solid",
       "Hair Clip"
     ],
     "Accessories_Hard": [
@@ -1253,8 +1237,7 @@
       "Umbrella",
       "Fan",
       "Chest Rig Bag",
-      "Gloves",
-      "Straw Bag – straw, n/a, n/a"
+      "Gloves"
     ],
     "Jewelry": [
       "Jewelry",

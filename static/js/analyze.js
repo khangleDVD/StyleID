@@ -71,7 +71,6 @@ async function localizeAnalysisData(data) {
     collect(r.mix_suggestions);
     collect(r.analysis_error);
     (r.items || []).forEach((it) => {
-      collect(it.category_display);
       collect(it.reason);
     });
   }
@@ -82,7 +81,6 @@ async function localizeAnalysisData(data) {
   collect(data.mix_suggestions);
   collect(data.analysis_error);
   (data.items || []).forEach((it) => {
-    collect(it.category_display);
     collect(it.reason);
   });
 
@@ -103,7 +101,6 @@ async function localizeAnalysisData(data) {
     if (r.mix_suggestions) r.mix_suggestions = tr(r.mix_suggestions);
     if (r.analysis_error) r.analysis_error = tr(r.analysis_error);
     (r.items || []).forEach((it) => {
-      if (it.category_display) it.category_display = tr(it.category_display);
       if (it.reason) it.reason = tr(it.reason);
     });
   }
@@ -307,20 +304,24 @@ function pickBannerItems(items, opts) {
   return { items: picked, totalUnique };
 }
 
-/** Tên món: luôn EN / VI khi có hai nhãn khác nhau (plain text). */
+/** Tên món — chỉ hiển thị tiếng Anh. */
 function itemNameBilingualPlain(it) {
-  const en = (it.item_en || it.item || it.item_type || '').trim() || '—';
-  const vi = (it.item_vi || '').trim();
-  if (!vi || vi === en) return en;
-  return `${en} / ${vi}`;
+  return itemDisplayNameEn(it);
 }
 
-/** Tên món cho innerHTML (đã escape). */
+/** Tên món cho innerHTML (đã escape) — chỉ tiếng Anh. */
 function itemNameBilingualHtml(it) {
-  const en = (it.item_en || it.item || it.item_type || '').trim() || '—';
-  const vi = (it.item_vi || '').trim();
-  if (!vi || vi === en) return escapeHtml(en);
-  return `${escapeHtml(en)} / ${escapeHtml(vi)}`;
+  return escapeHtml(itemDisplayNameEn(it));
+}
+
+function formatCategoryEn(category) {
+  const categoryRaw = (category || '').replace(/_/g, ' ');
+  return categoryRaw ? categoryRaw.replace(/\b\w/g, (c) => c.toUpperCase()) : '—';
+}
+
+function formatStyleEn(style) {
+  const raw = (style || 'casual').toString().trim().replace(/_/g, ' ');
+  return raw ? raw.replace(/\b\w/g, (c) => c.toUpperCase()) : 'Casual';
 }
 
 function itemConfidencePct(it) {
@@ -381,14 +382,12 @@ function buildAnalyzeV2HotspotsHtml(items, blockId) {
 function buildAnalyzeV2ItemCard(it, idx, blockId) {
   const itemId = blockId + '-item-' + idx;
   const itemStr = itemNameBilingualHtml(it);
-  const categoryRaw = (it.category || '').replace(/_/g, ' ');
-  const categoryEn = categoryRaw ? categoryRaw.replace(/\b\w/g, (c) => c.toUpperCase()) : '—';
-  const categoryVi = it.category_display || '';
-  const categoryLabel = categoryVi
-    ? escapeHtml(t('js.category')) + ': ' + escapeHtml(categoryEn) + ' / ' + escapeHtml(categoryVi)
-    : escapeHtml(t('js.category')) + ': ' + escapeHtml(categoryEn);
+  const categoryEn = formatCategoryEn(it.category);
+  const categoryLabel = escapeHtml(t('js.category')) + ': ' + escapeHtml(categoryEn);
 
   const confPct = itemConfidencePct(it);
+  const winningStyle = formatStyleEn(it.final_style || it.style);
+  const styleBadge = '<span class="analyze-v2-item-style-badge">' + escapeHtml(winningStyle) + '</span>';
   const accuracyBadge = confPct != null
     ? '<span class="analyze-v2-accuracy-badge">' + escapeHtml(t('analyze.accuracy', { n: confPct })) + '</span>'
     : '';
@@ -434,7 +433,7 @@ function buildAnalyzeV2ItemCard(it, idx, blockId) {
   return (
     '<article class="analyze-v2-item-card' + openCls + '" id="' + escapeHtml(itemId) + '">' +
     '<button type="button" class="analyze-v2-item-head" aria-expanded="' + (idx === 0 ? 'true' : 'false') + '">' +
-    '<div><div class="analyze-v2-item-title-row"><span class="analyze-v2-item-name">' + itemStr + '</span>' + accuracyBadge +
+    '<div><div class="analyze-v2-item-title-row"><span class="analyze-v2-item-name">' + itemStr + '</span>' + styleBadge + accuracyBadge +
     '</div><p class="analyze-v2-item-cat">' + categoryLabel + '</p></div>' +
     '<span class="material-symbols-outlined analyze-v2-item-chevron" aria-hidden="true">expand_more</span></button>' +
     '<div class="analyze-v2-item-body"><div class="analyze-v2-model-lines">' + modelLines + reasonHtml + '</div>' +

@@ -41,14 +41,12 @@ from settings_store import get_app_setting, set_app_setting, delete_app_setting
 from translate_service import translate_text, translate_policy_html
 from ai_service import (
     analyze_image,
+    validate_fashion_input_image,
     aggregate_styles,
     aggregate_styles_top_k,
     get_suggested_occasions,
     get_mix_suggestions,
     get_overall_style_description,
-    get_item_bilingual,
-    load_fashion_dataset,
-    to_vietnamese_category,
     to_vietnamese_style,
 )
 
@@ -2103,6 +2101,55 @@ def analyze():
         f.save(path)
         saved_paths.append(path)
 
+    skip_image_gate = (request.form.get('skip_image_gate') or '').strip().lower() in ('1', 'true', 'yes', 'on')
+    gate_enabled = bool(getattr(Config, 'ENABLE_FASHION_IMAGE_GATE', True)) and not skip_image_gate
+    if gate_enabled and saved_paths:
+        gate_rejected = []
+        _gate_reject_default = (
+            'Ảnh không phù hợp: cần ảnh một người mẫu, một người thật (OOTD) hoặc một ma-nơ-canh '
+            'đang mặc/trưng bày trang phục thời trang (không chấp nhận ảnh nhiều người).'
+        )
+        if len(saved_paths) == 1:
+            vr = validate_fashion_input_image(saved_paths[0], app.config)
+            if not vr.get('accepted', True):
+                gate_rejected.append({
+                    'filename': files[0].filename if files else os.path.basename(saved_paths[0]),
+                    'reason': vr.get('reason_vi') or _gate_reject_default,
+                })
+        else:
+            def _gate_one(idx_path):
+                i, p = idx_path
+                return i, validate_fashion_input_image(p, app.config)
+
+            gate_results = [None] * len(saved_paths)
+            with ThreadPoolExecutor(max_workers=min(len(saved_paths), 5)) as executor:
+                futures = [executor.submit(_gate_one, (i, p)) for i, p in enumerate(saved_paths)]
+                for future in as_completed(futures):
+                    i, vr = future.result()
+                    gate_results[i] = vr
+            for i, vr in enumerate(gate_results):
+                if vr and not vr.get('accepted', True):
+                    gate_rejected.append({
+                        'filename': files[i].filename if i < len(files) else os.path.basename(saved_paths[i]),
+                        'reason': vr.get('reason_vi') or _gate_reject_default,
+                    })
+        if gate_rejected:
+            for p in saved_paths:
+                try:
+                    os.remove(p)
+                except OSError:
+                    pass
+            if len(gate_rejected) == 1:
+                err_msg = gate_rejected[0]['reason']
+            else:
+                names = ', '.join(r['filename'] for r in gate_rejected[:5])
+                err_msg = (
+                    f'{len(gate_rejected)} ảnh không phù hợp ({names}). '
+                    'Chỉ chấp nhận ảnh một người mẫu, một người thật (OOTD) hoặc một ma-nơ-canh '
+                    'đang mặc/trưng bày trang phục thời trang (không chấp nhận ảnh nhiều người).'
+                )
+            return jsonify({'error': err_msg, 'rejected_images': gate_rejected}), 400
+
     n = len(saved_paths)
     credits_remaining = None
     refund_n = 0
@@ -2173,7 +2220,6 @@ def analyze():
                     path, result = future.result()
                     raw_results[saved_paths.index(path)] = result
 
-        _ds_labels = load_fashion_dataset()
         for result in raw_results:
             items = result.get('items', [])
             trace = result.get('trace') if isinstance(result, dict) else None
@@ -2186,19 +2232,16 @@ def analyze():
             items_display = []
             for it in items:
                 raw_item = it.get('item') or it.get('item_type') or ''
-                item_en, item_vi = get_item_bilingual(raw_item, _ds_labels)
                 vote_debug = it.get('vote_debug') if isinstance(it, dict) else None
                 per_model = vote_debug.get('per_model') if isinstance(vote_debug, dict) else None
                 item_row = {
-                        'item': item_en,
-                        'item_en': item_en,
-                        'item_vi': item_vi,
+                        'item': raw_item,
+                        'item_en': raw_item,
                         'category': it.get('category') or '',
                         'detected_styles': it.get('detected_styles') or [],
                         'final_style': it.get('final_style') or it.get('style') or 'casual',
                         'confidence': it.get('confidence'),
                         'reason': it.get('reason') or [],
-                        'category_display': to_vietnamese_category(it.get('category')),
                         'style_display': to_vietnamese_style(it.get('final_style') or it.get('style')),
                     }
                 if is_admin_analyze:

@@ -540,6 +540,19 @@
   color: var(--az-on-surface);
 }
 
+.analyze-v2-item-style-badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--az-on-surface-variant) 35%, transparent);
+  background: color-mix(in srgb, var(--az-surface-high) 70%, transparent);
+  color: var(--az-on-surface);
+  font-family: var(--az-label);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
 .analyze-v2-accuracy-badge {
   padding: 0.15rem 0.45rem;
   border-radius: 4px;
@@ -894,4 +907,16 @@
   border-radius: 8px;
   border: 1px solid color-mix(in srgb, var(--az-outline-variant) 45%, transparent);
   cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .page-analyze-v2 .analyze-v2-canvas {
+    padding-bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1rem));
+  }
+
+  .page-analyze-v2 .analyze-v2-upload-section,
+  .page-analyze-v2 .analyze-v2-results-panel {
+    padding-left: max(0, env(safe-area-inset-left, 0px));
+    padding-right: max(0, env(safe-area-inset-right, 0px));
+  }
 }

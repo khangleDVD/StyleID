@@ -34,8 +34,18 @@ eval_results/
 # --- Benchmark ảnh AI (Excel local) ---
 Benchmark Anh AI.xlsx
 
-# --- Flutter mobile app (không deploy lên Vercel) ---
-app_web_view/
+# --- Flutter app_web_view (đẩy source lên Git; bỏ qua artifact build/local) ---
+app_web_view/.dart_tool/
+app_web_view/build/
+app_web_view/.flutter-plugins-dependencies
+app_web_view/android/.gradle/
+app_web_view/android/local.properties
+app_web_view/android/app/debug/
+app_web_view/android/app/profile/
+app_web_view/android/app/release/
+app_web_view/ios/Pods/
+app_web_view/*.apk
+app_web_view/*.ipa
 moble/.dart_tool/
 moble/build/
 moble/android/.gradle/

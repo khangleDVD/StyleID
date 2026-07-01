@@ -164,13 +164,40 @@ body {
 }
 
 /* ---------- App shell pages ---------- */
+@media (max-width: 900px) {
+  .app-shell-v2 .app-topbar,
+  .app-topbar {
+    padding-top: max(0.65rem, env(safe-area-inset-top, 0px));
+    padding-bottom: 0.65rem;
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
+    box-sizing: border-box;
+  }
+
+  .app-shell-v2 .main,
+  .main {
+    padding-top: 1rem;
+    padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
+    padding-bottom: max(1.5rem, calc(env(safe-area-inset-bottom, 0px) + 0.75rem));
+    box-sizing: border-box;
+  }
+
+  .landing-v2-footer {
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
+    padding-bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1rem));
+  }
+}
+
 @media (max-width: 480px) {
   .main {
-    padding: 1rem 0.75rem 1.5rem;
+    padding-top: 1rem;
   }
 
   .app-shell-v2 .app-topbar {
-    padding: 0 0.75rem;
+    padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
     gap: 0.5rem;
   }
 
