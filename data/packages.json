@@ -20,13 +20,6 @@
       "credits": 50,
       "price_vnd": 10000,
       "popular": false
-    },
-    {
-      "key": "goi4",
-      "name": "Khiêm tốn",
-      "credits": 10,
-      "price_vnd": 5000,
-      "popular": false
     }
   ]
 }

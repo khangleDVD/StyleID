@@ -88,7 +88,7 @@ async function createPaymentForPackage(packageId) {
   setPaymentStatus(t('js.paymentCreating'), 'ok');
   const btnDone = el('btnPaymentDone');
   if (btnDone) {
-    btnDone.disabled = true;
+    btnDone.disabled = false;
     btnDone.textContent = t('modal.paidChecking');
   }
   const qrImg = el('paymentQrImg');
@@ -155,8 +155,20 @@ el('btnCopyPaymentContent')?.addEventListener('click', async () => {
   }
 });
 
-el('btnPaymentDone')?.addEventListener('click', () => {
-  if (paymentDoneEnabled) closePaymentModal();
+el('btnPaymentDone')?.addEventListener('click', async () => {
+  if (paymentDoneEnabled) {
+    closePaymentModal();
+    return;
+  }
+  if (!activePayment?.hex_id) return;
+  const btnDone = el('btnPaymentDone');
+  if (btnDone) btnDone.disabled = true;
+  setPaymentStatus(t('js.paymentChecking'), 'ok');
+  await pollPaymentStatusOnce();
+  if (btnDone && !paymentDoneEnabled) {
+    btnDone.disabled = false;
+    btnDone.textContent = t('modal.paidChecking');
+  }
 });
 
 // đóng modal payment khi bấm nút close (để stop polling)

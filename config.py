@@ -176,7 +176,7 @@ class Config:
     SUPPORT_EMAIL = _env_str('SUPPORT_EMAIL', 'levikhangbh2001@gmail.com')
     SUPPORT_PHONE = _env_str('SUPPORT_PHONE', '0916 416 409')
 
-    # Nội dung chuyển khoản bắt buộc bắt đầu bằng: SEVQR{NAME_WEB}NAPTOKEN{HEX_ID}
+    # Nội dung CK: SEVQR{NAME_WEB}NAPTOKEN{TOKEN}. TOKEN ngắn (~5 ký tự) — VietQR/bank thường giới hạn ~25 ký tự.
     PAYMENT_TRANSFER_PREFIX = (_env_str('PAYMENT_TRANSFER_PREFIX', 'SEVQR') or 'SEVQR').upper()
 
     # XOR obfuscation key: thay đổi key này cho mỗi dự án (đặt dạng số thập phân hoặc hex: 0x5EAFB)

@@ -394,8 +394,33 @@ def decode_payment_id(hex_str: str) -> int:
     return int(str(hex_str).strip(), 16) ^ int(Config.SECRET_XOR_KEY)
 
 
-def _generate_reconcile_token() -> str:
-    return secrets.token_hex(16).upper()
+def _reconcile_tokens_match(found: str, target: str) -> bool:
+    """Khớp token đối soát; chấp nhận prefix khi ngân hàng cắt ngắn nội dung CK."""
+    found = (found or '').strip().upper()
+    target = (target or '').strip().upper()
+    if not found or not target:
+        return False
+    if found == target:
+        return True
+    shorter, longer = (found, target) if len(found) <= len(target) else (target, found)
+    # Tối thiểu 8 ký tự hex để tránh khớp nhầm
+    if len(shorter) >= 8 and longer.startswith(shorter):
+        return True
+    return False
+
+
+def _payment_reconcile_candidates(payment_row: dict) -> list[str]:
+    """Các token có thể xuất hiện trong nội dung CK (mới + cũ)."""
+    tokens: list[str] = []
+    pid = int(payment_row.get('id') or 0)
+    if pid > 0:
+        enc = encode_payment_id(pid)
+        if enc:
+            tokens.append(enc.upper())
+    tok = (payment_row.get('reconcile_token') or '').strip().upper()
+    if tok and tok not in tokens:
+        tokens.append(tok)
+    return tokens
 
 
 def _payment_public_token(payment_row: dict) -> str:
@@ -604,9 +629,11 @@ def _match_sepay_transaction_for_payment(payment_row: dict, *, used_sepay_tx_ids
         return None
 
     used = used_sepay_tx_ids or set()
-    target_token = _payment_public_token(payment_row)
+    candidates = _payment_reconcile_candidates(payment_row)
     prefix = _payment_transfer_prefix()
-    pattern = rf"{re.escape(prefix)}([A-Fa-f0-9]+)"
+    patterns = [rf"{re.escape(prefix)}([A-Fa-f0-9]+)"]
+    for cand in candidates:
+        patterns.append(rf"{re.escape(cand)}")
 
     history = _sepay_get_last_20_transactions()
     for tx in history:
@@ -625,19 +652,28 @@ def _match_sepay_transaction_for_payment(payment_row: dict, *, used_sepay_tx_ids
         if not _amount_matches_invoice(amount, int(payment_row['amount_vnd'])):
             continue
 
-        m = re.search(pattern, content, flags=re.IGNORECASE)
-        if not m:
-            continue
-
-        found_token = (m.group(1) or '').strip().upper()
-        if found_token != target_token:
+        matched_token = None
+        for pattern in patterns:
+            m = re.search(pattern, content, flags=re.IGNORECASE)
+            if not m:
+                continue
+            found_token = (m.group(1) if m.lastindex else m.group(0) or '').strip().upper()
+            if not found_token:
+                continue
+            for cand in candidates:
+                if _reconcile_tokens_match(found_token, cand):
+                    matched_token = cand
+                    break
+            if matched_token:
+                break
+        if not matched_token:
             continue
 
         tx_id = pick(tx, ['reference_number', 'id', 'code', 'tx_id', 'transaction_id', 'ma_tham_chieu', 'reference', 'ref', 'ma_giao_dich'])
         if tx_id is not None and str(tx_id) in used:
             continue
         if tx_id is not None:
-            print(f'[SePay] matched payment_id={payment_row.get("id")} tx_id={tx_id} amount={amount}')
+            print(f'[SePay] matched payment_id={payment_row.get("id")} tx_id={tx_id} amount={amount} token={matched_token}')
         return True, str(tx_id) if tx_id is not None else None
 
     return False, None
@@ -1872,7 +1908,6 @@ def payment_create():
 
     now = datetime.now(timezone.utc)
     expires_at = now + timedelta(minutes=max(1, int(Config.PAYMENT_EXPIRES_MINUTES)))
-    reconcile_token = _generate_reconcile_token()
 
     db = get_db()
     cur = dict_cursor(db)
@@ -1885,11 +1920,15 @@ def payment_create():
         cur.execute(
             'INSERT INTO payments (user_id, package_key, credits, amount_vnd, status, expires_at, reconcile_token) '
             'VALUES (%s, %s, %s, %s, %s, %s, %s)',
-            (user_id, package_id, credits, amount_vnd, 'pending', expires_at.replace(tzinfo=None), reconcile_token),
+            (user_id, package_id, credits, amount_vnd, 'pending', expires_at.replace(tzinfo=None), None),
         )
         db.commit()
-        payment_id = cur.lastrowid
-        pay_row = {'id': int(payment_id), 'reconcile_token': reconcile_token}
+        payment_id = int(cur.lastrowid)
+        # Token ngắn (≤5 ký tự hex) để khớp giới hạn nội dung CK VietQR ~25 ký tự
+        reconcile_token = encode_payment_id(payment_id)
+        cur.execute('UPDATE payments SET reconcile_token = %s WHERE id = %s', (reconcile_token, payment_id))
+        db.commit()
+        pay_row = {'id': payment_id, 'reconcile_token': reconcile_token}
         hex_id = _payment_public_token(pay_row)
         transfer_content = _payment_transfer_content(pay_row)
         qr_url = _build_vietqr_image_url(amount_vnd=amount_vnd, add_info=transfer_content)

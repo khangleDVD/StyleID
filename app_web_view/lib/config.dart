@@ -13,7 +13,7 @@ class AppConfig {
   static const String callbackScheme = 'lumistyle';
 
   static const String appName = 'StyleID';
-  static const String appVersion = '1.0.4';
+  static const String appVersion = '1.0.5';
 
   static String get googleLoginMobileUrl =>
       '$apiBaseUrl/api/auth/google?mobile=1';

@@ -25,12 +25,16 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  inset: 0;
+  top: env(safe-area-inset-top, 0px);
+  right: env(safe-area-inset-right, 0px);
+  bottom: env(safe-area-inset-bottom, 0px);
+  left: env(safe-area-inset-left, 0px);
   z-index: 120;
   max-width: none;
   margin: 0;
   padding: 0;
   background: #0a0a0a;
+  box-sizing: border-box;
 }
 
 .page-admin-v2 {
@@ -106,8 +110,10 @@
 .admin-v2-sidebar {
   width: var(--adm-sidebar-w);
   flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 0;
+  overflow: hidden;
   padding: 1.25rem 0.85rem;
   background: var(--adm-surface-low);
   border-right: 1px solid color-mix(in srgb, var(--adm-outline-variant) 35%, transparent);
@@ -133,7 +139,13 @@
 }
 
 .admin-v2-nav {
-  flex: 1;
+  grid-row: 2;
+  flex: unset;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -175,11 +187,14 @@
 }
 
 .admin-v2-sidebar-foot {
+  grid-row: 3;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding-top: 1rem;
-  margin-top: auto;
+  margin-top: 0;
+  min-height: 0;
+  flex-shrink: 0;
   border-top: 1px solid color-mix(in srgb, var(--adm-outline-variant) 30%, transparent);
 }
 
@@ -238,8 +253,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  height: 4rem;
-  padding: 0 1.5rem;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 4rem;
+  padding: 0.85rem 1.5rem;
   background: var(--adm-surface);
   border-bottom: 1px solid color-mix(in srgb, var(--adm-outline-variant) 35%, transparent);
 }
@@ -351,6 +368,7 @@
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  box-sizing: border-box;
   padding: 1.5rem clamp(1rem, 3vw, 3rem) 2rem;
   -webkit-overflow-scrolling: touch;
 }
@@ -408,15 +426,29 @@
   color: var(--adm-primary);
 }
 
-/* Tabs — desktop uses sidebar; tabs shown on mobile only */
+/* Tabs — desktop uses sidebar; tabs shown on mobile / phone landscape */
 @media (min-width: 901px) {
   .admin-v2-tabs {
     display: none;
   }
 }
 
+/* Điện thoại xoay ngang rộng >900px vẫn dùng tab + drawer */
+@media (min-width: 901px) and (max-height: 520px) and (orientation: landscape) and (hover: none) {
+  .admin-v2-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    margin-bottom: 0.85rem;
+  }
+}
+
 /* Sidebar head (mobile close) */
 .admin-v2-sidebar-head {
+  grid-row: 1;
+  min-height: 0;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -978,8 +1010,9 @@
   border: 1px solid #262626;
 }
 
-/* Mobile / tablet */
-@media (max-width: 900px) {
+/* Mobile / tablet / điện thoại xoay ngang (viewport thấp) */
+@media (max-width: 900px),
+       ((max-height: 520px) and (orientation: landscape) and (hover: none)) {
   .admin-v2-layout {
     position: static;
     z-index: auto;
@@ -1038,10 +1071,21 @@
     bottom: 0;
     z-index: 150;
     width: min(17rem, 88vw);
-    flex-direction: column;
-    flex-wrap: nowrap;
+    height: 100vh;
+    max-height: 100vh;
+    min-height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    overflow: hidden;
     align-items: stretch;
-    padding: 1rem 0.85rem;
+    box-sizing: border-box;
+    padding-top: max(1rem, env(safe-area-inset-top, 0px));
+    padding-bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+    padding-left: max(0.85rem, env(safe-area-inset-left, 0px));
+    padding-right: 0.85rem;
     border-right: 1px solid color-mix(in srgb, var(--adm-outline-variant) 35%, transparent);
     border-bottom: none;
     transform: translateX(-105%);
@@ -1053,12 +1097,25 @@
     transform: translateX(0);
   }
 
+  .admin-v2-sidebar-head {
+    grid-row: 1;
+    min-height: 0;
+  }
+
   .admin-v2-brand {
     padding: 0 0.35rem;
     margin-right: 0;
   }
 
   .admin-v2-nav {
+    grid-row: 2;
+    flex: unset;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
     flex-direction: column;
     flex-wrap: nowrap;
     width: auto;
@@ -1080,12 +1137,13 @@
   }
 
   .admin-v2-sidebar-foot {
+    grid-row: 3;
     flex-direction: column;
     width: auto;
     order: unset;
     border-top: 1px solid color-mix(in srgb, var(--adm-outline-variant) 30%, transparent);
     padding-top: 1rem;
-    margin-top: auto;
+    margin-top: 0;
   }
 
   .admin-v2-btn-support,
@@ -1124,6 +1182,7 @@
 
   .admin-v2-scroll {
     padding: 0.85rem 0.75rem 1.25rem;
+    touch-action: pan-y;
   }
 
   .admin-v2-page-head {
@@ -1703,4 +1762,94 @@
   .admin-v2-topbar-actions {
     margin-left: auto;
   }
+}
+
+/* Điện thoại xoay ngang — menu admin gọn, nav + tab cuộn được */
+@media (max-width: 900px) and (orientation: landscape),
+       (max-width: 900px) and (max-height: 520px),
+       ((max-height: 520px) and (orientation: landscape) and (hover: none)) {
+  .admin-v2-sidebar {
+    width: min(78vw, 17rem);
+    padding-top: max(0.35rem, env(safe-area-inset-top, 0px));
+    padding-bottom: max(0.35rem, env(safe-area-inset-bottom, 0px));
+    padding-left: max(0.45rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.45rem, env(safe-area-inset-right, 0px));
+  }
+
+  .admin-v2-brand {
+    padding: 0 0.35rem 0.5rem;
+  }
+
+  .admin-v2-brand-sub {
+    display: none;
+  }
+
+  .admin-v2-brand-title {
+    font-size: 1.05rem;
+  }
+
+  .admin-v2-nav {
+    gap: 0.05rem;
+    padding-top: 0.25rem;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  .admin-v2-nav-btn {
+    padding: 0.42rem 0.65rem;
+    font-size: 0.78rem;
+    gap: 0.55rem;
+  }
+
+  .admin-v2-nav-btn .material-symbols-outlined {
+    font-size: 1.05rem;
+  }
+
+  .admin-v2-sidebar-foot {
+    padding-top: 0.45rem;
+    gap: 0.35rem;
+  }
+
+  .admin-v2-btn-support,
+  .admin-v2-btn-exit {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.78rem;
+  }
+
+  /* Thanh tab ngang — cuộn ngang thay vì lưới 2 cột */
+  .admin-v2-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    scroll-snap-type: x proximity;
+    padding: 0.35rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .admin-v2-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    scroll-snap-align: start;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.76rem;
+  }
+}
+
+/* iOS: cho phép cuộn menu admin khi body bị khóa scroll */
+body.nav-drawer-no-scroll .page-admin-v2.admin-drawer-open .admin-v2-sidebar {
+  touch-action: pan-y;
+}
+
+body.nav-drawer-no-scroll .page-admin-v2.admin-drawer-open .admin-v2-nav {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
